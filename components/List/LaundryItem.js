@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import styles from "./styles";
 
 const LaundryItem = ({ children }) => (
-  <View>
-    <Text styles={styles.item}>{children}</Text>
+  <View style={styles.container}>
+    <Text style={styles.text}>{children}</Text>
   </View>
 );
 

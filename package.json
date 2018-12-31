@@ -17,7 +17,7 @@
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
     "prop-types": "^15.6.2",
-    "react-native-extended-stylesheet": "^0.8.0"
+    "react-native-extended-stylesheet": "^0.8.1"
   },
   "private": true
 }
