@@ -1,3 +1,3 @@
-import ChooseLaundry from "./screens/ChooseLaundry";
+import OrderDetails from "./screens/OrderDetails";
 
-export default ChooseLaundry;
+export default OrderDetails;

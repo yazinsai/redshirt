@@ -1,11 +1,11 @@
-import EStyleSheet from "react-native-extended-stylesheet";
+import { StyleSheet } from "react-native";
+import { Constants } from "expo";
 
-const styles = EStyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#0f0f0f"
+    backgroundColor: "#fff",
+    paddingTop: Constants.statusBarHeight
   }
 });
 
