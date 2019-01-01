@@ -20,12 +20,14 @@ const styles = StyleSheet.create({
   }
 });
 
+const DATE_FORMAT = "YYYY-MM-DD";
+
 class OrderDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      soonestDropOffDate: moment().format("YYYY-MM-DD"),
+      soonestDropOffDate: moment().format(DATE_FORMAT),
       soonestDropOffTime: 0
     };
 
@@ -35,7 +37,7 @@ class OrderDetails extends Component {
   onChangePickup({ date, time }) {
     const tomorrow = moment(date)
       .add(1, "days")
-      .format("YYYY-MM-DD");
+      .format(DATE_FORMAT);
 
     this.setState({
       soonestDropOffDate: tomorrow,
