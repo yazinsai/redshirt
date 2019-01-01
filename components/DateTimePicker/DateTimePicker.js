@@ -5,8 +5,27 @@ import moment from "moment";
 
 import styles from "./styles";
 
+/**
+ * Props:
+ * - startDate: Earliest date that can be selected (Optional, but becomes
+ *              required if startTime is specified; default = Today)
+ * - startTime: Earliest time on "startDate" that can be selected (Optional)
+ *
+ * Example usage:
+ *
+ *  <DateTimePicker />
+ *  <DateTimePicker startDate="2019-01-01" />
+ *  <DateTimePicker startDate="2019-01-02" startTime={12} />
+ *
+ */
+
 const NUM_DAYS_TO_SHOW = 7;
 const GMT_OFFSET = 3; // We're GMT + 3
+const times = [
+  { value: 12, label: "Morning (9am to 12pm)" },
+  { value: 16, label: "Afternoon (12pm to 4pm)" },
+  { value: 20, label: "Evening (4pm to 8pm)" }
+];
 
 class DateTimePicker extends Component {
   constructor(props) {
@@ -30,6 +49,16 @@ class DateTimePicker extends Component {
     }
     if (prevProps.startTime !== this.props.startTime) {
       this.reloadTimes();
+    }
+  }
+
+  onChange() {
+    // Bubbles up to the prop
+    if (this.props.onChange) {
+      this.props.onChange({
+        date: this.state.selectedDate,
+        time: this.state.selectedTime
+      });
     }
   }
 
@@ -59,31 +88,29 @@ class DateTimePicker extends Component {
   }
 
   reloadTimes() {
-    const times = [
-      { value: 12, label: "Morning (9am to 12pm)" },
-      { value: 16, label: "Afternoon (12pm to 4pm)" },
-      { value: 20, label: "Evening (4pm to 8pm)" }
-    ];
-
     let nowHours = new Date().getUTCHours() + GMT_OFFSET;
-    let availableTimes = [...times];
+    let availableTimes = times.map(time => time.value);
 
     // Filter slots that are < 1 hour away from expiring
     if (moment(this.state.selectedDate).isSame(moment(), "day")) {
-      availableTimes = times.filter(time => nowHours + 1 < time.value);
+      availableTimes = availableTimes.filter(time => nowHours + 1 < time);
     }
 
-    // Filter slots before our startDate / startTime
+    // Filter slots before startTime on startDate
     if (
       this.props.startTime &&
       this.props.startDate &&
-      moment(this.props.startDate).isSame(moment(), "day")
+      moment(this.props.startDate).isSame(
+        moment(this.state.selectedDate),
+        "day"
+      )
     ) {
-      availableTimes = availableTimes.filter(time => {
-        time.value > this.props.startTime;
-      });
+      availableTimes = availableTimes.filter(
+        time => time >= this.props.startTime
+      );
     }
 
+    // Update state
     const selectedTime = this.state.selectedTime || availableTimes[0] || null;
     this.setState({
       availableTimes,
@@ -105,6 +132,10 @@ class DateTimePicker extends Component {
     }
   }
 
+  formatTimeForDisplay(intTime) {
+    return times.find(elem => elem.value == intTime).label;
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -112,9 +143,10 @@ class DateTimePicker extends Component {
         <Picker
           selectedValue={this.state.selectedDate}
           onValueChange={itemValue => {
-            this.setState({ selectedDate: itemValue }, () =>
-              this.reloadTimes()
-            );
+            this.setState({ selectedDate: itemValue }, () => {
+              this.onChange();
+              this.reloadTimes();
+            });
           }}
         >
           {this.state.availableDates.map(date => {
@@ -130,11 +162,17 @@ class DateTimePicker extends Component {
         <Picker
           selectedValue={this.state.selectedTime}
           onValueChange={itemValue =>
-            this.setState({ selectedTime: itemValue })
+            this.setState({ selectedTime: itemValue }, () => this.onChange())
           }
         >
-          {this.state.availableTimes.map(({ value, label }) => {
-            return <Picker.Item label={label} value={value} key={value} />;
+          {this.state.availableTimes.map(time => {
+            return (
+              <Picker.Item
+                label={this.formatTimeForDisplay(time)}
+                value={time}
+                key={time}
+              />
+            );
           })}
         </Picker>
       </View>
@@ -143,7 +181,9 @@ class DateTimePicker extends Component {
 }
 
 DateTimePicker.propTypes = {
-  startDate: PropTypes.string
+  startDate: PropTypes.string,
+  startTime: PropTypes.number,
+  onChange: PropTypes.func
 };
 
 export default DateTimePicker;

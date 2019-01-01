@@ -10,6 +10,7 @@ import {
 import { Container } from "../components/Container";
 import TextArea from "../components/TextArea";
 import { DateTimePicker } from "../components/DateTimePicker";
+import moment from "moment";
 
 import { Formik } from "formik";
 
@@ -20,6 +21,28 @@ const styles = StyleSheet.create({
 });
 
 class OrderDetails extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      soonestDropOffDate: moment().format("YYYY-MM-DD"),
+      soonestDropOffTime: 0
+    };
+
+    this.onChangePickup = this.onChangePickup.bind(this);
+  }
+
+  onChangePickup({ date, time }) {
+    const tomorrow = moment(date)
+      .add(1, "days")
+      .format("YYYY-MM-DD");
+
+    this.setState({
+      soonestDropOffDate: tomorrow,
+      soonestDropOffTime: time
+    });
+  }
+
   render() {
     return (
       <Container>
@@ -30,9 +53,12 @@ class OrderDetails extends Component {
         >
           {({ handleChange, handleSubmit, values }) => (
             <View>
-              <DateTimePicker />
+              <DateTimePicker onChange={this.onChangePickup} />
 
-              {/* <DateTimePicker startDate="2019-01-02" startTime="12" /> */}
+              <DateTimePicker
+                startDate={this.state.soonestDropOffDate}
+                startTime={this.state.soonestDropOffTime}
+              />
 
               <TextInput
                 value={values.email}
