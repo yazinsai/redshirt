@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Container } from "../components/Container";
 import TextArea from "../components/TextArea";
+import { DateTimePicker } from "../components/DateTimePicker";
 
 import { Formik } from "formik";
 
@@ -29,25 +30,9 @@ class OrderDetails extends Component {
         >
           {({ handleChange, handleSubmit, values }) => (
             <View>
-              <Text>Pickup </Text>
-              <Picker
-                selectedValue={null}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ language: itemValue })
-                }
-              >
-                <Picker.Item label="Today" value="java" />
-                <Picker.Item label="Tomorrow" value="js" />
-                <Picker.Item label="Thursday, 3rd Jan" value="js" />
-                <Picker.Item label="Friday, 4th Jan" value="js" />
-                <Picker.Item label="Saturday, 5th Jan" value="js" />
-                <Picker.Item label="Sunday, 6th Jan" value="js" />
-              </Picker>
-              <Picker>
-                <Picker.Item label="Morning (9am to 12pm)" value="js" />
-                <Picker.Item label="Afternoon (12pm - 4pm)" value="js" />
-                <Picker.Item label="Evening (4pm - 8pm)" value="js" />
-              </Picker>
+              <DateTimePicker />
+
+              {/* <DateTimePicker startDate="2019-01-02" startTime="12" /> */}
 
               <TextInput
                 value={values.email}
