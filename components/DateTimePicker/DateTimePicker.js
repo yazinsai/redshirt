@@ -110,6 +110,10 @@ class DateTimePicker extends Component {
       );
     }
 
+    if (availableTimes.length == 0) {
+      // TODO: No slots left; do something
+    }
+
     // Update state
     const selectedTime = this.state.selectedTime || availableTimes[0] || null;
     this.setState({
