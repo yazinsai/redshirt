@@ -27,20 +27,21 @@ class OrderDetails extends Component {
     super(props);
 
     this.state = {
-      soonestDropOffDate: moment().format(DATE_FORMAT),
-      soonestDropOffTime: 0
+      soonestDropOffDate: null,
+      soonestDropOffTime: null
     };
 
     this.onChangePickup = this.onChangePickup.bind(this);
   }
 
   onChangePickup({ date, time }) {
-    const tomorrow = moment(date)
+    console.log("onChangePickup", date, time);
+    const dayAfter = moment(date)
       .add(1, "days")
       .format(DATE_FORMAT);
 
     this.setState({
-      soonestDropOffDate: tomorrow,
+      soonestDropOffDate: dayAfter,
       soonestDropOffTime: time
     });
   }
