@@ -1,16 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-export default class Onboarding extends React.Component {
+export default class OnboardingIntro extends React.Component {
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>With Red Shirt, you’ll <Text style={styles.bold}>never go to another laundry</Text> again.</Text>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={[styles.button, styles.btnPrimary]} >
+          <TouchableOpacity style={[styles.button, styles.btnPrimary]} onPress={() => navigate('OnBoardingSlides')}>
             <Text style={[styles.btnText, styles.textPrimary]}>3 simple steps</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.btnSecondary]} >
+          <TouchableOpacity style={[styles.button, styles.btnSecondary]} onPress={() => navigate('Home')}>
             <Text style={[styles.btnText, styles.textSecondary]}>Skip Intro</Text>
           </TouchableOpacity>
         </View>

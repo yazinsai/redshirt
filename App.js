@@ -1,7 +1,18 @@
-import OrderDetails from "./screens/OrderDetails";
-import Home from "./screens/Home";
-import SelectLaundry from "./screens/SelectLaundry"
-import OnboardingIntro from "./screens/OnboardingIntro";
-import OnboardingSlides from "./screens/OnboardingSlides"
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import OnBoardingIntro from './screens/OnboardingIntro'
+import OnBoardingSlides from './screens/OnboardingSlides'
+import Home from './screens/Home'
 
-export default OnboardingSlides;
+const AppNavigator = createStackNavigator(
+  {
+    OnBoardingIntro: OnBoardingIntro,
+    OnBoardingSlides: OnBoardingSlides,
+    Home: Home
+  },
+  {
+    initialRouteName: "OnBoardingIntro",
+    headerMode: 'none'
+  }
+);
+
+export default createAppContainer(AppNavigator);

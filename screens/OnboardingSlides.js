@@ -6,7 +6,7 @@ export default class OnboardingSlides extends React.Component {
   render() {
     const whiteDot= <View style={styles.customDot} />
     return (
-      <Swiper style={styles.wrapper} showsButtons={false} activeDot={whiteDot}>
+      <Swiper style={styles.wrapper} showsButtons={false} activeDot={whiteDot} loop={false}>
         <View style={styles.slide}>
           <Text style={styles.number}>1</Text>
           <Text style={styles.content}>Choose a laundry and a pickup time</Text>
