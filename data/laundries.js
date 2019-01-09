@@ -4,6 +4,8 @@ export default [
     name: "Brite",
     location: "all",
     pricing: "3",
+    minimumOrder: 'BHD 1',
+    image: require('../assets/LaundryImage.png'),
     reviews: {
       rating: 3,
       count: 10
@@ -14,6 +16,8 @@ export default [
     name: "Laundry 31",
     location: "all",
     pricing: "3",
+    minimumOrder: 'BHD 2',
+    image: require('../assets/LaundryImage.png'),
     reviews: {
       rating: 4,
       count: 10
@@ -24,6 +28,8 @@ export default [
     name: "Clean Lounge",
     location: "all",
     pricing: "3",
+    minimumOrder: 'BHD 3',
+    image: require('../assets/LaundryImage.png'),
     reviews: {
       rating: 5,
       count: 10
