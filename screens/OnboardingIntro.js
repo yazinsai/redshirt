@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import Button from '../components/Button'
 
 export default class OnboardingIntro extends React.Component {
   render() {
@@ -8,12 +9,8 @@ export default class OnboardingIntro extends React.Component {
       <View style={styles.container}>
         <Text style={styles.title}>With Red Shirt, you’ll <Text style={styles.bold}>never go to another laundry</Text> again.</Text>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={[styles.button, styles.btnPrimary]} onPress={() => navigate('OnBoardingSlides')}>
-            <Text style={[styles.btnText, styles.textPrimary]}>3 simple steps</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.btnSecondary]} onPress={() => navigate('Home')}>
-            <Text style={[styles.btnText, styles.textSecondary]}>Skip Intro</Text>
-          </TouchableOpacity>
+          <Button variant='primary' onPress={() => navigate('OnBoardingSlides')} text='3 simple steps' />
+          <Button variant='secondary' onPress={() => navigate('Home')} text='Skip intro' />
         </View>
       </View>
     );
@@ -39,25 +36,5 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     marginTop: 100
-  },
-  button: {
-    borderRadius: 25,
-    padding: 15,
-    margin: 10
-  },
-  btnPrimary: {
-    backgroundColor: '#D0021B'
-  },
-  btnSecondary: {
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'black',
-  },
-  btnText: {
-    textAlign: 'center',
-    fontSize: 14
-  },
-  textPrimary: {
-    color: 'white'
   },
 });
