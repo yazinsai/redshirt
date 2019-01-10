@@ -5,30 +5,27 @@ import PropTypes from "prop-types";
 
 
 const LaundryItem = ({ item }) => (
-  <Card>
-    <View style={styles.container}>
-      <View styles={styles.information}>
-        <Text style={styles.text}>{item.name}</Text>
-        <View style={styles.rating}>
-          <Rating
-            readonly
-            startingValue={item.reviews.rating}
-            imageSize={15}
-            
-          />
-          <Text style={styles.ratingText}>
-          ({item.reviews.count} reviews)
-          </Text>
-        </View>
-        <View style={styles.details}>
-          <Text style={styles.detailsText}>Price: {'$'.repeat(item.pricing)}</Text>
-          <Text style={styles.detailsText}>Minimum Order: {item.minimumOrder}</Text>
-        </View>
+  <View style={styles.container}>
+    <View styles={styles.information}>
+      <Text style={styles.text}>{item.name}</Text>
+      <View style={styles.rating}>
+        <Rating
+          readonly
+          startingValue={item.reviews.rating}
+          imageSize={15}
+          
+        />
+        <Text style={styles.ratingText}>
+        ({item.reviews.count} reviews)
+        </Text>
       </View>
-      <Image style={styles.image} source={item.image}/>
+      <View style={styles.details}>
+        <Text style={styles.detailsText}>Price: {'$'.repeat(item.pricing)}</Text>
+        <Text style={styles.detailsText}>Minimum Order: {item.minimumOrder}</Text>
+      </View>
     </View>
-   
-  </Card>
+    <Image style={styles.image} source={item.image}/>
+  </View>
 );
 
 LaundryItem.propTypes = {
@@ -39,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   text: {
     fontSize: 18
