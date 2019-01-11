@@ -1,0 +1,49 @@
+import React, { Component } from 'react'
+import {View, Image, Text, StyleSheet} from 'react-native'
+
+export class Feedback extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title} >You're all {"\n"} set.</Text>
+        <Image source={require('../assets/tick.png')} />
+        <Text style={styles.subTitle}>See you {"\n"} tomorrow morning.</Text>
+        <Image style={styles.backImage} source={require('../assets/slide1Image.png')} />
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#D0021B',
+    display: 'flex',
+    alignItems: 'center'
+  },
+  title: {
+    color: 'white',
+    fontSize: 33,
+    marginTop: 70,
+    textAlign: 'center',
+    marginBottom: 40
+  },
+  tickImage: {
+
+  },
+  subTitle: {
+    fontSize: 24,
+    color: 'white',
+    textAlign: 'center',
+    marginTop: 70,
+    zIndex: 2
+  },
+  backImage: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    zIndex: 1
+  },
+})
+
+export default Feedback
