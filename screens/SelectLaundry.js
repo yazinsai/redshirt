@@ -1,23 +1,38 @@
 import React, { Component } from "react";
-import { Text, FlatList } from "react-native";
+import {  FlatList, StyleSheet, View } from "react-native";
+import { Card } from 'react-native-elements'
 
 import laundries from "../data/laundries";
-import { LaundryItem } from "../components/List";
-import { Container } from "../components/Container";
+import LaundryItem from "../components/LaundryItem";
 
 class ChooseLaundry extends Component {
+  static navigationOptions = {
+    headerMode: 'float',
+  }
   render() {
     return (
-      <Container>
-        <Text>Select your Laundry from the below:</Text>
+      <Card>
         <FlatList
           data={laundries}
           renderItem={({ item }) => <LaundryItem item={item} />}
           keyExtractor={item => item.id}
+          ItemSeparatorComponent={({separator}) =>
+            <View style={styles.separator} />
+          }
         />
-      </Container>
+      </Card>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  separator: {
+    height: 1,
+    backgroundColor: '#DDD',
+    opacity: 0.4,
+    marginTop: 20,
+    marginBottom: 20
+  },
+})
 
 export default ChooseLaundry;
