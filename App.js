@@ -4,6 +4,7 @@ import OnBoardingSlides from './screens/OnboardingSlides'
 import Home from './screens/Home'
 import SelectLaundry from './screens/SelectLaundry'
 import OrderDetails from './screens/OrderDetails'
+import Feedback from './screens/Feedback'
 
 let noHeader = () => ({
   header: null
@@ -39,10 +40,14 @@ const AppNavigator = createStackNavigator(
     OrderDetails : {
       screen: OrderDetails,
       navigationOptions: redHeader('Schedule your order')
+    },
+    Feedback: {
+      screen: Feedback,
+      navigationOptions: noHeader
     }
   },
   {
-    initialRouteName: "SelectLaundry",
+    initialRouteName: "OnBoardingIntro",
   }
 );
 

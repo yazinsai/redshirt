@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
   TextInput,
   Picker
 } from "react-native";
@@ -12,17 +11,58 @@ import TextArea from "../components/TextArea";
 import { DateTimePicker } from "../components/DateTimePicker";
 import moment from "moment";
 
+import t from 'tcomb-form-native';
+import Button from '../components/Button'
+
 import { Formik } from "formik";
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24
-  }
+const Form = t.form.Form;
+
+const User = t.struct({
+  pickUp: t.enums({
+    'todayMorning': 'Today, morning (9am-12pm)',
+    'todayAfternoon': 'Today, afernoon (12pm-4pm)',
+    'todayEvening': 'Today, evening (4pm-8pm)',
+    'tomorrowMorning': 'Tomorrow, morning (9am-12pm)',
+    'tomorrowAfternoon': 'Tomorrow, afernoon (12pm-4pm)',
+    'tomorrowEvening': 'Tomorrow, evening (4pm-8pm)',
+  }, 'pickUp'),
+  return: t.enums({
+    'todayMorning': 'Today, morning (9am-12pm)',
+    'todayAfternoon': 'Today, afernoon (12pm-4pm)',
+    'todayEvening': 'Today, evening (4pm-8pm)',
+    'tomorrowMorning': 'Tomorrow, morning (9am-12pm)',
+    'tomorrowAfternoon': 'Tomorrow, afernoon (12pm-4pm)',
+    'tomorrowEvening': 'Tomorrow, evening (4pm-8pm)',
+  }, 'return'),
+  address: t.String,
+  mobileNumber: t.Number,
+  email: t.String
 });
+
+var options = {
+  fields: {
+    pickUp: {
+      label: 'When can we pick up your laundry?' // <= label for the name field
+    },
+    return: {
+      label: 'When can we return your laundry?' // <= label for the name field
+    },
+    address: {
+      label: 'What is your address?' // <= label for the name field
+    },
+    mobileNumber: {
+      label: 'Your mobile number' // <= label for the name field
+    },
+    email: {
+      label: 'Your email address (for your receipt)' // <= label for the name field
+    }
+  }
+}
 
 const DATE_FORMAT = "YYYY-MM-DD";
 
-class OrderDetails extends Component {
+class OrderDetails extends  React.Component {
   constructor(props) {
     super(props);
 
@@ -45,45 +85,27 @@ class OrderDetails extends Component {
     });
   }
 
+  
   render() {
     return (
-      <Container>
-        <Text style={styles.text}>I'm the order details screen!</Text>
-        <Formik
-          initialValues={{ firstName: "" }}
-          onSubmit={values => console.log(values)}
-        >
-          {({ handleChange, handleSubmit, values }) => (
-            <View>
-              <DateTimePicker onChange={this.onChangePickup} />
-
-              <DateTimePicker
-                startDate={this.state.soonestDropOffDate}
-                startTime={this.state.soonestDropOffTime}
-              />
-
-              <TextInput
-                value={values.email}
-                placeholder="email"
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
-
-              <TextInput
-                value={values.phone}
-                placeholder="phone"
-                keyboardType="numeric"
-              />
-
-              <TextArea placeholder="Your address" />
-
-              <Button onPress={handleSubmit} title="submit" />
-            </View>
-          )}
-        </Formik>
-      </Container>
+      <View style={styles.container}>
+        <Form 
+          type={User} 
+          options={options}
+          />
+        <Button text='Place my order' variant='primary' />
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    marginTop: 30,
+    padding: 20,
+    backgroundColor: '#ffffff',
+  },
+});
 
 export default OrderDetails;
