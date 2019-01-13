@@ -11,27 +11,32 @@ class ChooseLaundry extends Component {
   }
   render() {
     return (
-      <Card>
+      <View style={styles.container}>
         <FlatList
           data={laundries}
           renderItem={({ item }) => <LaundryItem item={item} />}
           keyExtractor={item => item.id}
-          ItemSeparatorComponent={({separator}) =>
+          ItemSeparatorComponent={({_}) =>
             <View style={styles.separator} />
           }
         />
-      </Card>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    margin: 20,
+    borderWidth: 1,
+    borderColor: "#ddd",
+  },
   separator: {
-    height: 1,
-    backgroundColor: '#DDD',
-    opacity: 0.4,
-    marginTop: 20,
-    marginBottom: 20
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#ececec',
+    flex: 1,
+    marginTop: 10,
+    marginBottom: 10
   },
 })
 
