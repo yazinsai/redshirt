@@ -12,9 +12,12 @@ export class Button extends Component {
     } else if(this.props.variant == 'secondary') {
       variantButton = styles.btnSecondary
       variantText = styles.textSecondary
+    } else if(this.props.variant == 'white') {
+      variantButton = styles.btnWhite
+      variantText = styles.textWhite
     }
     return (
-      <TouchableOpacity style={[styles.button, variantButton]} onPress={this.props.onPress}>
+      <TouchableOpacity style={[styles.button, variantButton, this.props.style]} onPress={this.props.onPress}>
         <Text style={[styles.btnText, variantText]}>{this.props.text}</Text>
       </TouchableOpacity>
     )
@@ -40,13 +43,20 @@ const styles = StyleSheet.create({
   },
   textPrimary: {
     color: 'white'
+  },
+  btnWhite: {
+    backgroundColor: 'white',
+  },
+  textWhite: {
+    color: 'black'
   }
 })
 
 Button.propTypes = {
   variant: PropTypes.string,
   onPress: PropTypes.func,
-  text: PropTypes.string
+  text: PropTypes.string,
+  style: PropTypes.object
 };
 
 export default Button

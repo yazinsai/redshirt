@@ -23,7 +23,7 @@ export default class OnboardingSlides extends React.Component {
           <Text style={styles.number}>3</Text>
           <Text style={styles.content}>We return your clean laundry</Text>
           <Image source={require('../assets/slide3Image.png')} style={styles.image} />
-          <Button variant='secondary' onPress={() => navigate('Home')} text='Place order' />
+          <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text='Place order' />
         </View>
       </Swiper>
     );
@@ -66,5 +66,12 @@ const styles = StyleSheet.create({
     marginRight: 3, 
     marginTop: 3, 
     marginBottom: 3,
+  },
+  button: {
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 50,
+    width: '90%',
+    marginLeft: '5%'
   }
 });

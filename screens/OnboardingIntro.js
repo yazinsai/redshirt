@@ -21,6 +21,8 @@ export default class OnboardingIntro extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    width: '90%',
+    marginLeft: '5%'
   },
   title: {
     fontSize: 44,
