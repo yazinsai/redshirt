@@ -87,13 +87,14 @@ class OrderDetails extends  React.Component {
 
   
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Form 
           type={User} 
           options={options}
           />
-        <Button text='Place my order' variant='primary' />
+        <Button text='Place my order' variant='primary' onPress={() => navigate('Feedback') }/>
       </View>
     );
   }

@@ -9,12 +9,16 @@ class ChooseLaundry extends Component {
   static navigationOptions = {
     headerMode: 'float',
   }
+  onItemClicked(item) {
+    const { navigate } = this.props.navigation;
+    navigate('OrderDetails');
+  }
   render() {
     return (
       <View style={styles.container}>
         <FlatList
           data={laundries}
-          renderItem={({ item }) => <LaundryItem item={item} />}
+          renderItem={({ item }) => <LaundryItem item={item} onPress={() => this.onItemClicked(item)}/>}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={({_}) =>
             <View style={styles.separator} />

@@ -1,12 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import Button from '../components/Button'
+import { Container } from '../components/Container'
 
 export default class App extends React.Component {
   render() {
     const {navigate} = this.props.navigation
     return (
-      <View style={styles.container}>
+      <Container style={styles.container}>
         <View style={styles.appLogo}>
           <Image source={require('../assets/logo.png')} />
           <Text style={styles.appLogoText}>Red Shirt</Text>
@@ -16,15 +17,13 @@ export default class App extends React.Component {
           <Text style={styles.collectText}> Already dropped off your laundry?</Text>
           <Button variant='secondary' text='Collect from the laundry' onPress={()=> navigate('OrderDetails')}/>
         </View>
-      </View>
+      </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
   },
   appLogo: {
     height: '60%',

@@ -1,10 +1,12 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import Swiper from 'react-native-swiper';
+import Button from "../components/Button"
 
 export default class OnboardingSlides extends React.Component {
   render() {
     const whiteDot= <View style={styles.customDot} />
+    const { navigate } = this.props.navigation;
     return (
       <Swiper style={styles.wrapper} showsButtons={false} activeDot={whiteDot} loop={false}>
         <View style={styles.slide}>
@@ -21,6 +23,7 @@ export default class OnboardingSlides extends React.Component {
           <Text style={styles.number}>3</Text>
           <Text style={styles.content}>We return your clean laundry</Text>
           <Image source={require('../assets/slide3Image.png')} style={styles.image} />
+          <Button variant='secondary' onPress={() => navigate('Home')} text='Place order' />
         </View>
       </Swiper>
     );
