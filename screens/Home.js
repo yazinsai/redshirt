@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, AsyncStorage } from "react-native";
 import Button from '../components/Button'
 import { Container } from '../components/Container'
 
@@ -12,10 +12,10 @@ export default class App extends React.Component {
           <Image source={require('../assets/logo.png')} />
           <Text style={styles.appLogoText}>Red Shirt</Text>
         </View>
-        <Button variant='primary' text='Schedule a pickup' onPress={()=> navigate('SelectLaundry')}/>
+        <Button variant='primary' text='Schedule a pickup' onPress={()=> navigate('SelectLaundry', {pickup: true})}/>
         <View style={styles.collectGroup}>
           <Text style={styles.collectText}> Already dropped off your laundry?</Text>
-          <Button variant='secondary' text='Collect from the laundry' onPress={()=> navigate('OrderDetails')}/>
+          <Button variant='secondary' text='Collect from the laundry' onPress={()=> navigate('SelectLaundry', {pickup: false})}/>
         </View>
       </Container>
     );
