@@ -60,7 +60,7 @@ class OrderDetails extends  React.Component {
     
     if(value.pickup !== this.state.value.pickup) {
       // We reset return time
-      value.return = ''
+      value.deliver = ''
     }
 
     this.setState({ value, type });
