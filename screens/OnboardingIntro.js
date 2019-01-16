@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, StatusBar, Text, View, TouchableOpacity } from "react-native";
 import Button from '../components/Button'
 import { Container } from '../components/Container'
+import AntipastoText from '../components/AntipastoText'
 
 export default class OnboardingIntro extends React.Component {
   render() {
@@ -9,7 +10,7 @@ export default class OnboardingIntro extends React.Component {
     return (
       <Container style={styles.container}>
         <StatusBar barStyle="dark-content" />
-        <Text style={styles.title}>With Red Shirt, you’ll <Text style={styles.bold}>never go to another laundry</Text> again.</Text>
+        <AntipastoText style={styles.title}>With Red Shirt, you’ll <AntipastoText weight='Demibold'>never go to another laundry</AntipastoText> again.</AntipastoText>
         <View style={styles.buttonsContainer}>
           <Button variant='primary' onPress={() => navigate('OnBoardingSlides')} text='3 simple steps' />
           <Button variant='secondary' onPress={() => navigate('Home')} text='Skip intro' />
@@ -25,12 +26,8 @@ const styles = StyleSheet.create({
     marginLeft: '5%'
   },
   title: {
-    fontSize: 44,
+    fontSize: 54,
     color: '#D0021B',
-    fontWeight: '100'
-  },
-  bold: {
-    fontWeight: "bold"
   },
   buttonsContainer: {
     marginTop: 100

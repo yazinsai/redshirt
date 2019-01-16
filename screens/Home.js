@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
   },
   collectText: {
     fontSize: 20,
-    fontWeight: '100',
     textAlign: 'center'
   }
 });
