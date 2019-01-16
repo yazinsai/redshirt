@@ -20,7 +20,7 @@ export class AntipastoText extends Component {
 
 AntipastoText.propTypes = {
   weight: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.array
 };
 
 export default AntipastoText
