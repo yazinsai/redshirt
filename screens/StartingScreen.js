@@ -27,7 +27,11 @@ export class StartingScreen extends React.Component {
   }
 
   async loadFont() {
-    return Font.loadAsync({ 'AntipastoPro': require('../assets/fonts/AntipastoPro.ttf') })
+    const light = Font.loadAsync({ 'Antipasto-Light': require('../assets/fonts/Antipasto-Light.otf') });
+    const regular = Font.loadAsync({ 'Antipasto-Regular': require('../assets/fonts/Antipasto-Regular.otf') });
+    const demibold = Font.loadAsync({ 'Antipasto-Demibold': require('../assets/fonts/Antipasto-Demibold.otf') });
+    const normal = Font.loadAsync({ 'Antipasto': require('../assets/fonts/Antipasto.ttf') });
+    return Promise.all([light, regular, demibold, normal]);
   }
   
   render(){
