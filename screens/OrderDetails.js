@@ -1,44 +1,27 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   TextInput,
-  Picker
+  Picker,
+  KeyboardAvoidingView
 } from "react-native";
-import { Container } from "../components/Container";
-import TextArea from "../components/TextArea";
-import { DateTimePicker } from "../components/DateTimePicker";
 import moment from "moment";
+
 
 import t from 'tcomb-form-native';
 import Button from '../components/Button'
 
-import { Formik } from "formik";
-
 const Form = t.form.Form;
+const DATE_FORMAT = "YYYY-MM-DD";
 
-const User = t.struct({
-  pickUp: t.enums({
-    'todayMorning': 'Today, morning (9am-12pm)',
-    'todayAfternoon': 'Today, afernoon (12pm-4pm)',
-    'todayEvening': 'Today, evening (4pm-8pm)',
-    'tomorrowMorning': 'Tomorrow, morning (9am-12pm)',
-    'tomorrowAfternoon': 'Tomorrow, afernoon (12pm-4pm)',
-    'tomorrowEvening': 'Tomorrow, evening (4pm-8pm)',
-  }, 'pickUp'),
-  return: t.enums({
-    'todayMorning': 'Today, morning (9am-12pm)',
-    'todayAfternoon': 'Today, afernoon (12pm-4pm)',
-    'todayEvening': 'Today, evening (4pm-8pm)',
-    'tomorrowMorning': 'Tomorrow, morning (9am-12pm)',
-    'tomorrowAfternoon': 'Tomorrow, afernoon (12pm-4pm)',
-    'tomorrowEvening': 'Tomorrow, evening (4pm-8pm)',
-  }, 'return'),
-  address: t.String,
-  mobileNumber: t.Number,
-  email: t.String
-});
+const SLOTS = [
+  { label: "morning", start: 9, end: 12, display: "morning (9am - 12pm)" },
+  { label: "afternoon", start: 12, end: 16, display: "afternoon (12pm - 4pm)"},
+  { label: "evening", start: 16, end: 20, display: "evening (4pm - 8pm)" },
+]
+const NUM_DAYS_TO_SHOW = 4
+const DISPLAY_DATE_FORMAT = "dddd, MMM Do"
 
 var options = {
   fields: {
@@ -60,41 +43,145 @@ var options = {
   }
 }
 
-const DATE_FORMAT = "YYYY-MM-DD";
-
 class OrderDetails extends  React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      soonestDropOffDate: moment().format(DATE_FORMAT),
-      soonestDropOffTime: 0
+      type: this.getType({}),
+      value: {}
     };
 
-    this.onChangePickup = this.onChangePickup.bind(this);
+    this.submitForm = this.submitForm.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
-  onChangePickup({ date, time }) {
-    const tomorrow = moment(date)
-      .add(1, "days")
-      .format(DATE_FORMAT);
+  onChange(value) {
+    // recalculate the type only if strictly necessary
+    const type = value.pickup !== this.state.value.pickup ?
+      this.getType(value) :
+      this.state.type;
+    
+    if(value.pickup !== this.state.value.pickup) {
+      // We reset return time
+      value.deliver = ''
+    }
 
-    this.setState({
-      soonestDropOffDate: tomorrow,
-      soonestDropOffTime: time
+    this.setState({ value, type });
+  }
+
+  getType(value) {
+    const pickup = value.pickup
+    let result = {}
+
+    if(pickup) {
+      const [pickUpDay, slot] = pickup.split('|')
+      const dropOffDay = moment(pickUpDay).add(1, 'days').format(DATE_FORMAT)
+      result = this.getSlotsAfter(dropOffDay, parseInt(slot))
+    } else {
+      // Pickup not set; use current date/time
+      result = this.getSlotsAfter(moment().format(DATE_FORMAT))
+    }
+
+    const deliverType = t.enums(result);
+    const pickupType = t.enums(this.getSlotsAfter(moment().format(DATE_FORMAT)))
+    const Order = t.struct({
+      pickup: pickupType,
+      deliver: deliverType,
+      address: t.String,
+      phone: t.Number,
+      email: t.String
     });
+    return Order
   }
 
+  getSlotsAfter(date, slot = null) {
+    // Finds all slots available from date, after slot
+    // If no slot is specified, finds slot based on current time
+    const result = {}
+
+    const startDate = moment(date).startOf('day')
+    const startSlot = slot || this.hourToSlotIndex(moment().hours())
+
+    for (i = 0; i < NUM_DAYS_TO_SHOW; i++) {
+      const dateLabel = moment(startDate).add(i, 'days').format(DATE_FORMAT)
+
+      for (j = 0; j < SLOTS.length; j++) {
+        // On startDate, show only slots after startSlot
+        if (i == 0 && j < startSlot) continue;
+
+        result[`${dateLabel}|${j}`] = this.humanDate(dateLabel) + " " + SLOTS[j].display
+      }
+    }
+
+    return result;
+  }
+
+  humanDate(date) {
+    // Converts a date into human readable format
+    // @param date: String representing a Date in DATE_FORMAT format
+    const today = moment().startOf("day")
+    const futureDate = moment(date)
+
+    const diffInDays = futureDate.diff(today, "days")
+    if (diffInDays == 0) {
+      return "Today";
+    } else if (diffInDays == 1) {
+      return "Tomorrow";
+    } else {
+      return futureDate.format(DISPLAY_DATE_FORMAT);
+    }
+  }
+
+  hourToSlotIndex(hour) {
+    // Finds the earliest available slot at "hour", or INFINITY
+    // @param hour: Integer between 0 - 24 representing an hour
+    for (i = 0; i < SLOTS.length; i++) {
+      if (hour + 1 < SLOTS[i].end) return i;
+    }
+    return Infinity
+  }
+
+  submitForm() {
+    const { navigation } = this.props;
+    const formValue = this.refs.form.getValue()
+    if(!formValue) return
+    const laundry = navigation.getParam('laundry', 'NO-LAUNDRY');
+    const pickup = this.formatDate(formValue.pickup)
+    const deliver = this.formatDate(formValue.deliver)
+    const result = Object.assign({}, formValue, {laundry, pickup, deliver})
+    
+    const json = JSON.stringify(result)
+    fetch('https://shine-server-order.herokuapp.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+      body: json
+    }).then(()=> navigation.navigate('Feedback'))
+  }
+
+  formatDate(selectValue){
+    const [date, slot] = selectValue.split('|')
+    const slotIndex = parseInt(slot)
+
+    return this.humanDate(date) + " " + SLOTS[slotIndex].display;
+  }
   
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
         <Form 
-          type={User} 
+          ref="form"
+          type={this.state.type} 
+          value= {this.state.value}
           options={options}
+          onChange={this.onChange}
           />
-        <Button text='Place my order' variant='primary' />
-      </View>
+        <Button text='Place my order' variant='primary' onPress={this.submitForm}/>
+      </KeyboardAvoidingView>
     );
   }
 }

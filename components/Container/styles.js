@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     backgroundColor: "#fff",
-    paddingTop: Constants.statusBarHeight
+    paddingTop: Constants.statusBarHeight,
+    flex: 1
   }
 });
 

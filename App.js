@@ -1,9 +1,10 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import OnBoardingIntro from './screens/OnboardingIntro'
+import StartingScreen from './screens/StartingScreen'
 import OnBoardingSlides from './screens/OnboardingSlides'
 import Home from './screens/Home'
 import SelectLaundry from './screens/SelectLaundry'
 import OrderDetails from './screens/OrderDetails'
+import OrderDetailsNoPickup from './screens/OrderDetailsNoPickup'
 import Feedback from './screens/Feedback'
 
 let noHeader = () => ({
@@ -21,16 +22,16 @@ let redHeader = (title) => (() => ({
 
 const AppNavigator = createStackNavigator(
   {
-    OnBoardingIntro: {
-      screen: OnBoardingIntro,
-      navigationOptions: noHeader
-    },
-    OnBoardingSlides: {
-      screen: OnBoardingSlides,
+    StartingScreen: {
+      screen: StartingScreen,
       navigationOptions: noHeader
     },
     Home: {
       screen: Home,
+      navigationOptions: noHeader
+    },
+    OnBoardingSlides: {
+      screen: OnBoardingSlides,
       navigationOptions: noHeader
     },
     SelectLaundry: {
@@ -41,13 +42,17 @@ const AppNavigator = createStackNavigator(
       screen: OrderDetails,
       navigationOptions: redHeader('Schedule your order')
     },
+    OrderDetailsNoPickup: {
+      screen: OrderDetailsNoPickup,
+      navigationOptions: redHeader('Schedule your order')
+    },
     Feedback: {
       screen: Feedback,
       navigationOptions: noHeader
-    }
+    },
   },
   {
-    initialRouteName: "OnBoardingIntro",
+    initialRouteName: "StartingScreen",
   }
 );
 

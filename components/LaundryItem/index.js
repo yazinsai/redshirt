@@ -1,31 +1,34 @@
 import React from "react";
-import { Text, View, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { Text, View, TouchableHighlight, StyleSheet, Image } from "react-native";
 import { Card, Rating } from 'react-native-elements'
 import PropTypes from "prop-types";
+import colors from "../../config/colors";
 
-
-const LaundryItem = ({ item }) => (
-  <View style={styles.container}>
-    <View styles={styles.information}>
-      <Text style={styles.text}>{item.name}</Text>
-      <View style={styles.rating}>
-        <Rating
-          readonly
-          startingValue={item.reviews.rating}
-          imageSize={15}
-          
-        />
-        <Text style={styles.ratingText}>
-        ({item.reviews.count} reviews)
-        </Text>
+const LaundryItem = ({ item, onPress }) => (
+  <TouchableHighlight onPress={onPress} underlayColor={colors.$border}>
+    <View style={styles.container}>
+      <View styles={styles.information}>
+        <Text style={styles.text}>{item.name}</Text>
+        <View style={styles.rating}>
+          <Rating
+            readonly
+            startingValue={item.reviews.rating}
+            imageSize={15}
+            
+          />
+          <Text style={styles.ratingText}>
+          ({item.reviews.count} reviews)
+          </Text>
+        </View>
+        <View style={styles.details}>
+          <Text style={styles.detailsText}>Price: {'$'.repeat(item.pricing)}</Text>
+          <Text style={styles.detailsText}>Minimum Order: {item.minimumOrder}</Text>
+        </View>
       </View>
-      <View style={styles.details}>
-        <Text style={styles.detailsText}>Price: {'$'.repeat(item.pricing)}</Text>
-        <Text style={styles.detailsText}>Minimum Order: {item.minimumOrder}</Text>
-      </View>
+      <Image style={styles.image} source={item.image}/>
     </View>
-    <Image style={styles.image} source={item.image}/>
-  </View>
+  </TouchableHighlight>
+  
 );
 
 LaundryItem.propTypes = {
@@ -37,6 +40,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    padding: 10,
   },
   text: {
     fontSize: 18

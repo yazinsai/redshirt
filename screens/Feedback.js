@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import {View, Image, Text, StyleSheet} from 'react-native'
+import AntipastoText from '../components/AntipastoText'
 
 export class Feedback extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title} >You're all {"\n"} set.</Text>
+        <AntipastoText style={styles.title} >You're all {"\n"} set.</AntipastoText>
         <Image source={require('../assets/tick.png')} />
-        <Text style={styles.subTitle}>See you {"\n"} tomorrow morning.</Text>
+        <AntipastoText style={styles.subTitle}>See you {"\n"} tomorrow morning.</AntipastoText>
         <Image style={styles.backImage} source={require('../assets/slide1Image.png')} />
       </View>
     )

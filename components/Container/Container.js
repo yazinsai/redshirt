@@ -4,14 +4,25 @@ import { View, TouchableWithoutFeedback, Keyboard } from "react-native";
 
 import styles from "./styles";
 
-const Container = ({ children }) => (
+/**
+ * Can be used like:
+ * 
+ *   <Container>...</Container>
+ * 
+ * or:
+ * 
+ *   <Container style={styles.container}>...</Container>
+ */
+
+const Container = ({ children, style }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    <View style={styles.container}>{children}</View>
+    <View style={[styles.container, style]}>{children}</View>
   </TouchableWithoutFeedback>
 );
 
 Container.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  style: PropTypes.object
 };
 
 export default Container;
