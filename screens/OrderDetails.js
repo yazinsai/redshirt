@@ -1,39 +1,27 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   TextInput,
   Picker,
   KeyboardAvoidingView
 } from "react-native";
-import { Container } from "../components/Container";
-import TextArea from "../components/TextArea";
-import { DateTimePicker } from "../components/DateTimePicker";
 import moment from "moment";
 
 
 import t from 'tcomb-form-native';
 import Button from '../components/Button'
 
-import { Formik } from "formik";
-
 const Form = t.form.Form;
-const DATE_FORMAT_FULL = "YYYY-MM-DD";
-const DATE_FORMAT_DAY = 'dddd'
+const DATE_FORMAT = "YYYY-MM-DD";
 
-function get2DaysOption() {
-  const twoDays = moment(new Date())
-    .add(2, "days")
-  const twoDaysFull = twoDays.format(DATE_FORMAT_FULL)
-  const twoDaysWeek = twoDays.format(DATE_FORMAT_DAY)
-
-  const result = {} 
-  result[`${twoDaysFull}/M`] = `${twoDaysWeek}, morning (9am-12pm)`
-  result[`${twoDaysFull}/A`] = `${twoDaysWeek}, afernoon (12pm-4pm)`
-  result[`${twoDaysFull}/E`] = `${twoDaysWeek}, evening (4pm-8pm)`
-  return result
-}
+const SLOTS = [
+  { label: "morning", start: 9, end: 12, display: "morning (9am - 12pm)" },
+  { label: "afternoon", start: 12, end: 16, display: "afternoon (12pm - 4pm)"},
+  { label: "evening", start: 16, end: 20, display: "evening (4pm - 8pm)" },
+]
+const NUM_DAYS_TO_SHOW = 4
+const DISPLAY_DATE_FORMAT = "dddd, MMM Do"
 
 var options = {
   fields: {
@@ -76,7 +64,7 @@ class OrderDetails extends  React.Component {
     
     if(value.pickup !== this.state.value.pickup) {
       // We reset return time
-      value.return = ''
+      value.deliver = ''
     }
 
     this.setState({ value, type });
@@ -84,100 +72,19 @@ class OrderDetails extends  React.Component {
 
   getType(value) {
     const pickup = value.pickup
-    const result = {}
+    let result = {}
+
     if(pickup) {
-      const [pickUpDay, pickUpTime] = pickup.split('/')
-
-      const twoDays = moment(new Date())
-        .add(2, "days")
-      const twoDaysFull = twoDays.format(DATE_FORMAT_FULL)
-      const twoDaysWeek = twoDays.format(DATE_FORMAT_DAY)
-
-      const threeDays = moment(new Date())
-        .add(3, "days")
-      const threeDaysFull = threeDays.format(DATE_FORMAT_FULL)
-      const threeDaysWeek = threeDays.format(DATE_FORMAT_DAY)
-      
-      if(pickUpDay == 'TD') {
-        if(pickUpTime == 'M') {
-          result['TM/M'] = 'Tomorrow, morning(9am-12pm)'
-          result['TM/A'] = 'Tomorrow, afernoon (12pm-4pm)'
-          result['TM/E'] = 'Tomorrow, evening (4pm-8pm)'  
-        } else if(pickUpTime == 'A') {
-          result['TM/A'] = 'Tomorrow, afernoon (12pm-4pm)'
-          result['TM/E'] = 'Tomorrow, evening (4pm-8pm)'
-        } else if(pickUpTime == 'E') {
-          result['TM/E'] = 'Tomorrow, evening (4pm-8pm)'
-        }
-        result[`${twoDaysFull}/M`] = `${twoDaysWeek}, morning (9am-12pm)`
-        result[`${twoDaysFull}/A`] = `${twoDaysWeek}, afernoon (12pm-4pm)`
-        result[`${twoDaysFull}/E`] = `${twoDaysWeek}, evening (4pm-8pm)`
-        result[`${threeDaysFull}/M`] = `${threeDaysWeek}, morning (9am-12pm)`
-        result[`${threeDaysFull}/A`] = `${threeDaysWeek}, afernoon (12pm-4pm)`
-        result[`${threeDaysFull}/E`] = `${threeDaysWeek}, evening (4pm-8pm)`
-      } else if(pickUpDay == 'TM') {
-        const fourDays = moment(new Date())
-          .add(4, "days")
-        const fourDaysFull = fourDays.format(DATE_FORMAT_FULL)
-        const fourDaysWeek = fourDays.format(DATE_FORMAT_DAY)
-
-        if(pickUpTime == 'M') {
-          result[`${twoDaysFull}/M`] = `${twoDaysWeek}, morning (9am-12pm)`
-          result[`${twoDaysFull}/A`] = `${twoDaysWeek}, afernoon (12pm-4pm)`
-          result[`${twoDaysFull}/E`] = `${twoDaysWeek}, evening (4pm-8pm)`
-        } else if(pickUpTime == 'A') {
-          result[`${twoDaysFull}/A`] = `${twoDaysWeek}, afernoon (12pm-4pm)`
-          result[`${twoDaysFull}/E`] = `${twoDaysWeek}, evening (4pm-8pm)`
-        } else if(pickUpTime == 'E') {
-          result[`${twoDaysFull}/E`] = `${twoDaysWeek}, evening (4pm-8pm)`
-        }
-        result[`${threeDaysFull}/M`] = `${threeDaysWeek}, morning (9am-12pm)`
-        result[`${threeDaysFull}/A`] = `${threeDaysWeek}, afernoon (12pm-4pm)`
-        result[`${threeDaysFull}/E`] = `${threeDaysWeek}, evening (4pm-8pm)`
-        result[`${fourDaysFull}/M`] = `${fourDaysWeek}, morning (9am-12pm)`
-        result[`${fourDaysFull}/A`] = `${fourDaysWeek}, afernoon (12pm-4pm)`
-        result[`${fourDaysFull}/E`] = `${fourDaysWeek}, evening (4pm-8pm)`
-      } else {
-        const oneDayFromDate = moment(pickUpDay)
-          .add(1, "days")
-          .format(DATE_FORMAT);
-        const oneDayFromDateFull = oneDayFromDate.format(DATE_FORMAT_FULL)
-        const oneDayFromDateWeek = oneDayFromDate.format(DATE_FORMAT_DAY)
-
-        const twoDaysFromDate = moment(pickUpDay)
-          .add(2, "days")
-          .format(DATE_FORMAT);
-        const twoDaysFromDateFull = twoDaysFromDate.format(DATE_FORMAT_FULL)
-        const twoDaysFromDateWeek = twoDaysFromDate.format(DATE_FORMAT_DAY)
-
-        const threeDaysFromDate = moment(pickUpDay)
-          .add(3, "days")
-          .format(DATE_FORMAT);
-        const threeDaysFromDateFull = threeDaysFromDate.format(DATE_FORMAT_FULL)
-        const threeDaysFromDateWeek = threeDaysFromDate.format(DATE_FORMAT_DAY)
-
-        if(pickUpTime == 'M') {
-          result[`${oneDayFromDateFull}/M`] = `${oneDayFromDateWeek}, morning (9am-12pm)`
-          result[`${oneDayFromDateFull}/A`] = `${oneDayFromDateWeek}, afernoon (12pm-4pm)`
-          result[`${oneDayFromDateFull}/E`] = `${oneDayFromDateWeek}, evening (4pm-8pm)`
-        } else if(pickUpTime == 'A') {
-          result[`${oneDayFromDateFull}/A`] = `${oneDayFromDateWeek}, afernoon (12pm-4pm)`
-          result[`${oneDayFromDateFull}/E`] = `${oneDayFromDateWeek}, evening (4pm-8pm)`
-        } else if(pickUpTime == 'E') {
-          result[`${oneDayFromDateFull}/E`] = `${oneDayFromDateWeek}, evening (4pm-8pm)`
-        }
-
-        result[`${twoDaysFromDateFull}/M`] = `${twoDaysFromDateWeek}, morning (9am-12pm)`
-        result[`${twoDaysFromDateFull}/A`] = `${twoDaysFromDateWeek}, afernoon (12pm-4pm)`
-        result[`${twoDaysFromDateFull}/E`] = `${twoDaysFromDateWeek}, evening (4pm-8pm)`
-
-        result[`${threeDaysFromDateFull}/M`] = `${threeDaysFromDateWeek}, morning (9am-12pm)`
-        result[`${threeDaysFromDateFull}/A`] = `${threeDaysFromDateWeek}, afernoon (12pm-4pm)`
-        result[`${threeDaysFromDateFull}/E`] = `${threeDaysFromDateWeek}, evening (4pm-8pm)`
-      }
+      const [pickUpDay, slot] = pickup.split('|')
+      const dropOffDay = moment(pickUpDay).add(1, 'days').format(DATE_FORMAT)
+      result = this.getSlotsAfter(dropOffDay, parseInt(slot))
+    } else {
+      // Pickup not set; use current date/time
+      result = this.getSlotsAfter(moment().format(DATE_FORMAT))
     }
+
     const deliverType = t.enums(result);
-    const pickupType = this.getPickupBasedOnTime()
+    const pickupType = t.enums(this.getSlotsAfter(moment().format(DATE_FORMAT)))
     const Order = t.struct({
       pickup: pickupType,
       deliver: deliverType,
@@ -188,22 +95,51 @@ class OrderDetails extends  React.Component {
     return Order
   }
 
-  getPickupBasedOnTime() {
-    const hour = new Date().getHours()
+  getSlotsAfter(date, slot = null) {
+    // Finds all slots available from date, after slot
+    // If no slot is specified, finds slot based on current time
     const result = {}
-    if(hour<19) {
-      if(hour<15){
-        if(hour<11) {
-          result['TD/M'] = 'Today, morning (9am-12pm)'
-        }
-        result['TD/A'] = 'Today, afternoon (12pm-4pm)'
+
+    const startDate = moment(date).startOf('day')
+    const startSlot = slot || this.hourToSlotIndex(moment().hours())
+
+    for (i = 0; i < NUM_DAYS_TO_SHOW; i++) {
+      const dateLabel = moment(startDate).add(i, 'days').format(DATE_FORMAT)
+
+      for (j = 0; j < SLOTS.length; j++) {
+        // On startDate, show only slots after startSlot
+        if (i == 0 && j < startSlot) continue;
+
+        result[`${dateLabel}|${j}`] = this.humanDate(dateLabel) + " " + SLOTS[j].display
       }
-      result['TD/E'] = 'Today, evening (4pm-8pm)'
     }
-    result['TM/M'] = 'Tomorrow, morning (9am-12pm)'
-    result['TM/A'] = 'Tomorrow, afternoon (12pm-4pm)'
-    result['TM/E'] = 'Tomorrow, evening (4pm-8pm)'
-    return t.enums({...result, ...get2DaysOption()})
+
+    return result;
+  }
+
+  humanDate(date) {
+    // Converts a date into human readable format
+    // @param date: String representing a Date in DATE_FORMAT format
+    const today = moment().startOf("day")
+    const futureDate = moment(date)
+
+    const diffInDays = futureDate.diff(today, "days")
+    if (diffInDays == 0) {
+      return "Today";
+    } else if (diffInDays == 1) {
+      return "Tomorrow";
+    } else {
+      return futureDate.format(DISPLAY_DATE_FORMAT);
+    }
+  }
+
+  hourToSlotIndex(hour) {
+    // Finds the earliest available slot at "hour", or INFINITY
+    // @param hour: Integer between 0 - 24 representing an hour
+    for (i = 0; i < SLOTS.length; i++) {
+      if (hour + 1 < SLOTS[i].end) return i;
+    }
+    return Infinity
   }
 
   submitForm() {
@@ -217,42 +153,20 @@ class OrderDetails extends  React.Component {
     
     const json = JSON.stringify(result)
     fetch('https://shine-server-order.herokuapp.com', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    mode: 'cors',
-    body: json
-  }).then(()=> navigation.navigate('Feedback'))
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+      body: json
+    }).then(()=> navigation.navigate('Feedback'))
   }
 
-  formatDate(date){
-    const [dateDay, dateTime] = date.split('/')
-    let formattedDay = ''
-    if(dateDay == 'TD') {
-      const today = moment(new Date())
-        .format(DATE_FORMAT_FULL);
-      formattedDay = today
-    } else if (dateDay == 'TM') {
-      const tomorrow = moment(new Date())
-        .add(1, 'days')
-        .format(DATE_FORMAT_FULL);
-      formattedDay = tomorrow
-    } else {
-      formattedDay = dateDay
-    }
+  formatDate(selectValue){
+    const [date, slot] = selectValue.split('|')
+    const slotIndex = parseInt(slot)
 
-    let formattedTime = ''
-
-    if(dateTime == 'M') {
-      formattedTime = 'before 12pm'
-    } else if(dateTime == 'A') {
-      formattedTime = 'before 4pm'
-    } else {
-      formattedTime = 'before 8pm'
-    }
-
-    return `${formattedDay} ${formattedTime}`
+    return this.humanDate(date) + " " + SLOTS[slotIndex].display;
   }
   
   render() {
