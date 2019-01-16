@@ -26,5 +26,10 @@
     "prop-types": "^15.6.2",
     "react-native-extended-stylesheet": "^0.8.1"
   },
-  "private": true
+  "private": true,
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  }
 }

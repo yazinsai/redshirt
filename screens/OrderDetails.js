@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import {
   View,
   StyleSheet,
+  TextInput,
+  Picker,
+  KeyboardAvoidingView
 } from "react-native";
 import moment from "moment";
+
 
 import t from 'tcomb-form-native';
 import Button from '../components/Button'
@@ -168,7 +172,7 @@ class OrderDetails extends  React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
         <Form 
           ref="form"
           type={this.state.type} 
@@ -177,7 +181,7 @@ class OrderDetails extends  React.Component {
           onChange={this.onChange}
           />
         <Button text='Place my order' variant='primary' onPress={this.submitForm}/>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
