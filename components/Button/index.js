@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 import PropTypes from "prop-types";
+import AntipastoText from '../AntipastoText'
 
 export class Button extends Component {
   render() {
@@ -12,10 +13,13 @@ export class Button extends Component {
     } else if(this.props.variant == 'secondary') {
       variantButton = styles.btnSecondary
       variantText = styles.textSecondary
+    } else if(this.props.variant == 'white') {
+      variantButton = styles.btnWhite
+      variantText = styles.textWhite
     }
     return (
-      <TouchableOpacity style={[styles.button, variantButton]} onPress={this.props.onPress}>
-        <Text style={[styles.btnText, variantText]}>{this.props.text}</Text>
+      <TouchableOpacity style={[styles.button, variantButton, this.props.style]} onPress={this.props.onPress}>
+        <AntipastoText style={[styles.btnText, variantText]}>{this.props.text}</AntipastoText>
       </TouchableOpacity>
     )
   }
@@ -36,17 +40,24 @@ const styles = StyleSheet.create({
   },
   btnText: {
     textAlign: 'center',
-    fontSize: 14
+    fontSize: 18
   },
   textPrimary: {
     color: 'white'
+  },
+  btnWhite: {
+    backgroundColor: 'white',
+  },
+  textWhite: {
+    color: 'black'
   }
 })
 
 Button.propTypes = {
   variant: PropTypes.string,
   onPress: PropTypes.func,
-  text: PropTypes.string
+  text: PropTypes.string,
+  style: PropTypes.object
 };
 
 export default Button

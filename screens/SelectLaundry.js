@@ -10,8 +10,14 @@ class ChooseLaundry extends Component {
     headerMode: 'float',
   }
   onItemClicked(item) {
-    const { navigate } = this.props.navigation;
-    navigate('OrderDetails');
+    const { navigation } = this.props;
+    const pickup = navigation.getParam('pickup', 'true');
+    console.log(item.name)
+    if(pickup) {
+      navigation.navigate('OrderDetails', {laundry: item.name});
+    } else {
+      navigation.navigate('OrderDetailsNoPickup', {laundry: item.name});
+    }
   }
   render() {
     return (
