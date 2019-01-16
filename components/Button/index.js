@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 import PropTypes from "prop-types";
+import AntipastoText from '../AntipastoText'
 
 export class Button extends Component {
   render() {
@@ -18,7 +19,7 @@ export class Button extends Component {
     }
     return (
       <TouchableOpacity style={[styles.button, variantButton, this.props.style]} onPress={this.props.onPress}>
-        <Text style={[styles.btnText, variantText]}>{this.props.text}</Text>
+        <AntipastoText style={[styles.btnText, variantText]}>{this.props.text}</AntipastoText>
       </TouchableOpacity>
     )
   }
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     textAlign: 'center',
-    fontSize: 14
+    fontSize: 18
   },
   textPrimary: {
     color: 'white'

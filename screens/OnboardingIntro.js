@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 44,
     color: '#D0021B',
-    fontFamily: 'Helvetica',
     fontWeight: '100'
   },
   bold: {

@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import Swiper from 'react-native-swiper';
 import Button from "../components/Button"
+import AntipastoText from '../components/AntipastoText'
 
 export default class OnboardingSlides extends React.Component {
   render() {
@@ -10,18 +11,18 @@ export default class OnboardingSlides extends React.Component {
     return (
       <Swiper style={styles.wrapper} showsButtons={false} activeDot={whiteDot} loop={false}>
         <View style={styles.slide}>
-          <Text style={styles.number}>1</Text>
-          <Text style={styles.content}>Choose a laundry and a pickup time</Text>
+          <AntipastoText style={styles.number}>1</AntipastoText>
+          <AntipastoText style={styles.content}>Choose a laundry and a pickup time</AntipastoText>
           <Image source={require('../assets/slide1Image.png')} style={styles.image} />
         </View>
         <View style={styles.slide}>
-          <Text style={styles.number}>2</Text>
-          <Text style={styles.content}>We collect your laundry in a bag</Text>
+          <AntipastoText style={styles.number}>2</AntipastoText>
+          <AntipastoText style={styles.content}>We collect your laundry in a bag</AntipastoText>
           <Image source={require('../assets/slide2Image.png')} style={styles.image} />
         </View>
         <View style={styles.slide}>
-          <Text style={styles.number}>3</Text>
-          <Text style={styles.content}>We return your clean laundry</Text>
+          <AntipastoText style={styles.number}>3</AntipastoText>
+          <AntipastoText style={styles.content}>We return your clean laundry</AntipastoText>
           <Image source={require('../assets/slide3Image.png')} style={styles.image} />
           <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text='Place order' />
         </View>
