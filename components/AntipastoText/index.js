@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Text} from 'react-native'
+import PropTypes from "prop-types";
 
 import fontMaker from '../../util/fontMaker'
 
@@ -16,5 +17,10 @@ export class AntipastoText extends Component {
     );
   }
 }
+
+AntipastoText.propTypes = {
+  weight: PropTypes.string,
+  style: PropTypes.object
+};
 
 export default AntipastoText
