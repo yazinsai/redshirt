@@ -11,6 +11,7 @@ import Button from '../components/Button'
 
 const Form = t.form.Form;
 const DATE_FORMAT = "YYYY-MM-DD";
+const SEP = '|'
 
 const SLOTS = [
   { label: "morning", start: 9, end: 12, display: "morning (9am - 12pm)" },
@@ -96,7 +97,7 @@ class OrderDetails extends  React.Component {
 
       if(pickupValue) {
         // Pickup slot selected
-        const [pickupDay, slot] = pickupValue.split('|')
+        const [pickupDay, slot] = pickupValue.split(SEP)
         const dropoffDay = moment(pickupDay).add(1, 'days').format(DATE_FORMAT)
         deliverySlots = this.getSlotsAfter(dropoffDay, parseInt(slot))
       } else {
@@ -134,7 +135,7 @@ class OrderDetails extends  React.Component {
         // On startDate, show only slots after startSlot
         if (i == 0 && j < startSlot) continue;
 
-        result[`${dateLabel}|${j}`] = this.humanDate(dateLabel) + " " + SLOTS[j].display
+        result[`${dateLabel}${SEP}${j}`] = this.humanDate(dateLabel) + " " + SLOTS[j].display
       }
     }
 
@@ -198,7 +199,7 @@ class OrderDetails extends  React.Component {
   }
 
   formatDate(selectValue){
-    const [date, slot] = selectValue.split('|')
+    const [date, slot] = selectValue.split(SEP)
     const slotIndex = parseInt(slot)
 
     return this.humanDate(date) + " " + SLOTS[slotIndex].display;
@@ -224,8 +225,8 @@ class OrderDetails extends  React.Component {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    marginTop: 30,
-    padding: 20,
+    marginTop: 10,
+    paddingHorizontal: 20,
     backgroundColor: '#ffffff',
   },
 });
