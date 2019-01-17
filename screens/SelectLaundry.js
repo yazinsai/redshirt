@@ -6,8 +6,15 @@ import laundries from "../data/laundries";
 import LaundryItem from "../components/LaundryItem";
 
 class ChooseLaundry extends Component {
-  static navigationOptions = {
-    headerMode: 'float',
+  constructor(props) {
+    super(props)
+    this.state= {laundries: []}
+  }
+  componentWillMount() {
+    fetch('https://shine-server-order.herokuapp.com/laundries', {
+      method: 'GET'
+    }).then((response) => response.json())
+      .then((json) => this.setState({laundries: json}))
   }
   onItemClicked(item) {
     const { navigation } = this.props;
@@ -23,7 +30,7 @@ class ChooseLaundry extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-          data={laundries}
+          data={this.state.laundries}
           renderItem={({ item }) => <LaundryItem item={item} onPress={() => this.onItemClicked(item)}/>}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={({_}) =>

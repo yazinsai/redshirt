@@ -171,7 +171,7 @@ class OrderDetails extends  React.Component {
       },
       mode: 'cors',
       body: json
-    }).then(()=> navigation.navigate('Feedback'))
+    }).then(()=> navigation.navigate('Feedback', {pickup}))
   }
 
   formatDate(selectValue){

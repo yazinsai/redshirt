@@ -25,7 +25,9 @@ const LaundryItem = ({ item, onPress }) => (
           <Text style={styles.detailsText}>Minimum Order: {item.minimumOrder}</Text>
         </View>
       </View>
-      <Image style={styles.image} source={item.image}/>
+      <View style= {styles.imageContainer}>
+        <Image style={styles.image} source={{uri: item.image}}/>
+      </View>
     </View>
   </TouchableHighlight>
   
@@ -62,7 +64,12 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   image: {
-    height: '100%'
+    height: 75,
+    width: 75,
+  },
+  imageContainer: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 });
 
