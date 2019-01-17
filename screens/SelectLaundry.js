@@ -18,13 +18,9 @@ class ChooseLaundry extends Component {
   }
   onItemClicked(item) {
     const { navigation } = this.props;
-    const pickup = navigation.getParam('pickup', 'true');
-    console.log(item.name)
-    if(pickup) {
-      navigation.navigate('OrderDetails', {laundry: item.name});
-    } else {
-      navigation.navigate('OrderDetailsNoPickup', {laundry: item.name});
-    }
+    const needsPickup = navigation.getParam('needsPickup', 'true');
+    console.log(needsPickup)
+    navigation.navigate('OrderDetails', {laundry: item.name, needsPickup});
   }
   render() {
     return (
