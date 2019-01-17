@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   StyleSheet,
   KeyboardAvoidingView
@@ -84,35 +84,39 @@ class OrderDetails extends  React.Component {
   }
 
   getType(value) {
-    const { navigation } = this.props;
-    const needsPickup = navigation.getParam('needsPickup', 'true');
-    this.needsPickup = needsPickup
-    const OrderEnum = {}
-    if(!this.needsPickup) {
-      OrderEnum.deliver = t.enums(this.getSlotsAfter(moment().format(DATE_FORMAT)))
-    } else {
+    const { navigation } = this.props
+    const pickupRequired = navigation.getParam('pickupRequired', 'true')
+    this.pickupRequired = pickupRequired
+    
+    const orderEnum = {}
+    const slotsFromNow = this.getSlotsAfter(moment().format(DATE_FORMAT));
+    if(this.pickupRequired) {
       const pickupValue = value.pickup
-      let result = {}
+      let deliverySlots = {}
 
       if(pickupValue) {
+        // Pickup slot selected
         const [pickupDay, slot] = pickupValue.split('|')
         const dropoffDay = moment(pickupDay).add(1, 'days').format(DATE_FORMAT)
-        result = this.getSlotsAfter(dropoffDay, parseInt(slot))
+        deliverySlots = this.getSlotsAfter(dropoffDay, parseInt(slot))
       } else {
-        // Pickup not set; use current date/time
-        result = this.getSlotsAfter(moment().format(DATE_FORMAT))
+        // No pickup slot selected; use current date/time
+        deliverySlots = slotsFromNow
       }
 
-      OrderEnum.pickup = t.enums(this.getSlotsAfter(moment().format(DATE_FORMAT)))
-      OrderEnum.deliver = t.enums(result);
+      orderEnum.pickup = t.enums(slotsFromNow)
+      orderEnum.deliver = t.enums(deliverySlots);
+    } else {
+      // No pickup required
+      orderEnum.deliver = t.enums(slotsFromNow)
     }
-    const Order = t.struct({
-      ...OrderEnum,
+    
+    return t.struct({
+      ...orderEnum,
       address: t.String,
       phone: t.Number,
       email: Email
     });
-    return Order
   }
 
   getSlotsAfter(date, slot = null) {

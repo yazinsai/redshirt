@@ -13,10 +13,10 @@ export default class App extends React.Component {
           <Image source={require('../assets/logo.png')} />
           <AntipastoText style={styles.appLogoText}>Red Shirt</AntipastoText>
         </View>
-        <Button variant='primary' text='Schedule a pickup' onPress={()=> navigate('SelectLaundry', {needsPickup: true})}/>
+        <Button variant='primary' text='Schedule a pickup' onPress={()=> navigate('SelectLaundry', {pickupRequired: true})}/>
         <View style={styles.collectGroup}>
           <AntipastoText style={styles.collectText}> Already dropped off your laundry?</AntipastoText>
-          <Button variant='secondary' text='Collect from the laundry' onPress={()=> navigate('SelectLaundry', {needsPickup: false})}/>
+          <Button variant='secondary' text='Collect from the laundry' onPress={()=> navigate('SelectLaundry', {pickupRequired: false})}/>
         </View>
       </Container>
     );
