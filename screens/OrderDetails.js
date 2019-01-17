@@ -85,7 +85,7 @@ class OrderDetails extends  React.Component {
 
   getType(value) {
     const { navigation } = this.props
-    const pickupRequired = navigation.getParam('pickupRequired', 'true')
+    const pickupRequired = navigation.getParam('pickupRequired', true)
     this.pickupRequired = pickupRequired
     
     const orderEnum = {}
@@ -125,7 +125,7 @@ class OrderDetails extends  React.Component {
     const result = {}
 
     const startDate = moment(date).startOf('day')
-    const startSlot = slot || this.hourToSlotIndex(moment().hours())
+    const startSlot = slot === null ? this.hourToSlotIndex(moment().hours()) : slot
 
     for (i = 0; i < NUM_DAYS_TO_SHOW; i++) {
       const dateLabel = moment(startDate).add(i, 'days').format(DATE_FORMAT)
