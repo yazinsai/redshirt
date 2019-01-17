@@ -67,6 +67,7 @@ class OrderDetails extends  React.Component {
     this.submitForm = this.submitForm.bind(this)
     this.onChange = this.onChange.bind(this)
   }
+  
 
   onChange(value) {
     // recalculate the type only if strictly necessary
@@ -83,23 +84,30 @@ class OrderDetails extends  React.Component {
   }
 
   getType(value) {
-    const pickup = value.pickup
-    let result = {}
-
-    if(pickup) {
-      const [pickupDay, slot] = pickup.split('|')
-      const dropoffDay = moment(pickupDay).add(1, 'days').format(DATE_FORMAT)
-      result = this.getSlotsAfter(dropoffDay, parseInt(slot))
+    const { navigation } = this.props;
+    const needsPickup = navigation.getParam('needsPickup', 'true');
+    this.needsPickup = needsPickup
+    const OrderEnum = {}
+    if(!this.needsPickup) {
+      OrderEnum.deliver = t.enums(this.getSlotsAfter(moment().format(DATE_FORMAT)))
     } else {
-      // Pickup not set; use current date/time
-      result = this.getSlotsAfter(moment().format(DATE_FORMAT))
-    }
+      const pickupValue = value.pickup
+      let result = {}
 
-    const deliverType = t.enums(result);
-    const pickupType = t.enums(this.getSlotsAfter(moment().format(DATE_FORMAT)))
+      if(pickupValue) {
+        const [pickupDay, slot] = pickupValue.split('|')
+        const dropoffDay = moment(pickupDay).add(1, 'days').format(DATE_FORMAT)
+        result = this.getSlotsAfter(dropoffDay, parseInt(slot))
+      } else {
+        // Pickup not set; use current date/time
+        result = this.getSlotsAfter(moment().format(DATE_FORMAT))
+      }
+
+      OrderEnum.pickup = t.enums(this.getSlotsAfter(moment().format(DATE_FORMAT)))
+      OrderEnum.deliver = t.enums(result);
+    }
     const Order = t.struct({
-      pickup: pickupType,
-      deliver: deliverType,
+      ...OrderEnum,
       address: t.String,
       phone: t.Number,
       email: Email
@@ -159,7 +167,12 @@ class OrderDetails extends  React.Component {
     const formValue = this.refs.form.getValue()
     if(!formValue) return
     const laundry = navigation.getParam('laundry', 'NO-LAUNDRY');
-    const pickup = this.formatDate(formValue.pickup)
+    let pickup
+    if(formValue.pickup) {
+      pickup = this.formatDate(formValue.pickup)
+    } else {
+      pickup = 'NO PICKUP'
+    }
     const deliver = this.formatDate(formValue.deliver)
     const result = Object.assign({}, formValue, {laundry, pickup, deliver})
     
@@ -171,7 +184,13 @@ class OrderDetails extends  React.Component {
       },
       mode: 'cors',
       body: json
-    }).then(()=> navigation.navigate('Feedback', {pickup}))
+    }).then(()=> {
+      if(pickup == 'NO PICKUP') {
+        navigation.navigate('Feedback', {meetingTime: deliver})
+      } else {
+        navigation.navigate('Feedback', {meetingTime: pickup})
+      }
+    })
   }
 
   formatDate(selectValue){

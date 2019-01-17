@@ -5,7 +5,7 @@ import AntipastoText from '../components/AntipastoText'
 export class Feedback extends Component {
   componentWillMount(){
     const { navigation } = this.props;
-    const pickup = navigation.getParam('pickup', '');
+    const pickup = navigation.getParam('meetingTime', '');
     this.pickup = pickup
   }
   render() {
