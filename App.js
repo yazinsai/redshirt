@@ -4,7 +4,6 @@ import OnBoardingSlides from './screens/OnboardingSlides'
 import Home from './screens/Home'
 import SelectLaundry from './screens/SelectLaundry'
 import OrderDetails from './screens/OrderDetails'
-import OrderDetailsNoPickup from './screens/OrderDetailsNoPickup'
 import Feedback from './screens/Feedback'
 
 let noHeader = () => ({
@@ -40,10 +39,6 @@ const AppNavigator = createStackNavigator(
     },
     OrderDetails : {
       screen: OrderDetails,
-      navigationOptions: redHeader('Schedule your order')
-    },
-    OrderDetailsNoPickup: {
-      screen: OrderDetailsNoPickup,
       navigationOptions: redHeader('Schedule your order')
     },
     Feedback: {
