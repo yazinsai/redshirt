@@ -1,20 +1,12 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
-  TextInput,
-  Picker
 } from "react-native";
-import { Container } from "../components/Container";
-import TextArea from "../components/TextArea";
-import { DateTimePicker } from "../components/DateTimePicker";
 import moment from "moment";
 
 import t from 'tcomb-form-native';
 import Button from '../components/Button'
-
-import { Formik } from "formik";
 
 const Form = t.form.Form;
 const DATE_FORMAT = "YYYY-MM-DD";
