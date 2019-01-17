@@ -90,7 +90,8 @@ class OrderDetails extends  React.Component {
     this.pickupRequired = pickupRequired
     
     const orderEnum = {}
-    const slotsFromNow = this.getSlotsAfter(moment().format(DATE_FORMAT));
+    const TODAY = moment().format(DATE_FORMAT)
+    
     if(this.pickupRequired) {
       const pickupValue = value.pickup
       let deliverySlots = {}
@@ -102,14 +103,17 @@ class OrderDetails extends  React.Component {
         deliverySlots = this.getSlotsAfter(dropoffDay, parseInt(slot))
       } else {
         // No pickup slot selected; use current date/time
-        deliverySlots = slotsFromNow
+        deliverySlots = this.getSlotsAfter(TODAY)
       }
 
-      orderEnum.pickup = t.enums(slotsFromNow)
+      orderEnum.pickup = t.enums(this.getSlotsAfter(TODAY))
       orderEnum.deliver = t.enums(deliverySlots);
     } else {
       // No pickup required
-      orderEnum.deliver = t.enums(slotsFromNow)
+
+      // Add a single slot buffer for us to pickup then deliver
+      nextSlot = this.hourToSlotIndex(moment().hours()) + 1
+      orderEnum.deliver = t.enums(this.getSlotsAfter(TODAY, nextSlot))
     }
     
     return t.struct({
