@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import {
-  View,
   StyleSheet,
-  TextInput,
-  Picker,
   KeyboardAvoidingView
 } from "react-native";
 import moment from "moment";
@@ -21,24 +18,32 @@ const SLOTS = [
   { label: "evening", start: 16, end: 20, display: "evening (4pm - 8pm)" },
 ]
 const NUM_DAYS_TO_SHOW = 4
-const DISPLAY_DATE_FORMAT = "dddd, MMM Do"
+const DISPLAY_DATE_FORMAT = "dddd Do,"
+
+// Subtype that supports email address
+const Email = t.refinement(t.String, email => {
+  const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+  return reg.test(email);
+});
 
 var options = {
   fields: {
-    pickUp: {
-      label: 'When can we pick up your laundry?' // <= label for the name field
+    pickup: {
+      label: 'When can we pick up your laundry?'
     },
-    return: {
-      label: 'When can we return your laundry?' // <= label for the name field
+    deliver: {
+      label: 'When can we return your laundry?'
     },
     address: {
-      label: 'What is your address?' // <= label for the name field
+      label: 'What is your address?'
     },
-    mobileNumber: {
-      label: 'Your mobile number' // <= label for the name field
+    phone: {
+      label: 'Your mobile number'
     },
     email: {
-      label: 'Your email address (for your receipt)' // <= label for the name field
+      label: 'Your email address (for your receipt)',
+      keyboardType: 'email-address',
+      autoCapitalize: 'none',
     }
   }
 }
@@ -75,9 +80,9 @@ class OrderDetails extends  React.Component {
     let result = {}
 
     if(pickup) {
-      const [pickUpDay, slot] = pickup.split('|')
-      const dropOffDay = moment(pickUpDay).add(1, 'days').format(DATE_FORMAT)
-      result = this.getSlotsAfter(dropOffDay, parseInt(slot))
+      const [pickupDay, slot] = pickup.split('|')
+      const dropoffDay = moment(pickupDay).add(1, 'days').format(DATE_FORMAT)
+      result = this.getSlotsAfter(dropoffDay, parseInt(slot))
     } else {
       // Pickup not set; use current date/time
       result = this.getSlotsAfter(moment().format(DATE_FORMAT))
@@ -90,7 +95,7 @@ class OrderDetails extends  React.Component {
       deliver: deliverType,
       address: t.String,
       phone: t.Number,
-      email: t.String
+      email: Email
     });
     return Order
   }
@@ -125,9 +130,9 @@ class OrderDetails extends  React.Component {
 
     const diffInDays = futureDate.diff(today, "days")
     if (diffInDays == 0) {
-      return "Today";
+      return "Today,";
     } else if (diffInDays == 1) {
-      return "Tomorrow";
+      return "Tomorrow,";
     } else {
       return futureDate.format(DISPLAY_DATE_FORMAT);
     }
