@@ -3,12 +3,17 @@ import {View, Image, Text, StyleSheet} from 'react-native'
 import AntipastoText from '../components/AntipastoText'
 
 export class Feedback extends Component {
+  componentWillMount(){
+    const { navigation } = this.props;
+    const pickup = navigation.getParam('pickup', '');
+    this.pickup = pickup
+  }
   render() {
     return (
       <View style={styles.container}>
         <AntipastoText style={styles.title} >You're all {"\n"} set.</AntipastoText>
         <Image source={require('../assets/tick.png')} />
-        <AntipastoText style={styles.subTitle}>See you {"\n"} tomorrow morning.</AntipastoText>
+        <AntipastoText style={styles.subTitle}>See you {"\n"} {this.pickup}.</AntipastoText>
         <Image style={styles.backImage} source={require('../assets/slide1Image.png')} />
       </View>
     )
