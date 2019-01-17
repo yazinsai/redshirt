@@ -4,7 +4,7 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import moment from "moment";
-
+let _ = require('lodash');
 
 import t from 'tcomb-form-native';
 import Button from '../components/Button'
@@ -26,6 +26,10 @@ const Email = t.refinement(t.String, email => {
   return reg.test(email);
 });
 
+const textareaStyle = _.cloneDeep(t.form.Form.stylesheet);
+textareaStyle.textbox.normal.height = 72;
+textareaStyle.textbox.normal.textAlignVertical = "top";
+
 var options = {
   fields: {
     pickup: {
@@ -35,7 +39,10 @@ var options = {
       label: 'When can we return your laundry?'
     },
     address: {
-      label: 'What is your address?'
+      label: 'What is your address?',
+      stylesheet: textareaStyle, // overrides height
+      multiline: true,
+      numberOfLines: 2,
     },
     phone: {
       label: 'Your mobile number'
