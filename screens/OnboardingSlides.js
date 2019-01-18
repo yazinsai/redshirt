@@ -9,6 +9,10 @@ export default class OnboardingSlides extends React.Component {
   render() {
     const whiteDot= <View style={styles.customDot} />
     const { navigate } = this.props.navigation;
+    let imageStyle = styles.image
+    if(true || Localization.locale == 'ar') {
+      imageStyle = styles.imageRTL
+    }
     return (
       <Swiper style={styles.wrapper} showsButtons={false} activeDot={whiteDot} loop={false}>
         <View style={styles.slide}>
@@ -17,7 +21,7 @@ export default class OnboardingSlides extends React.Component {
             <AntipastoText weight='Demibold'>{localeStore.t('onBoardingFirstSlideBold')}</AntipastoText>
             <AntipastoText weight='Light'>{localeStore.t('onBoardingFirstSlideLight')}</AntipastoText>
           </Text>
-          <Image source={require('../assets/slide1Image.png')} style={styles.image} />
+          <Image source={require('../assets/slide1Image.png')} style={imageStyle} />
         </View>
         <View style={styles.slide}>
           <AntipastoText style={styles.number}>2</AntipastoText>
@@ -25,7 +29,7 @@ export default class OnboardingSlides extends React.Component {
             <AntipastoText weight='Demibold'>{localeStore.t('onBoardingSecondSlideBold')}</AntipastoText>
             <AntipastoText weight='Light'>{localeStore.t('onBoardingSecondSlideLight')}</AntipastoText>
           </Text>
-          <Image source={require('../assets/slide2Image.png')} style={styles.image} />
+          <Image source={require('../assets/slide2Image.png')} style={imageStyle} />
         </View>
         <View style={styles.slide}>
           <AntipastoText style={styles.number}>3</AntipastoText>
@@ -33,7 +37,7 @@ export default class OnboardingSlides extends React.Component {
             <AntipastoText weight='Demibold'>{localeStore.t('onBoardingThirdSlideBold')}</AntipastoText>
             <AntipastoText weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</AntipastoText>
           </Text>
-          <Image source={require('../assets/slide3Image.png')} style={styles.image} />
+          <Image source={require('../assets/slide3Image.png')} style={imageStyle} />
           <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text={localeStore.t('onBoardingThirdSlideButton')} />
         </View>
       </Swiper>
@@ -65,6 +69,15 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     zIndex: 1
+  },
+  imageRTL: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    zIndex: 1,
+    transform:[
+      {scaleX: - 1}
+    ]
   },
   customDot: {
     backgroundColor: 'white', 
