@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
-import {Text} from 'react-native'
+import {Text, StyleSheet} from 'react-native'
 import PropTypes from "prop-types";
+
+import { Localization } from 'expo-localization';
 
 import fontMaker from '../../util/fontMaker'
 
@@ -10,8 +12,15 @@ export class AntipastoText extends Component {
     if(this.props.weight){
       weight = this.props.weight
     }
+    this.locale = Localization.locale
+    let localeStyle = {}
+    if(Localization.locale == 'ar'){
+      localeStyle = {
+        writingDirection: 'rtl'
+      }
+    }
     return (
-      <Text style={[this.props.style, fontMaker({ family: 'Antipasto', weight })]}>
+      <Text style={[this.props.style, fontMaker({ family: 'Antipasto', weight }), localeStyle]}>
         {this.props.children}
       </Text>
     );

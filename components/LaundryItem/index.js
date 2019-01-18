@@ -4,10 +4,19 @@ import { Card, Rating } from 'react-native-elements'
 import PropTypes from "prop-types";
 import colors from "../../config/colors";
 
-const LaundryItem = ({ item, onPress }) => (
+import { Localization } from 'expo-localization';
+
+const LaundryItem = ({ item, onPress }) => {
+  let containerStyle = styles.container
+  let informationStyle = {}
+  if(Localization.locale == 'ar') {
+    containerStyle = styles.containerRTL
+    informationStyle = styles.informationRTL
+  }
+  return (
   <TouchableHighlight onPress={onPress} underlayColor={colors.$border}>
-    <View style={styles.container}>
-      <View styles={styles.information}>
+    <View style={containerStyle}>
+      <View style={informationStyle}>
         <Text style={styles.text}>{item.name}</Text>
         <View style={styles.rating}>
           <Rating
@@ -31,7 +40,7 @@ const LaundryItem = ({ item, onPress }) => (
     </View>
   </TouchableHighlight>
   
-);
+)};
 
 LaundryItem.propTypes = {
   item: PropTypes.object
@@ -43,6 +52,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
+  },
+  containerRTL: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-end',
+    padding: 10,
+  },
+  informationRTL: {
+    marginLeft: 10
   },
   text: {
     fontSize: 18
