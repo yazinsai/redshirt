@@ -18,7 +18,6 @@ export class StartingScreen extends React.Component {
     localeStore.locale = Localization.locale
   }
   componentDidMount(){
-    AsyncStorage.clear()
     AsyncStorage.getItem("alreadyLaunched").then(value => {
       if(value == null){
         AsyncStorage.setItem('alreadyLaunched', 'true'); 
