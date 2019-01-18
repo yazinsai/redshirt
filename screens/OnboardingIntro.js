@@ -3,6 +3,7 @@ import { StyleSheet, StatusBar, Text, View, TouchableOpacity } from "react-nativ
 import Button from '../components/Button'
 import { Container } from '../components/Container'
 import AntipastoText from '../components/AntipastoText'
+import localeStore from "../localization/localeStore"
 
 export default class OnboardingIntro extends React.Component {
   render() {
@@ -10,10 +11,10 @@ export default class OnboardingIntro extends React.Component {
     return (
       <Container style={styles.container}>
         <StatusBar barStyle="dark-content" />
-        <AntipastoText style={styles.title}>With Red Shirt, you’ll <AntipastoText weight='Demibold'>never go to another laundry</AntipastoText> again.</AntipastoText>
+        <AntipastoText style={styles.title}>{localeStore.t('onBoardingIntroLightBefore')} <AntipastoText weight='Demibold'>{localeStore.t('onBoardingIntroBold')}</AntipastoText>{localeStore.t('onBoardingIntroLightAfter')}</AntipastoText>
         <View style={styles.buttonsContainer}>
-          <Button variant='primary' onPress={() => navigate('OnBoardingSlides')} text='3 simple steps' />
-          <Button variant='secondary' onPress={() => navigate('Home')} text='Skip intro' />
+          <Button variant='primary' onPress={() => navigate('OnBoardingSlides')} text={localeStore.t('onBoardingIntroContinueButton')} />
+          <Button variant='secondary' onPress={() => navigate('Home')} text={localeStore.t('onBoardingIntroSkipButton')} />
         </View>
       </Container>
     );

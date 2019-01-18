@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import Swiper from 'react-native-swiper';
 import Button from "../components/Button"
 import AntipastoText from '../components/AntipastoText'
+import localeStore from "../localization/localeStore"
 
 export default class OnboardingSlides extends React.Component {
   render() {
@@ -13,27 +14,27 @@ export default class OnboardingSlides extends React.Component {
         <View style={styles.slide}>
           <AntipastoText style={styles.number}>1</AntipastoText>
           <Text style={styles.content}>
-            <AntipastoText weight='Demibold'>Choose a laundry</AntipastoText>
-            <AntipastoText weight='Light'> and a pickup time</AntipastoText>
+            <AntipastoText weight='Demibold'>{localeStore.t('onBoardingFirstSlideBold')}</AntipastoText>
+            <AntipastoText weight='Light'>{localeStore.t('onBoardingFirstSlideLight')}</AntipastoText>
           </Text>
           <Image source={require('../assets/slide1Image.png')} style={styles.image} />
         </View>
         <View style={styles.slide}>
           <AntipastoText style={styles.number}>2</AntipastoText>
           <Text style={styles.content}>
-            <AntipastoText weight='Demibold'>We collect</AntipastoText>
-            <AntipastoText weight='Light'> your laundry in a bag</AntipastoText>
+            <AntipastoText weight='Demibold'>{localeStore.t('onBoardingSecondSlideBold')}</AntipastoText>
+            <AntipastoText weight='Light'>{localeStore.t('onBoardingSecondSlideLight')}</AntipastoText>
           </Text>
           <Image source={require('../assets/slide2Image.png')} style={styles.image} />
         </View>
         <View style={styles.slide}>
           <AntipastoText style={styles.number}>3</AntipastoText>
           <Text style={styles.content}>
-            <AntipastoText weight='Demibold'>We return</AntipastoText>
-            <AntipastoText weight='Light'> your clean laundry</AntipastoText>
+            <AntipastoText weight='Demibold'>{localeStore.t('onBoardingThirdSlideBold')}</AntipastoText>
+            <AntipastoText weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</AntipastoText>
           </Text>
           <Image source={require('../assets/slide3Image.png')} style={styles.image} />
-          <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text='Place order' />
+          <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text={localeStore.t('onBoardingThirdSlideButton')} />
         </View>
       </Swiper>
     );

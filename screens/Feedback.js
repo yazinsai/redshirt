@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {View, Image, Text, StyleSheet} from 'react-native'
 import AntipastoText from '../components/AntipastoText'
 
+import localeStore from "../localization/localeStore"
+
 export class Feedback extends Component {
   componentWillMount(){
     const { navigation } = this.props;
@@ -11,9 +13,9 @@ export class Feedback extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <AntipastoText style={styles.title} >You're all {"\n"} set.</AntipastoText>
+        <AntipastoText style={styles.title} >{localeStore.t('feedbackTop')}</AntipastoText>
         <Image source={require('../assets/tick.png')} />
-        <AntipastoText style={styles.subTitle}>See you {"\n"} {this.pickup}.</AntipastoText>
+        <AntipastoText style={styles.subTitle}>{localeStore.t('feedbackBottom')}{"\n"} {this.pickup}.</AntipastoText>
         <Image style={styles.backImage} source={require('../assets/slide1Image.png')} />
       </View>
     )

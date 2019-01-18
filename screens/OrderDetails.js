@@ -9,14 +9,16 @@ let _ = require('lodash');
 import t from 'tcomb-form-native';
 import Button from '../components/Button'
 
+import localeStore from "../localization/localeStore"
+
 const Form = t.form.Form;
 const DATE_FORMAT = "YYYY-MM-DD";
 const SEP = '|'
 
 const SLOTS = [
-  { label: "morning", start: 9, end: 12, display: "morning (9am - 12pm)" },
-  { label: "afternoon", start: 12, end: 16, display: "afternoon (12pm - 4pm)"},
-  { label: "evening", start: 16, end: 20, display: "evening (4pm - 8pm)" },
+  { label: "morning", start: 9, end: 12, display: localeStore.t('orderDetailsMorning') },
+  { label: "afternoon", start: 12, end: 16, display: localeStore.t('orderDetailsAfternoon')},
+  { label: "evening", start: 16, end: 20, display: localeStore.t('orderDetailsEvening') },
 ]
 const NUM_DAYS_TO_SHOW = 4
 const DISPLAY_DATE_FORMAT = "dddd Do,"
@@ -34,22 +36,22 @@ textareaStyle.textbox.normal.textAlignVertical = "top";
 var options = {
   fields: {
     pickup: {
-      label: 'When can we pick up your laundry?'
+      label: localeStore.t('orderDetailsPickup')
     },
     deliver: {
-      label: 'When can we return your laundry?'
+      label: localeStore.t('orderDetailsDeliver')
     },
     address: {
-      label: 'What is your address?',
+      label: localeStore.t('orderDetailsAddress'),
       stylesheet: textareaStyle, // overrides height
       multiline: true,
       numberOfLines: 2,
     },
     phone: {
-      label: 'Your mobile number'
+      label: localeStore.t('orderDetailsPhone')
     },
     email: {
-      label: 'Your email address (for your receipt)',
+      label: localeStore.t('orderDetailsEmail'),
       keyboardType: 'email-address',
       autoCapitalize: 'none',
     }
@@ -154,9 +156,9 @@ class OrderDetails extends  React.Component {
 
     const diffInDays = futureDate.diff(today, "days")
     if (diffInDays == 0) {
-      return "Today,";
+      return localeStore.t('orderDetailsToday');
     } else if (diffInDays == 1) {
-      return "Tomorrow,";
+      return localeStore.t('orderDetailsTomorrow');
     } else {
       return futureDate.format(DISPLAY_DATE_FORMAT);
     }
@@ -220,7 +222,7 @@ class OrderDetails extends  React.Component {
           options={options}
           onChange={this.onChange}
           />
-        <Button text='Place my order' variant='primary' onPress={this.submitForm}/>
+        <Button text={localeStore.t('orderDetailsSubmitButton')} variant='primary' onPress={this.submitForm}/>
       </KeyboardAvoidingView>
     );
   }
