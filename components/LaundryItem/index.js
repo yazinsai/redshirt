@@ -4,6 +4,8 @@ import { Card, Rating } from 'react-native-elements'
 import PropTypes from "prop-types";
 import colors from "../../config/colors";
 
+import localeStore from "../../localization/localeStore"
+
 import { Localization } from 'expo-localization';
 
 const LaundryItem = ({ item, onPress }) => {
@@ -26,12 +28,12 @@ const LaundryItem = ({ item, onPress }) => {
             
           />
           <Text style={styles.ratingText}>
-          ({item.reviews.count} reviews)
+          ({item.reviews.count} {localeStore.t('laundryReview')})
           </Text>
         </View>
         <View style={styles.details}>
-          <Text style={styles.detailsText}>Price: {'$'.repeat(item.pricing)}</Text>
-          <Text style={styles.detailsText}>Minimum Order: {item.minimumOrder}</Text>
+          <Text style={styles.detailsText}>{localeStore.t('laundryPrice')} {'$'.repeat(item.pricing)}</Text>
+          <Text style={styles.detailsText}>{localeStore.t('laundryMinimumOrder')} {item.minimumOrder}</Text>
         </View>
       </View>
       <View style= {styles.imageContainer}>

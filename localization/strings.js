@@ -30,6 +30,10 @@ export const en = {
   orderDetailsEmail: 'Your email address (for your receipt)',
   orderDetailsSubmitButton: 'Place my order',
 
+  laundryReview: 'reviews',
+  laundryPrice: 'Price: ',
+  laundryMinimumOrder: 'Minimum Order: ',
+
   feedbackTop: 'You\'re all \n  set.',
   feedbackBottom: 'See you ',
 }
@@ -65,6 +69,10 @@ export const ar = {
   orderDetailsPhone: 'Your mobile number',
   orderDetailsEmail: 'Your email address (for your receipt)',
   orderDetailsSubmitButton: 'Place my order',
+
+  laundryReview: 'reviews',
+  laundryPrice: 'Price: ',
+  laundryMinimumOrder: 'Minimum Order: ',
 
   feedbackTop: 'You\'re all \n  set.',
   feedbackBottom: 'See you ',
