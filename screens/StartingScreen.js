@@ -15,6 +15,7 @@ export class StartingScreen extends React.Component {
       firstLaunch: null,
       isReady: false
     };
+    Localization.locale = Localization.locale.substr(0,2)
     localeStore.locale = Localization.locale
   }
   componentDidMount(){
@@ -51,7 +52,6 @@ export class StartingScreen extends React.Component {
     }else if(this.state.firstLaunch == true){
       return <OnboardingIntro navigation={this.props.navigation}/>
     }else{
-      console.log('home')
       return <Home navigation={this.props.navigation}/>
     }
   }
