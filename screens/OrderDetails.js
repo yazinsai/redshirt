@@ -28,12 +28,13 @@ const Email = t.refinement(t.String, email => {
 });
 
 
-
+const locale = Localization.locale.substr(0,2)
+console.log(locale)
 const style = _.cloneDeep(t.form.Form.stylesheet);
-style.controlLabel.normal.writingDirection = Localization.locale == 'ar' ? 'ltr' : 'rtl'
-style.controlLabel.error.writingDirection = Localization.locale == 'ar' ? 'ltr' : 'rtl'
-style.textbox.normal.writingDirection = Localization.locale == 'ar' ? 'ltr' : 'rtl'
-style.textbox.error.writingDirection = Localization.locale == 'ar' ? 'ltr' : 'rtl'
+style.controlLabel.normal.writingDirection = locale == 'ar' ? 'rtl' : 'ltr'
+style.controlLabel.error.writingDirection = locale == 'ar' ? 'rtl' : 'ltr'
+style.textbox.normal.writingDirection = locale == 'ar' ? 'rtl' : 'ltr'
+style.textbox.error.writingDirection = locale == 'ar' ? 'rtl' : 'ltr'
 
 
 const textareaStyle = _.cloneDeep(style);
