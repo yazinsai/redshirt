@@ -17,11 +17,6 @@ const Form = t.form.Form;
 const DATE_FORMAT = "YYYY-MM-DD";
 const SEP = '|'
 
-const SLOTS = [
-  { label: "morning", start: 9, end: 12, display: localeStore.t('orderDetailsMorning') },
-  { label: "afternoon", start: 12, end: 16, display: localeStore.t('orderDetailsAfternoon')},
-  { label: "evening", start: 16, end: 20, display: localeStore.t('orderDetailsEvening') },
-]
 const NUM_DAYS_TO_SHOW = 4
 const DISPLAY_DATE_FORMAT = "dddd Do,"
 
@@ -76,6 +71,12 @@ class OrderDetails extends  React.Component {
   constructor(props) {
     super(props);
 
+    this.SLOTS = [
+      { label: "morning", start: 9, end: 12, display: localeStore.t('orderDetailsMorning') },
+      { label: "afternoon", start: 12, end: 16, display: localeStore.t('orderDetailsAfternoon')},
+      { label: "evening", start: 16, end: 20, display: localeStore.t('orderDetailsEvening') },
+    ]
+
     this.state = {
       type: this.getType({}),
       value: {}
@@ -83,6 +84,7 @@ class OrderDetails extends  React.Component {
 
     this.submitForm = this.submitForm.bind(this)
     this.onChange = this.onChange.bind(this)
+    
   }
   
 
@@ -150,12 +152,11 @@ class OrderDetails extends  React.Component {
 
     for (i = 0; i < NUM_DAYS_TO_SHOW; i++) {
       const dateLabel = moment(startDate).add(i, 'days').format(DATE_FORMAT)
-
-      for (j = 0; j < SLOTS.length; j++) {
+      for (j = 0; j < this.SLOTS.length; j++) {
         // On startDate, show only slots after startSlot
         if (i == 0 && j < startSlot) continue;
 
-        result[`${dateLabel}${SEP}${j}`] = this.humanDate(dateLabel) + " " + SLOTS[j].display
+        result[`${dateLabel}${SEP}${j}`] = this.humanDate(dateLabel) + " " + this.SLOTS[j].display
       }
     }
 
@@ -181,8 +182,8 @@ class OrderDetails extends  React.Component {
   hourToSlotIndex(hour) {
     // Finds the earliest available slot at "hour", or INFINITY
     // @param hour: Integer between 0 - 24 representing an hour
-    for (i = 0; i < SLOTS.length; i++) {
-      if (hour + 1 < SLOTS[i].end) return i;
+    for (i = 0; i < this.SLOTS.length; i++) {
+      if (hour + 1 < this.SLOTS[i].end) return i;
     }
     return Infinity
   }
@@ -222,7 +223,7 @@ class OrderDetails extends  React.Component {
     const [date, slot] = selectValue.split(SEP)
     const slotIndex = parseInt(slot)
 
-    return this.humanDate(date) + " " + SLOTS[slotIndex].display;
+    return this.humanDate(date) + " " + this.SLOTS[slotIndex].display;
   }
   
   render() {
