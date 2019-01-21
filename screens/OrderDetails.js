@@ -11,6 +11,8 @@ import Button from '../components/Button'
 
 import localeStore from "../localization/localeStore"
 
+import { Localization } from 'expo-localization';
+
 const Form = t.form.Form;
 const DATE_FORMAT = "YYYY-MM-DD";
 const SEP = '|'
@@ -29,11 +31,23 @@ const Email = t.refinement(t.String, email => {
   return reg.test(email);
 });
 
-const textareaStyle = _.cloneDeep(t.form.Form.stylesheet);
+
+
+const style = _.cloneDeep(t.form.Form.stylesheet);
+style.controlLabel.normal.writingDirection = Localization.locale == 'ar' ? 'ltr' : 'rtl'
+style.controlLabel.error.writingDirection = Localization.locale == 'ar' ? 'ltr' : 'rtl'
+style.textbox.normal.writingDirection = Localization.locale == 'ar' ? 'ltr' : 'rtl'
+style.textbox.error.writingDirection = Localization.locale == 'ar' ? 'ltr' : 'rtl'
+
+
+const textareaStyle = _.cloneDeep(style);
 textareaStyle.textbox.normal.height = 72;
 textareaStyle.textbox.normal.textAlignVertical = "top";
+textareaStyle.textbox.error.height = 72;
+textareaStyle.textbox.error.textAlignVertical = "top";
 
 var options = {
+  stylesheet: style,
   fields: {
     pickup: {
       label: localeStore.t('orderDetailsPickup')
