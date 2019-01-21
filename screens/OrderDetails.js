@@ -4,6 +4,7 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import moment from "moment";
+import 'moment/locale/ar'
 let _ = require('lodash');
 
 import t from 'tcomb-form-native';
@@ -70,7 +71,6 @@ var options = {
 class OrderDetails extends  React.Component {
   constructor(props) {
     super(props);
-
     this.SLOTS = [
       { label: "morning", start: 9, end: 12, display: localeStore.t('orderDetailsMorning') },
       { label: "afternoon", start: 12, end: 16, display: localeStore.t('orderDetailsAfternoon')},
