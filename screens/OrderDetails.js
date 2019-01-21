@@ -1,7 +1,8 @@
 import React from "react";
 import {
   StyleSheet,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  AsyncStorage
 } from "react-native";
 import moment from "moment";
 import 'moment/locale/ar'
@@ -86,6 +87,29 @@ class OrderDetails extends  React.Component {
     this.submitForm = this.submitForm.bind(this)
     this.onChange = this.onChange.bind(this)
     
+  }
+
+  componentWillMount(){
+    this.getSavedData()
+  }
+
+  getSavedData() {
+    let address;
+    let phone;
+    let email;
+    const promiseAddress = AsyncStorage.getItem('address').then((value)=> {
+      address = value
+    }).catch(()=>{});
+    const promisePhone = AsyncStorage.getItem('phone').then((value)=> {
+      phone = value
+    }).catch(()=>{});
+    const promiseEmail = AsyncStorage.getItem('email').then((value)=> {
+      email = value
+    }).catch(()=>{});
+    Promise.all([promiseAddress, promisePhone, promiseEmail]).then(()=> {
+      console.log(address, phone, email)
+      this.setState({value: {address, phone, email}});
+    })
   }
   
 
@@ -203,6 +227,10 @@ class OrderDetails extends  React.Component {
     const deliver = this.formatDate(formValue.deliver)
     const result = Object.assign({}, formValue, {laundry, pickup, deliver})
     
+    AsyncStorage.setItem('address', ''+formValue.address)
+    AsyncStorage.setItem('phone', ''+formValue.phone)
+    AsyncStorage.setItem('email', ''+formValue.email)
+
     const json = JSON.stringify(result)
     fetch('https://shine-server-order.herokuapp.com', {
       method: 'POST',
