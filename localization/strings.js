@@ -1,4 +1,7 @@
 export const en = {
+  headerSelectLaundry: 'Choose a Laundry',
+  headerOrderDetails: 'Schedule your order',
+
   onBoardingIntroLightBefore: 'With Red Shirt, you’ll',
   onBoardingIntroBold: 'never go to another laundry',
   onBoardingIntroLightAfter: ' again.',
@@ -39,6 +42,9 @@ export const en = {
 }
 
 export const ar = {
+  headerSelectLaundry: 'Choose a Laundry',
+  headerOrderDetails: 'Schedule your order',
+  
   onBoardingIntroLightBefore: 'مع قميص أحمر ، عليك',
   onBoardingIntroBold: 'لا تذهب إلى مغسلة أخرى',
   onBoardingIntroLightAfter: 'مرة أخرى.',

@@ -6,12 +6,18 @@ import SelectLaundry from './screens/SelectLaundry'
 import OrderDetails from './screens/OrderDetails'
 import Feedback from './screens/Feedback'
 
+import { Localization } from 'expo-localization';
+import localeStore  from "./localization/localeStore"
+
+Localization.locale = Localization.locale.substr(0,2)
+localeStore.locale = Localization.locale
+
 let noHeader = () => ({
   header: null
 })
 
 let redHeader = (title) => (() => ({
-  title: title,
+  title: localeStore.t(title),
   headerMode: 'float',
   headerTintColor: 'white',
   headerStyle: {
@@ -35,11 +41,11 @@ const AppNavigator = createStackNavigator(
     },
     SelectLaundry: {
       screen: SelectLaundry,
-      navigationOptions: redHeader('Choose a Laundry')
+      navigationOptions: redHeader('headerSelectLaundry')
     },
     OrderDetails : {
       screen: OrderDetails,
-      navigationOptions: redHeader('Schedule your order')
+      navigationOptions: redHeader('headerOrderDetails')
     },
     Feedback: {
       screen: Feedback,

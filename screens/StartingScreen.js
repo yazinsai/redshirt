@@ -1,11 +1,10 @@
 import React from 'react'
 import {AsyncStorage} from 'react-native'
 import {Font, AppLoading} from 'expo'
-import { Localization } from 'expo-localization';
 
 import Home from './Home'
 import OnboardingIntro from './OnboardingIntro'
-import localeStore  from "../localization/localeStore"
+
 
 
 export class StartingScreen extends React.Component {
@@ -15,8 +14,6 @@ export class StartingScreen extends React.Component {
       firstLaunch: null,
       isReady: false
     };
-    Localization.locale = Localization.locale.substr(0,2)
-    localeStore.locale = Localization.locale
   }
   componentDidMount(){
     AsyncStorage.getItem("alreadyLaunched").then(value => {

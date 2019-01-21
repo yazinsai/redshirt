@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import {  FlatList, StyleSheet, View } from "react-native";
-import { Card } from 'react-native-elements'
 import { Localization } from 'expo-localization';
 
-import laundries from "../data/laundries";
 import LaundryItem from "../components/LaundryItem";
 
 class ChooseLaundry extends Component {
