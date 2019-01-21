@@ -29,7 +29,6 @@ const Email = t.refinement(t.String, email => {
 
 
 const locale = Localization.locale.substr(0,2)
-console.log(locale)
 const style = _.cloneDeep(t.form.Form.stylesheet);
 style.controlLabel.normal.writingDirection = locale == 'ar' ? 'rtl' : 'ltr'
 style.controlLabel.error.writingDirection = locale == 'ar' ? 'rtl' : 'ltr'
