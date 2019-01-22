@@ -18,32 +18,31 @@ export default class OnboardingSlides extends React.Component {
       wrapperStyle.flexDirection = 'row-reverse'
       index = 2
     }
-    console.log(styles.wrapper)
     return (
       <Swiper style={wrapperStyle} showsButtons={false} 
         activeDot={whiteDot} loop={false} index={index}>
         <View style={styles.slide}>
           <AntipastoText style={styles.number}>1</AntipastoText>
-          <Text style={styles.content}>
+          <AntipastoText style={styles.content}>
             <AntipastoText weight='Demibold'>{localeStore.t('onBoardingFirstSlideBold')}</AntipastoText>
             <AntipastoText weight='Light'>{localeStore.t('onBoardingFirstSlideLight')}</AntipastoText>
-          </Text>
+          </AntipastoText>
           <Image source={require('../assets/slide1Image.png')} style={imageStyle} />
         </View>
         <View style={styles.slide}>
           <AntipastoText style={styles.number}>2</AntipastoText>
-          <Text style={styles.content}>
+          <AntipastoText style={styles.content}>
             <AntipastoText weight='Demibold'>{localeStore.t('onBoardingSecondSlideBold')}</AntipastoText>
             <AntipastoText weight='Light'>{localeStore.t('onBoardingSecondSlideLight')}</AntipastoText>
-          </Text>
+          </AntipastoText>
           <Image source={require('../assets/slide2Image.png')} style={imageStyle} />
         </View>
         <View style={styles.slide}>
           <AntipastoText style={styles.number}>3</AntipastoText>
-          <Text style={styles.content}>
+          <AntipastoText style={styles.content}>
             <AntipastoText weight='Demibold'>{localeStore.t('onBoardingThirdSlideBold')}</AntipastoText>
             <AntipastoText weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</AntipastoText>
-          </Text>
+          </AntipastoText>
           <Image source={require('../assets/slide3Image.png')} style={imageStyle} />
           <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text={localeStore.t('onBoardingThirdSlideButton')} />
         </View>

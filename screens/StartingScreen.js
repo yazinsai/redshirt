@@ -16,6 +16,7 @@ export class StartingScreen extends React.Component {
     };
   }
   componentDidMount(){
+    AsyncStorage.clear()
     AsyncStorage.getItem("alreadyLaunched").then(value => {
       if(value == null){
         AsyncStorage.setItem('alreadyLaunched', 'true'); 
@@ -27,11 +28,16 @@ export class StartingScreen extends React.Component {
   }
 
   async loadFont() {
-    const light = Font.loadAsync({ 'Antipasto-Light': require('../assets/fonts/Antipasto-Light.otf') });
-    const regular = Font.loadAsync({ 'Antipasto-Regular': require('../assets/fonts/Antipasto-Regular.otf') });
-    const demibold = Font.loadAsync({ 'Antipasto-Demibold': require('../assets/fonts/Antipasto-Demibold.otf') });
-    const normal = Font.loadAsync({ 'Antipasto': require('../assets/fonts/Antipasto.ttf') });
-    return Promise.all([light, regular, demibold, normal]);
+    const AntipastoLight = Font.loadAsync({ 'Antipasto-Light': require('../assets/fonts/Antipasto-Light.otf') });
+    const AntipastoRegular = Font.loadAsync({ 'Antipasto-Regular': require('../assets/fonts/Antipasto-Regular.otf') });
+    const AntipastoDemibold = Font.loadAsync({ 'Antipasto-Demibold': require('../assets/fonts/Antipasto-Demibold.otf') });
+    const Antipasto = Font.loadAsync({ 'Antipasto': require('../assets/fonts/Antipasto.ttf') });  
+
+    const GeezaproDemibold = Font.loadAsync({ 'Geezapro-Demibold': require('../assets/fonts/Geezapro-Demibold.ttf') });
+    const GeezaproRegular = Font.loadAsync({ 'Geezapro-Regular': require('../assets/fonts/Geezapro-Regular.ttf') });
+    const Geezapro = Font.loadAsync({ 'Geezapro': require('../assets/fonts/Geezapro-Regular.ttf') });
+
+    return Promise.all([AntipastoLight, AntipastoRegular, AntipastoDemibold, Antipasto, GeezaproDemibold, GeezaproRegular, Geezapro]);
   }
   
   render(){

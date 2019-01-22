@@ -7,6 +7,12 @@ const font = {
       Light: '300',
       Regular: '400'
     }
+  },
+  Geezapro: {
+    weights: {
+      Regular: '400',
+      Demibold: '600'
+    }
   }
 }
 

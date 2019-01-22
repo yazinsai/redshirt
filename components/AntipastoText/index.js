@@ -12,15 +12,22 @@ export class AntipastoText extends Component {
     if(this.props.weight){
       weight = this.props.weight
     }
+
     this.locale = Localization.locale
+    let family = 'Antipasto'
     let localeStyle = {}
+    let fontSize = this.props.style ? this.props.style.fontSize : undefined;
     if(Localization.locale == 'ar'){
       localeStyle = {
         writingDirection: 'rtl'
       }
+      family = 'Geezapro'
+      if(fontSize) {
+        localeStyle.fontSize = fontSize - 10;
+      }
     }
     return (
-      <Text style={[this.props.style, fontMaker({ family: 'Antipasto', weight }), localeStyle]}>
+      <Text style={[this.props.style, fontMaker({ family, weight }), localeStyle]}>
         {this.props.children}
       </Text>
     );
