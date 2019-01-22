@@ -4,17 +4,24 @@ import Swiper from 'react-native-swiper';
 import Button from "../components/Button"
 import AntipastoText from '../components/AntipastoText'
 import localeStore from "../localization/localeStore"
+import { Localization } from 'expo-localization';
 
 export default class OnboardingSlides extends React.Component {
   render() {
     const whiteDot= <View style={styles.customDot} />
     const { navigate } = this.props.navigation;
     let imageStyle = styles.image
-    if(true || Localization.locale == 'ar') {
+    const wrapperStyle = Object.assign({}, styles.wrapper)
+    let index = 0
+    if(Localization.locale == 'ar') {
       imageStyle = styles.imageRTL
+      wrapperStyle.flexDirection = 'row-reverse'
+      index = 2
     }
+    console.log(styles.wrapper)
     return (
-      <Swiper style={styles.wrapper} showsButtons={false} activeDot={whiteDot} loop={false}>
+      <Swiper style={wrapperStyle} showsButtons={false} 
+        activeDot={whiteDot} loop={false} index={index}>
         <View style={styles.slide}>
           <AntipastoText style={styles.number}>1</AntipastoText>
           <Text style={styles.content}>
@@ -48,6 +55,7 @@ export default class OnboardingSlides extends React.Component {
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: '#D0021B',
+    
   },
   slide: {
     flex: 1
