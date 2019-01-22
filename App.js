@@ -28,7 +28,7 @@ let redHeader = (title) => (() => ({
   }
 }))
 
-const transitionConfig = () => ({
+const RtlTransition = () => ({
   transitionSpec: {
     duration: 300,
     easing: Easing.out(Easing.poly(4)),
@@ -81,7 +81,7 @@ const AppNavigator = createStackNavigator(
     },
   },
   {
-    transitionConfig: Localization.locale == 'ar' ? transitionConfig : undefined,
+    transitionConfig: Localization.locale == 'ar' ? RtlTransition : undefined,
     initialRouteName: "StartingScreen",
   }
 );
