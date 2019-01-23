@@ -11,7 +11,7 @@ export default class OnboardingIntro extends React.Component {
     return (
       <Container style={styles.container}>
         <StatusBar barStyle="dark-content" />
-        <StyledText style={styles.title}>{localeStore.t('onBoardingIntroLightBefore')} <StyledText weight='Demibold'>{localeStore.t('onBoardingIntroBold')}</StyledText>{localeStore.t('onBoardingIntroLightAfter')}</StyledText>
+        <StyledText size='h3' style={styles.title}>{localeStore.t('onBoardingIntroLightBefore')} <StyledText size='h3' weight='Demibold'>{localeStore.t('onBoardingIntroBold')}</StyledText>{localeStore.t('onBoardingIntroLightAfter')}</StyledText>
         <View style={styles.buttonsContainer}>
           <Button variant='primary' onPress={() => navigate('OnBoardingSlides')} text={localeStore.t('onBoardingIntroContinueButton')} />
           <Button variant='secondary' onPress={() => navigate('Home')} text={localeStore.t('onBoardingIntroSkipButton')} />
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     marginLeft: '5%'
   },
   title: {
-    fontSize: 54,
     color: '#D0021B',
   },
   buttonsContainer: {

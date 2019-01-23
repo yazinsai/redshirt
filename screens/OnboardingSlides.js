@@ -22,26 +22,26 @@ export default class OnboardingSlides extends React.Component {
       <Swiper style={wrapperStyle} showsButtons={false} 
         activeDot={whiteDot} loop={false} index={index}>
         <View style={styles.slide}>
-          <StyledText style={styles.number}>1</StyledText>
+          <StyledText size='h1' style={styles.number}>1</StyledText>
           <StyledText style={styles.content}>
-            <StyledText weight='Demibold'>{localeStore.t('onBoardingFirstSlideBold')}</StyledText>
-            <StyledText weight='Light'>{localeStore.t('onBoardingFirstSlideLight')}</StyledText>
+            <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingFirstSlideBold')}</StyledText>
+            <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingFirstSlideLight')}</StyledText>
           </StyledText>
           <Image source={require('../assets/slide1Image.png')} style={imageStyle} />
         </View>
         <View style={styles.slide}>
-          <StyledText style={styles.number}>2</StyledText>
+          <StyledText size='h1' style={styles.number}>2</StyledText>
           <StyledText style={styles.content}>
-            <StyledText weight='Demibold'>{localeStore.t('onBoardingSecondSlideBold')}</StyledText>
-            <StyledText weight='Light'>{localeStore.t('onBoardingSecondSlideLight')}</StyledText>
+            <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingSecondSlideBold')}</StyledText>
+            <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingSecondSlideLight')}</StyledText>
           </StyledText>
           <Image source={require('../assets/slide2Image.png')} style={imageStyle} />
         </View>
         <View style={styles.slide}>
-          <StyledText style={styles.number}>3</StyledText>
+          <StyledText size='h1' style={styles.number}>3</StyledText>
           <StyledText style={styles.content}>
-            <StyledText weight='Demibold'>{localeStore.t('onBoardingThirdSlideBold')}</StyledText>
-            <StyledText weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</StyledText>
+            <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingThirdSlideBold')}</StyledText>
+            <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</StyledText>
           </StyledText>
           <Image source={require('../assets/slide3Image.png')} style={imageStyle} />
           <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text={localeStore.t('onBoardingThirdSlideButton')} />
@@ -54,19 +54,16 @@ export default class OnboardingSlides extends React.Component {
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: '#D0021B',
-    
   },
   slide: {
     flex: 1
   },
   number: {
     color: "#A90015",
-    fontSize: 150,
     marginLeft: '5%'
   },
   content: {
     color: '#fff',
-    fontSize: 72,
     width: '80%',
     marginLeft: '5%',
     zIndex: 2
