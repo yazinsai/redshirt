@@ -7,29 +7,28 @@ import { Localization } from 'expo-localization';
 import fontMaker from '../../util/fontMaker'
 
 export class StyledText extends Component {
-  render() {
-    let weight = 'Regular'
-    if(this.props.weight){
-      weight = this.props.weight
-    }
-
+  componentWillMount() {
     this.locale = Localization.locale
-    let family = 'Antipasto'
-    let localeStyle = {}
-    let sizeClass = this.props.size ? this.props.size : 'body'
-
-
-    if(Localization.locale == 'ar'){
-      localeStyle = {
+    this.family = this.locale == 'ar' ? 'Geezapro' : 'Antipasto'
+    this.localeStyle = {}
+    if(this.locale == 'ar') {
+      this.localeStyle = {
         writingDirection: 'rtl'
       }
-      family = 'Geezapro'
+    }
+  }
+
+  render() {
+    const weight = this.props.weight ? this.props.weight : 'Regular'
+    let sizeClass = this.props.size ? this.props.size : 'body'
+
+    if(this.locale == 'ar'){
       sizeClass += 'AR'
     }
 
     return (
-      <Text style={[this.props.style, fontMaker({ family, weight }), 
-        localeStyle, styles[sizeClass]]}>
+      <Text style={[this.props.style, fontMaker({ family: this.family, weight }), 
+        this.localeStyle, styles[sizeClass]]}>
         {this.props.children}
       </Text>
     );
