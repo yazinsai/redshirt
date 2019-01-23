@@ -15,9 +15,9 @@ export class Feedback extends Component {
     const {navigate} = this.props.navigation
     return (
       <View style={styles.container}>
-        <StyledText style={styles.title} >{localeStore.t('feedbackTop')}</StyledText>
+        <StyledText size='h4' style={styles.title} >{localeStore.t('feedbackTop')}</StyledText>
         <Image source={require('../assets/tick.png')} />
-        <StyledText style={styles.subTitle}>{localeStore.t('feedbackBottom')}{"\n"} {this.pickup}.</StyledText>
+        <StyledText size='h5' style={styles.subTitle}>{localeStore.t('feedbackBottom')}{"\n"} {this.pickup}.</StyledText>
         <Image style={styles.backImage} source={require('../assets/slide1Image.png')} />
         <Button text={localeStore.t('feedbackButton')} variant='white' style={styles.button} onPress={()=> navigate('Home')}/>
       </View>
@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 33,
     marginTop: 70,
     textAlign: 'center',
     marginBottom: 40
@@ -43,7 +42,6 @@ const styles = StyleSheet.create({
 
   },
   subTitle: {
-    fontSize: 24,
     color: 'white',
     textAlign: 'center',
     marginTop: 70,
