@@ -18,7 +18,6 @@ export class StyledText extends Component {
     let localeStyle = {}
     let sizeClass = this.props.size ? this.props.size : 'body'
 
-   
 
     if(Localization.locale == 'ar'){
       localeStyle = {
@@ -27,8 +26,6 @@ export class StyledText extends Component {
       family = 'Geezapro'
       sizeClass += 'AR'
     }
-
-    console.log(sizeClass)
 
     return (
       <Text style={[this.props.style, fontMaker({ family, weight }), 
