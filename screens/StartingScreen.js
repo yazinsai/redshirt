@@ -16,7 +16,6 @@ export class StartingScreen extends React.Component {
     };
   }
   componentDidMount(){
-    AsyncStorage.clear()
     AsyncStorage.getItem("alreadyLaunched").then(value => {
       if(value == null){
         AsyncStorage.setItem('alreadyLaunched', 'true'); 
