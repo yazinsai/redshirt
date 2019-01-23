@@ -13,6 +13,11 @@ const font = {
       Regular: '400',
       Demibold: '600'
     }
+  },
+  Helvetica: {
+    weights: {
+      Regular: '400'
+    }
   }
 }
 
