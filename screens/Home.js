@@ -12,7 +12,7 @@ export default class App extends React.Component {
       <Container style={styles.container}>
         <View style={styles.appLogo}>
           <Image source={require('../assets/logo.png')} />
-          <StyledText style={styles.appLogoText}>{localeStore.t('homeAppLogoText')}</StyledText>
+          <StyledText size='h4' style={styles.appLogoText}>{localeStore.t('homeAppLogoText')}</StyledText>
         </View>
         <Button variant='primary' text={localeStore.t('homePickupButton')} onPress={()=> navigate('SelectLaundry', {pickupRequired: true})}/>
         <View style={styles.collectGroup}>
@@ -25,8 +25,6 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-  },
   appLogo: {
     height: '60%',
     display: 'flex',
@@ -34,7 +32,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   appLogoText: {
-    fontSize: 32,
     color: '#D0021B',
     marginTop: 10,
   },
@@ -42,7 +39,6 @@ const styles = StyleSheet.create({
     marginTop: 30
   },
   collectText: {
-    fontSize: 20,
     textAlign: 'center'
   }
 });
