@@ -21,13 +21,14 @@ export class StyledText extends Component {
   render() {
     const weight = this.props.weight ? this.props.weight : 'Regular'
     let sizeClass = this.props.size ? this.props.size : 'body'
+    let fontFamily = this.props.fontFamily ? this.props.fontFamily : this.family
 
     if(this.locale == 'ar'){
       sizeClass += 'AR'
     }
 
     return (
-      <Text style={[this.props.style, fontMaker({ family: this.family, weight }), 
+      <Text style={[this.props.style, fontMaker({ family: fontFamily, weight }), 
         this.localeStyle, styles[sizeClass]]}>
         {this.props.children}
       </Text>
@@ -43,10 +44,16 @@ StyledText.propTypes = {
 
 const styles = StyleSheet.create({
   body: {
-    fontSize: 18
+    fontSize: 15
   },
   bodyAR: {
-    fontSize: 16
+    fontSize: 13
+  },
+  small: {
+    fontSize: 10
+  },
+  smallAR: {
+    fontSize: 8
   },
   h1: {
     fontSize: 150
@@ -77,6 +84,12 @@ const styles = StyleSheet.create({
   },
   h5AR: {
     fontSize: 21
+  },
+  h6: {
+    fontSize: 18
+  },
+  h6AR: {
+    fontSize: 16
   }
 })
 

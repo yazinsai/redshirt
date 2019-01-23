@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import colors from "../../config/colors";
 
 import localeStore from "../../localization/localeStore"
+import StyledText from '../StyledText'
 
 import { Localization } from 'expo-localization';
 
@@ -19,21 +20,20 @@ const LaundryItem = ({ item, onPress }) => {
   <TouchableHighlight onPress={onPress} underlayColor={colors.$border}>
     <View style={containerStyle}>
       <View style={informationStyle}>
-        <Text style={styles.text}>{item.name}</Text>
+        <StyledText fontFamily='Helvetica' size='h6' style={styles.text}>{item.name}</StyledText>
         <View style={styles.rating}>
           <Rating
             readonly
             startingValue={item.reviews.rating}
             imageSize={15}
-            
           />
-          <Text style={styles.ratingText}>
+          <StyledText fontFamily='Helvetica' style={styles.ratingText}>
           ({item.reviews.count} {localeStore.t('laundryReview')})
-          </Text>
+          </StyledText>
         </View>
         <View style={styles.details}>
-          <Text style={styles.detailsText}>{localeStore.t('laundryPrice')} {'$'.repeat(item.pricing)}</Text>
-          <Text style={styles.detailsText}>{localeStore.t('laundryMinimumOrder')} {item.minimumOrder}</Text>
+          <StyledText fontFamily='Helvetica' size='small' style={styles.detailsText}>{localeStore.t('laundryPrice')} {'$'.repeat(item.pricing)}</StyledText>
+          <StyledText fontFamily='Helvetica' size='small' style={styles.detailsText}>{localeStore.t('laundryMinimumOrder')} {item.minimumOrder}</StyledText>
         </View>
       </View>
       <View style= {styles.imageContainer}>
