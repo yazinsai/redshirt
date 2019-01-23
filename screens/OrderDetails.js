@@ -4,7 +4,7 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import moment from "moment";
-import 'moment/locale/ar'
+
 let _ = require('lodash');
 
 import t from 'tcomb-form-native';
@@ -29,6 +29,11 @@ const Email = t.refinement(t.String, email => {
 
 
 const locale = Localization.locale.substr(0,2)
+
+if(locale == 'ar') {
+  require('moment/locale/ar')
+}
+
 const style = _.cloneDeep(t.form.Form.stylesheet);
 style.controlLabel.normal.writingDirection = locale == 'ar' ? 'rtl' : 'ltr'
 style.controlLabel.error.writingDirection = locale == 'ar' ? 'rtl' : 'ltr'
