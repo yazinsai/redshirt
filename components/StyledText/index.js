@@ -18,6 +18,8 @@ export class StyledText extends Component {
     let localeStyle = {}
     let sizeClass = this.props.size ? this.props.size : 'body'
 
+   
+
     if(Localization.locale == 'ar'){
       localeStyle = {
         writingDirection: 'rtl'
@@ -26,6 +28,7 @@ export class StyledText extends Component {
       sizeClass += 'AR'
     }
 
+    console.log(sizeClass)
 
     return (
       <Text style={[this.props.style, fontMaker({ family, weight }), 
@@ -48,6 +51,36 @@ const styles = StyleSheet.create({
   },
   bodyAR: {
     fontSize: 16
+  },
+  h1: {
+    fontSize: 150
+  },
+  h1AR: {
+    fontSize: 140
+  },
+  h2: {
+    fontSize: 72
+  },
+  h2AR: {
+    fontSize: 60
+  },
+  h3: {
+    fontSize: 54
+  },
+  h3AR: {
+    fontSize: 48
+  },
+  h4: {
+    fontSize: 32
+  },
+  h4AR: {
+    fontSize: 28
+  },
+  h5: {
+    fontSize: 24
+  },
+  h5AR: {
+    fontSize: 21
   }
 })
 
