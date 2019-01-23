@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {View, Image, Text, StyleSheet} from 'react-native'
-import AntipastoText from '../components/AntipastoText'
+import StyledText from '../components/StyledText'
 import Button from '../components/Button'
 
 import localeStore from "../localization/localeStore"
@@ -15,9 +15,9 @@ export class Feedback extends Component {
     const {navigate} = this.props.navigation
     return (
       <View style={styles.container}>
-        <AntipastoText style={styles.title} >{localeStore.t('feedbackTop')}</AntipastoText>
+        <StyledText style={styles.title} >{localeStore.t('feedbackTop')}</StyledText>
         <Image source={require('../assets/tick.png')} />
-        <AntipastoText style={styles.subTitle}>{localeStore.t('feedbackBottom')}{"\n"} {this.pickup}.</AntipastoText>
+        <StyledText style={styles.subTitle}>{localeStore.t('feedbackBottom')}{"\n"} {this.pickup}.</StyledText>
         <Image style={styles.backImage} source={require('../assets/slide1Image.png')} />
         <Button text={localeStore.t('feedbackButton')} variant='white' style={styles.button} onPress={()=> navigate('Home')}/>
       </View>

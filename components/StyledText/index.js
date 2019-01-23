@@ -6,7 +6,7 @@ import { Localization } from 'expo-localization';
 
 import fontMaker from '../../util/fontMaker'
 
-export class AntipastoText extends Component {
+export class StyledText extends Component {
   render() {
     let weight = 'Regular'
     if(this.props.weight){
@@ -16,27 +16,39 @@ export class AntipastoText extends Component {
     this.locale = Localization.locale
     let family = 'Antipasto'
     let localeStyle = {}
-    let fontSize = this.props.style ? this.props.style.fontSize : undefined;
+    let sizeClass = this.props.size ? this.props.size : 'body'
+
     if(Localization.locale == 'ar'){
       localeStyle = {
         writingDirection: 'rtl'
       }
       family = 'Geezapro'
-      if(fontSize) {
-        localeStyle.fontSize = fontSize - 10;
-      }
+      sizeClass += 'AR'
     }
+
+
     return (
-      <Text style={[this.props.style, fontMaker({ family, weight }), localeStyle]}>
+      <Text style={[this.props.style, fontMaker({ family, weight }), 
+        localeStyle, styles[sizeClass]]}>
         {this.props.children}
       </Text>
     );
   }
 }
 
-AntipastoText.propTypes = {
+StyledText.propTypes = {
   weight: PropTypes.string,
-  style: PropTypes.any
+  style: PropTypes.any,
+  size: PropTypes.string,
 };
 
-export default AntipastoText
+const styles = StyleSheet.create({
+  body: {
+    fontSize: 18
+  },
+  bodyAR: {
+    fontSize: 16
+  }
+})
+
+export default StyledText
