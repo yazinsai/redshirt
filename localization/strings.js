@@ -39,12 +39,13 @@ export const en = {
 
   feedbackTop: 'You\'re all \n  set.',
   feedbackBottom: 'See you ',
+  feedbackButton: 'Back to Home'
 }
 
 export const ar = {
   headerSelectLaundry: 'Choose a Laundry',
   headerOrderDetails: 'Schedule your order',
-  
+
   onBoardingIntroLightBefore: 'مع قميص أحمر ، عليك',
   onBoardingIntroBold: 'لا تذهب إلى مغسلة أخرى',
   onBoardingIntroLightAfter: 'مرة أخرى.',
@@ -82,4 +83,5 @@ export const ar = {
 
   feedbackTop: 'You\'re all \n  set.',
   feedbackBottom: 'See you ',
+  feedbackButton: 'Back to Home'
 }
