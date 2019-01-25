@@ -4,6 +4,7 @@ import StartingScreen from './screens/StartingScreen'
 import OnBoardingSlides from './screens/OnboardingSlides'
 import Home from './screens/Home'
 import SelectLaundry from './screens/SelectLaundry'
+import LaundryPrices from './screens/LaundryPrices'
 import OrderDetails from './screens/OrderDetails'
 import Feedback from './screens/Feedback'
 
@@ -27,6 +28,15 @@ let redHeader = (title) => (() => ({
     backgroundColor: '#D0021B'
   }
 }))
+
+const priceListHeader = ({navigation}) => ({
+  title: `${localeStore.t('prices')} - ${navigation.getParam('name', '')}`,
+  headerMode: 'float',
+  headerTintColor: 'white',
+  headerStyle: {
+    backgroundColor: '#D0021B'
+  }
+})
 
 const RtlTransition = () => ({
   transitionSpec: {
@@ -70,6 +80,10 @@ const AppNavigator = createStackNavigator(
     SelectLaundry: {
       screen: SelectLaundry,
       navigationOptions: redHeader('headerSelectLaundry')
+    },
+    LaundryPrices: {
+      screen: LaundryPrices,
+      navigationOptions: priceListHeader
     },
     OrderDetails : {
       screen: OrderDetails,
