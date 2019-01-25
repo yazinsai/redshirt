@@ -22,12 +22,13 @@ class ChooseLaundry extends Component {
     navigation.navigate('OrderDetails', {laundry: item.name, pickupRequired});
   }
   render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
         <FlatList
           data={this.state.laundries}
-          renderItem={({ item }) => <LaundryItem item={item} onPress={() => this.onItemClicked(item)}/>}
-          keyExtractor={item => item.id}
+          renderItem={({ item }) => <LaundryItem item={item} onPress={() => this.onItemClicked(item)} navigation={navigation}/>}
+          keyExtractor={item => ''+item.id}
           ItemSeparatorComponent={({_}) =>
             <View style={styles.separator} />
           }
