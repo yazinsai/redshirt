@@ -38,9 +38,11 @@ export class StartingScreen extends React.Component {
 
     const Helvetica = Font.loadAsync({ 'Helvetica': require('../assets/fonts/Helvetica.ttf') });
     const HelveticaRegular = Font.loadAsync({ 'Helvetica-Regular': require('../assets/fonts/Helvetica.ttf') });
+    const HelveticaBold = Font.loadAsync({ 'Helvetica-Bold': require('../assets/fonts/Helvetica-Bold.ttf') });    
 
-    return Promise.all([AntipastoLight, AntipastoRegular, AntipastoDemibold, 
-      Antipasto, GeezaproDemibold, GeezaproRegular, Geezapro, Helvetica, HelveticaRegular]);
+    return Promise.all([AntipastoLight, AntipastoRegular, AntipastoDemibold, Antipasto, 
+      GeezaproDemibold, GeezaproRegular, Geezapro, 
+      Helvetica, HelveticaRegular, HelveticaBold]);
   }
   
   render(){
