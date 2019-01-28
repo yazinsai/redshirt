@@ -18,6 +18,13 @@ class ChooseLaundry extends Component {
       }
     )
       .then(response => response.json())
+      .then(laundries =>
+        laundries.sort(
+          (a, b) =>
+            b.reviews.rating - a.reviews.rating ||
+            b.reviews.count - a.reviews.count
+        )
+      )
       .then(json => this.setState({ laundries: json }));
   }
   onItemClicked(item) {
