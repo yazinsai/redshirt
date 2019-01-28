@@ -15,8 +15,6 @@ export default class OnboardingSlides extends React.Component {
     let index = 0
     if(Localization.locale == 'ar') {
       imageStyle = styles.imageRTL
-      wrapperStyle.flexDirection = 'row-reverse'
-      index = 2
     }
     return (
       <Swiper style={wrapperStyle} showsButtons={false} 
@@ -77,7 +75,7 @@ const styles = StyleSheet.create({
   imageRTL: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
+    right: 0,
     zIndex: 1,
     transform:[
       {scaleX: - 1}
