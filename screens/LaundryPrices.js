@@ -66,16 +66,16 @@ const ListHeader = ({}) => {
   return(
     <View style={[styles.row, styles.headerColor]}>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Item</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.headerText}>Item</StyledText>
       </View>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Pressing</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.headerText}>Pressing</StyledText>
       </View>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Laundry</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.headerText}>Laundry</StyledText>
       </View>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Dry Clean</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.headerText}>Dry Clean</StyledText>
       </View>
     </View>
   )
@@ -100,15 +100,20 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#969292'
+  },
+  headerText: {
+    textAlign: 'center',
+    color: '#746F6F'
   },
   oddColor: {
-    backgroundColor: '#EEE',
+    backgroundColor: '#FFF',
   },
   evenColor: {
-    backgroundColor: '#FFF'
+    backgroundColor: '#F8F8F8'
   },
   headerColor: {
-    backgroundColor: '#DDD'
+    backgroundColor: '#DAD7D7'
   }
 })
