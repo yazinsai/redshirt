@@ -1,5 +1,5 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import ReactNative, { Easing, Animated } from 'react-native';
+import { Easing, Animated } from 'react-native';
 import StartingScreen from './screens/StartingScreen'
 import OnBoardingSlides from './screens/OnboardingSlides'
 import Home from './screens/Home'
@@ -11,10 +11,9 @@ import Feedback from './screens/Feedback'
 import { Localization } from 'expo-localization';
 import localeStore  from "./localization/localeStore"
 
+
 Localization.locale = Localization.locale.substr(0,2)
 localeStore.locale = Localization.locale
-
-ReactNative.I18nManager.allowRTL(true)
 
 let noHeader = () => ({
   header: null
