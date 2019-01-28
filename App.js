@@ -1,5 +1,7 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import { Easing, Animated } from 'react-native';
+import { Easing, Animated, StatusBar } from 'react-native';
+
+
 import StartingScreen from './screens/StartingScreen'
 import OnBoardingSlides from './screens/OnboardingSlides'
 import Home from './screens/Home'

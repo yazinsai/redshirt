@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, Text, FlatList, StyleSheet} from 'react-native'
+import {View, Text, FlatList, StyleSheet, StatusBar} from 'react-native'
 import { Localization } from 'expo-localization';
 
 import StyledText from '../components/StyledText'
@@ -29,6 +29,7 @@ export default class LaundryPrices extends Component {
   render() {
     return (
       <View style={{flex:1}}>
+        <StatusBar barStyle="light-content" />
         <FlatList
           data={this.state.items}
           renderItem={({item, index}) => <PriceRow item={item} index={index}/>}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, Image, Text, StyleSheet} from 'react-native'
+import {View, Image, Text, StyleSheet, StatusBar} from 'react-native'
 import StyledText from '../components/StyledText'
 import Button from '../components/Button'
 
@@ -15,6 +15,7 @@ export class Feedback extends Component {
     const {navigate} = this.props.navigation
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <StyledText size='h4' style={styles.title} >{localeStore.t('feedbackTop')}</StyledText>
         <Image source={require('../assets/tick.png')} />
         <StyledText size='h5' style={styles.subTitle}>{localeStore.t('feedbackBottom')}{"\n"} {this.pickup}.</StyledText>

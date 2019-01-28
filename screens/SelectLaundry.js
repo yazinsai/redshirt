@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {  FlatList, StyleSheet, View } from "react-native";
+import {  FlatList, StyleSheet, View, StatusBar } from "react-native";
 import { Localization } from 'expo-localization';
 
 import LaundryItem from "../components/LaundryItem";
@@ -25,6 +25,7 @@ class ChooseLaundry extends Component {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <FlatList
           data={this.state.laundries}
           renderItem={({ item }) => <LaundryItem item={item} onPress={() => this.onItemClicked(item)} navigation={navigation}/>}
