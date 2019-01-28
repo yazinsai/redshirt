@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Image, StatusBar } from "react-native";
 import Swiper from 'react-native-swiper';
 import Button from "../components/Button"
 import StyledText from '../components/StyledText'
@@ -17,7 +17,7 @@ export default class OnboardingSlides extends React.Component {
       imageStyle = styles.imageRTL
     }
     return (
-      <View>
+      <View style={{flex: 1}}>
         <StatusBar barStyle="light-content" />
         <Swiper style={wrapperStyle} showsButtons={false} 
           activeDot={whiteDot} loop={false} index={index}>
