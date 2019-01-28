@@ -2,7 +2,8 @@ import React from "react";
 import {
   StyleSheet,
   KeyboardAvoidingView,
-  AsyncStorage
+  AsyncStorage,
+  StatusBar
 } from "react-native";
 import moment from "moment";
 
@@ -263,6 +264,7 @@ class OrderDetails extends  React.Component {
     const { navigate } = this.props.navigation;
     return (
       <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
+        <StatusBar barStyle="light-content" />
         <Form 
           ref="form"
           type={this.state.type} 
