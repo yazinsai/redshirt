@@ -1,4 +1,5 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import LaundryPrices from './screens/LaundryPrices'
 import ReactNative, { Easing, Animated } from "react-native";
 import StartingScreen from "./screens/StartingScreen";
 import OnBoardingSlides from "./screens/OnboardingSlides";
@@ -27,6 +28,15 @@ let redHeader = title => () => ({
     backgroundColor: "#D0021B"
   }
 });
+
+const priceListHeader = ({navigation}) => ({
+  title: `${localeStore.t('prices')} - ${navigation.getParam('name', '')}`,
+  headerMode: 'float',
+  headerTintColor: 'white',
+  headerStyle: {
+    backgroundColor: '#D0021B'
+  }
+})
 
 const RtlTransition = () => ({
   transitionSpec: {
@@ -71,7 +81,11 @@ const AppNavigator = createStackNavigator(
       screen: SelectLaundry,
       navigationOptions: redHeader("headerSelectLaundry")
     },
-    OrderDetails: {
+    LaundryPrices: {
+      screen: LaundryPrices,
+      navigationOptions: priceListHeader
+    },
+    OrderDetails : {
       screen: OrderDetails,
       navigationOptions: redHeader("headerOrderDetails")
     },

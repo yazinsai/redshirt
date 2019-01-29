@@ -37,6 +37,8 @@ export const en = {
   laundryPrice: 'Price: ',
   laundryMinimumOrder: 'Minimum Order: ',
 
+  prices: 'Prices', // This is for the laundryPrices Header
+
   feedbackTop: 'You\'re all \n  set.',
   feedbackBottom: 'See you ',
   feedbackButton: 'Back to Home'
@@ -80,6 +82,8 @@ export const ar = {
   laundryReview: 'reviews',
   laundryPrice: 'Price: ',
   laundryMinimumOrder: 'Minimum Order: ',
+
+  prices: 'Prices', // This is for the laundryPrices Header
 
   feedbackTop: 'You\'re all \n  set.',
   feedbackBottom: 'See you ',

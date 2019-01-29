@@ -6,16 +6,18 @@ import colors from "../../config/colors";
 
 import localeStore from "../../localization/localeStore"
 import StyledText from '../StyledText'
+import Button from '../Button'
 
 import { Localization } from 'expo-localization';
 
-const LaundryItem = ({ item, onPress }) => {
+const LaundryItem = ({ item, onPress, navigation }) => {
   let containerStyle = styles.container
   let informationStyle = {}
   if(Localization.locale == 'ar') {
     containerStyle = styles.containerRTL
     informationStyle = styles.informationRTL
   }
+  const {navigate} = navigation
   return (
   <TouchableHighlight onPress={onPress} underlayColor={colors.$border}>
     <View style={containerStyle}>
@@ -38,6 +40,8 @@ const LaundryItem = ({ item, onPress }) => {
       </View>
       <View style= {styles.imageContainer}>
         <Image style={styles.image} source={{uri: item.image}}/>
+        <Button text='View Prices' variant='secondary' style={styles.button} 
+          onPress={() => navigate('LaundryPrices', {id: item.id, name: item.name})}/>
       </View>
     </View>
   </TouchableHighlight>
@@ -45,7 +49,8 @@ const LaundryItem = ({ item, onPress }) => {
 )};
 
 LaundryItem.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
+  navigation: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
@@ -89,7 +94,13 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    padding: 5,
+    margin: 0,
+    marginTop: 2
   }
 });
 

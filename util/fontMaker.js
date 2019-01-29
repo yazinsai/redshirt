@@ -16,7 +16,8 @@ const font = {
   },
   Helvetica: {
     weights: {
-      Regular: '400'
+      Regular: '400',
+      Bold: '800'
     }
   }
 }
