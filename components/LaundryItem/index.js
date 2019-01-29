@@ -22,7 +22,7 @@ const LaundryItem = ({ item, onPress, navigation }) => {
   <TouchableHighlight onPress={onPress} underlayColor={colors.$border}>
     <View style={containerStyle}>
       <View style={informationStyle}>
-        <StyledText fontFamily='Helvetica' size='h6' style={styles.text}>{item.name}</StyledText>
+        <StyledText fontFamily='Helvetica' size='h6'>{item.name}</StyledText>
         <View style={styles.rating}>
           <Rating
             readonly
@@ -34,8 +34,14 @@ const LaundryItem = ({ item, onPress, navigation }) => {
           </StyledText>
         </View>
         <View style={styles.details}>
-          <StyledText fontFamily='Helvetica' size='small' style={styles.detailsText}>{localeStore.t('laundryPrice')} {'$'.repeat(item.pricing)}</StyledText>
-          <StyledText fontFamily='Helvetica' size='small' style={styles.detailsText}>{localeStore.t('laundryMinimumOrder')} {item.minimumOrder}</StyledText>
+          <StyledText fontFamily='Helvetica' size='small'>
+            {localeStore.t('laundryPrice')} 
+            {'$'.repeat(item.pricing)}
+            <StyledText fontFamily='Helvetica' size='small' style={styles.lightDollarSigns}>
+              {'$'.repeat(3-item.pricing)}
+            </StyledText>
+          </StyledText>
+          <StyledText fontFamily='Helvetica' size='small'>{localeStore.t('laundryMinimumOrder')} {item.minimumOrder}</StyledText>
         </View>
       </View>
       <View style= {styles.imageContainer}>
@@ -69,9 +75,6 @@ const styles = StyleSheet.create({
   informationRTL: {
     marginLeft: 10
   },
-  text: {
-    fontSize: 18
-  },
   rating: {
     display: 'flex',
     flexDirection: 'row',
@@ -79,14 +82,13 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   ratingText: {
-    fontSize: 15,
     marginLeft: 10
   },
   details: {
     marginTop: 10,
   },
-  detailsText: {
-    fontSize: 10,
+  lightDollarSigns: {
+    color: '#DDD'
   },
   image: {
     height: 75,
