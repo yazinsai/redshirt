@@ -11,17 +11,33 @@ export class Feedback extends Component {
   componentWillMount(){
     const { navigation } = this.props;
     const pickup = navigation.getParam('meetingTime', '');
-    this.pickup = pickup
+    const result = navigation.getParam('result', 'error');
+    this.pickup = pickup;
+    this.result = result;
+
   }
   render() {
     const {navigate} = this.props.navigation
+    let icon
+    let text
+    if(this.result == 'success') {
+      icon = require('../assets/tick.png')
+      topText = localeStore.t('feedbackTopSuccess')
+      bottomText = `${localeStore.t('feedbackBottomSuccess')} \n ${this.pickup}.`
+      buttonText = localeStore.t('feedbackButtonSuccess')
+    } else {
+      icon = require('../assets/cross.png')
+      topText = localeStore.t('feedbackTopError')
+      bottomText = localeStore.t('feedbackBottomError')
+      buttonText = localeStore.t('feedbackButtonError')
+    }
     return (
       <View style={styles.container}>
-        <StyledText size='h4' style={styles.title} >{localeStore.t('feedbackTop')}</StyledText>
-        <Image source={require('../assets/tick.png')} />
-        <StyledText size='h5' style={styles.subTitle}>{localeStore.t('feedbackBottom')}{"\n"} {this.pickup}.</StyledText>
+        <StyledText size='h4' style={styles.title} >{topText}</StyledText>
+        <Image source={icon} />
+        <StyledText size='h5' style={styles.subTitle}>{bottomText}</StyledText>
         <Image style={styles.backImage} source={require('../assets/slide1Image.png')} />
-        <Button text={localeStore.t('feedbackButton')} variant='white' style={styles.button} onPress={()=> navigate('Home')}/>
+        <Button text={buttonText} variant='white' style={styles.button} onPress={()=> navigate('Home')}/>
       </View>
     )
   }

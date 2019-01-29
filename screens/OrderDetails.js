@@ -246,10 +246,12 @@ class OrderDetails extends  React.Component {
       body: json
     }).then(()=> {
       if(pickup == 'NO PICKUP') {
-        navigation.navigate('Feedback', {meetingTime: deliver})
+        navigation.navigate('Feedback', {meetingTime: deliver, result: 'success'})
       } else {
-        navigation.navigate('Feedback', {meetingTime: pickup})
+        navigation.navigate('Feedback', {meetingTime: pickup, result: 'success'})
       }
+    }).catch((error) => {
+      navigation.navigate('Feedback', { result: 'error' })
     })
   }
 

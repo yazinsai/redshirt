@@ -39,9 +39,13 @@ export const en = {
 
   prices: 'Prices', // This is for the laundryPrices Header
 
-  feedbackTop: 'You\'re all \n  set.',
-  feedbackBottom: 'See you ',
-  feedbackButton: 'Back to Home'
+  feedbackTopSuccess: 'You\'re all \n  set.',
+  feedbackBottomSuccess: 'See you ',
+  feedbackButtonSuccess: 'Back to Home',
+
+  feedbackTopError: 'There was an error \n with your order',
+  feedbackBottomError: '',
+  feedbackButtonError: 'Try again'
 }
 
 export const ar = {
