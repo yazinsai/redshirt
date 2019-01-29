@@ -45,8 +45,8 @@ export const en = {
 }
 
 export const ar = {
-  headerSelectLaundry: 'Choose a Laundry',
-  headerOrderDetails: 'Schedule your order',
+  headerSelectLaundry: 'اختر مغسلة',
+  headerOrderDetails: 'أدخل تفاصيل طلبك',
 
   onBoardingIntroLightBefore: 'مع قميص أحمر ، عليك',
   onBoardingIntroBold: 'لا تذهب إلى مغسلة أخرى',
@@ -62,30 +62,30 @@ export const ar = {
   onBoardingThirdSlideLight: ' الى باب منزلك',
   onBoardingThirdSlideButton: 'احجز الآن ',
 
-  homeAppLogoText: 'Red Shirt',
-  homePickupButton: 'Schedule a pickup',
-  homeCollectAboveText: 'Already dropped off your laundry?',
-  homeCollectButton: 'Collect from the laundry',
+  homeAppLogoText: 'ريد شيرت',
+  homePickupButton: 'احجز موعد الاستلام',
+  homeCollectAboveText: 'هل أوصلت ملابسك الى المغسلة؟',
+  homeCollectButton: 'أحضر الملابس من المغسلة  ',
 
-  orderDetailsMorning: 'morningAR (9am - 12pm)',
-  orderDetailsAfternoon: 'afternoonAR (12pm - 4pm)',
-  orderDetailsEvening: 'eveningAR (4pm - 8pm)',
-  orderDetailsToday: 'TodayAR,',
-  orderDetailsTomorrow: 'TomorrowAR,',
-  orderDetailsPickup: 'When can we pick up your laundry?',
-  orderDetailsDeliver: 'When can we return your laundry?',
-  orderDetailsAddress: 'What is your address?',
-  orderDetailsPhone: 'Your mobile number',
-  orderDetailsEmail: 'Your email address (for your receipt)',
-  orderDetailsSubmitButton: 'Place my order',
+  orderDetailsMorning: 'الصبح (٩ص - ١٢ظ)',
+  orderDetailsAfternoon: 'الظهر (١٢ظ - ٤ظ)',
+  orderDetailsEvening: 'المساء (٤ظ - ٨م)',
+  orderDetailsToday: 'اليوم,',
+  orderDetailsTomorrow: 'غدا,',
+  orderDetailsPickup: 'متى يمكننا استلام طلبك؟',
+  orderDetailsDeliver: 'متى يمكننا توصيل طلبك إليك؟',
+  orderDetailsAddress: 'الرجاء إدخال العنوان',
+  orderDetailsPhone: 'رقم هاتفك',
+  orderDetailsEmail: 'بريدك الالكتروني (سنقوم بإرسال الفاتورة إليه)',
+  orderDetailsSubmitButton: 'إتمام الطلب',
 
-  laundryReview: 'reviews',
-  laundryPrice: 'Price: ',
-  laundryMinimumOrder: 'Minimum Order: ',
+  laundryReview: 'تقييم',
+  laundryPrice: 'السعر: ',
+  laundryMinimumOrder: 'الحد الأدنى للطلب: ',
 
-  prices: 'Prices', // This is for the laundryPrices Header
+  prices: 'الأسعار', // This is for the laundryPrices Header
 
-  feedbackTop: 'You\'re all \n  set.',
-  feedbackBottom: 'See you ',
-  feedbackButton: 'Back to Home'
+  feedbackTop: 'تم إدخال طلبك بنجاح',
+  feedbackBottom: 'نراك ',
+  feedbackButton: 'العودة إلى الصفحة الرئيسية '
 }
