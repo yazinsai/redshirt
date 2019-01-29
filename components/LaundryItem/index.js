@@ -23,26 +23,28 @@ const LaundryItem = ({ item, onPress, navigation }) => {
   <TouchableHighlight onPress={onPress} underlayColor={colors.$border}>
     <View style={containerStyle}>
       <View style={informationStyle}>
-        <StyledText fontFamily='Helvetica' size='h6'>{item.name}</StyledText>
+        <StyledText fontFamily='Helvetica' size='h6' style={styles.title}>{item.name}</StyledText>
         <View style={styles.rating}>
           <Rating
             readonly
             startingValue={item.reviews.rating}
             imageSize={15}
           />
-          <StyledText fontFamily='Helvetica' style={styles.ratingText}>
-          ({item.reviews.count} {localeStore.t('laundryReview')})
+          <StyledText fontFamily='Helvetica' style={[styles.contentText, styles.ratingText]}>
+            ({item.reviews.count} {localeStore.t('laundryReview')})
           </StyledText>
         </View>
         <View style={styles.details}>
-          <StyledText fontFamily='Helvetica' size='small'>
+          <StyledText fontFamily='Helvetica' size='small' style={styles.contentText}>
             {localeStore.t('laundryPrice')} 
             {'$'.repeat(item.pricing)}
-            <StyledText fontFamily='Helvetica' size='small' style={styles.lightDollarSigns}>
+            <StyledText fontFamily='Helvetica' size='small' style={[styles.contentText, styles.lightDollarSigns]}>
               {'$'.repeat(3-item.pricing)}
             </StyledText>
           </StyledText>
-          <StyledText fontFamily='Helvetica' size='small'>{localeStore.t('laundryMinimumOrder')} {item.minimumOrder}</StyledText>
+          <StyledText fontFamily='Helvetica' size='small' style={styles.contentText}>
+            {localeStore.t('laundryMinimumOrder')} {item.minimumOrder}
+          </StyledText>
         </View>
       </View>
       <View style= {styles.imageContainer}>
@@ -73,6 +75,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     padding: 10,
   },
+  title: {
+    color: colors.$darkerGrey
+  },
+  contentText: {
+    color: colors.$primaryGrey
+  },
   informationRTL: {
     marginLeft: 10
   },
@@ -89,7 +97,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   lightDollarSigns: {
-    color: colors.$lightestGrey
+    color: colors.$lighterGrey
   },
   image: {
     height: 75,
