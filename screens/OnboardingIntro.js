@@ -4,6 +4,7 @@ import Button from '../components/Button'
 import { Container } from '../components/Container'
 import StyledText from '../components/StyledText'
 import localeStore from "../localization/localeStore"
+import colors from "../config/colors";
 
 export default class OnboardingIntro extends React.Component {
   render() {
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     marginLeft: '5%'
   },
   title: {
-    color: '#D0021B',
+    color: colors.$primaryRed,
   },
   buttonsContainer: {
     marginTop: 100

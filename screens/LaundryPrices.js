@@ -3,6 +3,7 @@ import {View, Text, FlatList, StyleSheet} from 'react-native'
 import { Localization } from 'expo-localization';
 
 import StyledText from '../components/StyledText'
+import colors from '../config/colors';
 
 export default class LaundryPrices extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -66,16 +67,16 @@ const ListHeader = ({}) => {
   return(
     <View style={[styles.row, styles.headerColor]}>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.headerText}>Item</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Item</StyledText>
       </View>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.headerText}>Pressing</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Pressing</StyledText>
       </View>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.headerText}>Laundry</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Laundry</StyledText>
       </View>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.headerText}>Dry Clean</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Dry Clean</StyledText>
       </View>
     </View>
   )
@@ -101,19 +102,15 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    color: '#969292'
-  },
-  headerText: {
-    textAlign: 'center',
-    color: '#746F6F'
+    color: colors.$primaryGrey
   },
   oddColor: {
-    backgroundColor: '#FFF',
+    backgroundColor: colors.$white,
   },
   evenColor: {
-    backgroundColor: '#F8F8F8'
+    backgroundColor: colors.$lightestGrey
   },
   headerColor: {
-    backgroundColor: '#DAD7D7'
+    backgroundColor:  colors.$lighterGrey
   }
 })

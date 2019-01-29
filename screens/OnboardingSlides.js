@@ -5,6 +5,7 @@ import Button from "../components/Button"
 import StyledText from '../components/StyledText'
 import localeStore from "../localization/localeStore"
 import { Localization } from 'expo-localization';
+import colors from "../config/colors";
 
 export default class OnboardingSlides extends React.Component {
   render() {
@@ -53,17 +54,17 @@ export default class OnboardingSlides extends React.Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: '#D0021B',
+    backgroundColor: colors.$primaryRed,
   },
   slide: {
     flex: 1
   },
   number: {
-    color: "#A90015",
+    color: colors.$darkerRed,
     marginLeft: '5%'
   },
   content: {
-    color: '#fff',
+    color: colors.$white,
     width: '80%',
     marginLeft: '5%',
     zIndex: 2
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     ]
   },
   customDot: {
-    backgroundColor: 'white', 
+    backgroundColor: colors.$white, 
     width: 8, 
     height: 8, 
     borderRadius: 4, 
