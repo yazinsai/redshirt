@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   h6_ar: {
-    fontSize: 16
+    fontSize: 18
   }
 });
 

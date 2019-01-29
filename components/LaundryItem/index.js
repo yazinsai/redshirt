@@ -46,7 +46,7 @@ const LaundryItem = ({ item, onPress, navigation }) => {
       </View>
       <View style= {styles.imageContainer}>
         <Image style={styles.image} source={{uri: item.image}}/>
-        <Button text='View Prices' variant='secondary' style={styles.button} 
+        <Button text={localeStore.t('laundryViewPrices')} variant='secondary' style={styles.button} 
           onPress={() => navigate('LaundryPrices', {id: item.id, name: item.name})}/>
       </View>
     </View>

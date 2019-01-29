@@ -36,6 +36,7 @@ export const en = {
   laundryReview: 'reviews',
   laundryPrice: 'Price: ',
   laundryMinimumOrder: 'Minimum Order: ',
+  laundryViewPrices: 'View Prices',
 
   prices: 'Prices', // This is for the laundryPrices Header
 
@@ -82,6 +83,7 @@ export const ar = {
   laundryReview: 'تقييم',
   laundryPrice: 'السعر: ',
   laundryMinimumOrder: 'الحد الأدنى للطلب: ',
+  laundryViewPrices: 'قائمة الأسعار ',
 
   prices: 'الأسعار', // This is for the laundryPrices Header
 
