@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import Swiper from 'react-native-swiper';
 import Button from "../components/Button"
-import AntipastoText from '../components/AntipastoText'
+import StyledText from '../components/StyledText'
 import localeStore from "../localization/localeStore"
 import { Localization } from 'expo-localization';
 
@@ -22,27 +22,27 @@ export default class OnboardingSlides extends React.Component {
       <Swiper style={wrapperStyle} showsButtons={false} 
         activeDot={whiteDot} loop={false} index={index}>
         <View style={styles.slide}>
-          <AntipastoText style={styles.number}>1</AntipastoText>
-          <AntipastoText style={styles.content}>
-            <AntipastoText weight='Demibold'>{localeStore.t('onBoardingFirstSlideBold')}</AntipastoText>
-            <AntipastoText weight='Light'>{localeStore.t('onBoardingFirstSlideLight')}</AntipastoText>
-          </AntipastoText>
+          <StyledText size='h1' style={styles.number}>1</StyledText>
+          <StyledText style={styles.content}>
+            <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingFirstSlideBold')}</StyledText>
+            <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingFirstSlideLight')}</StyledText>
+          </StyledText>
           <Image source={require('../assets/slide1Image.png')} style={imageStyle} />
         </View>
         <View style={styles.slide}>
-          <AntipastoText style={styles.number}>2</AntipastoText>
-          <AntipastoText style={styles.content}>
-            <AntipastoText weight='Demibold'>{localeStore.t('onBoardingSecondSlideBold')}</AntipastoText>
-            <AntipastoText weight='Light'>{localeStore.t('onBoardingSecondSlideLight')}</AntipastoText>
-          </AntipastoText>
+          <StyledText size='h1' style={styles.number}>2</StyledText>
+          <StyledText style={styles.content}>
+            <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingSecondSlideBold')}</StyledText>
+            <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingSecondSlideLight')}</StyledText>
+          </StyledText>
           <Image source={require('../assets/slide2Image.png')} style={imageStyle} />
         </View>
         <View style={styles.slide}>
-          <AntipastoText style={styles.number}>3</AntipastoText>
-          <AntipastoText style={styles.content}>
-            <AntipastoText weight='Demibold'>{localeStore.t('onBoardingThirdSlideBold')}</AntipastoText>
-            <AntipastoText weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</AntipastoText>
-          </AntipastoText>
+          <StyledText size='h1' style={styles.number}>3</StyledText>
+          <StyledText style={styles.content}>
+            <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingThirdSlideBold')}</StyledText>
+            <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</StyledText>
+          </StyledText>
           <Image source={require('../assets/slide3Image.png')} style={imageStyle} />
           <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text={localeStore.t('onBoardingThirdSlideButton')} />
         </View>
@@ -54,19 +54,16 @@ export default class OnboardingSlides extends React.Component {
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: '#D0021B',
-    
   },
   slide: {
     flex: 1
   },
   number: {
     color: "#A90015",
-    fontSize: 150,
     marginLeft: '5%'
   },
   content: {
     color: '#fff',
-    fontSize: 72,
     width: '80%',
     marginLeft: '5%',
     zIndex: 2
