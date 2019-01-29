@@ -25,13 +25,13 @@ export class StartingScreen extends React.Component {
         this.setState({firstLaunch: false});
       }
     })
-    AsyncStorage.getItem("isRTL").then(value => {
+    AsyncStorage.getItem("wasPreviouslyRTL").then(value => {
       const isRTL = ''+(Localization.locale == 'ar')
       console.log(typeof value,typeof isRTL)
       if(value != isRTL) {
         console.log('entra')
         ReactNative.I18nManager.forceRTL(Localization.locale == 'ar')
-        AsyncStorage.setItem('isRTL', ''+isRTL).then(()=> {
+        AsyncStorage.setItem('wasPreviouslyRTL', ''+isRTL).then(()=> {
           Util.reload()
         })
       }
