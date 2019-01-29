@@ -1,12 +1,13 @@
 import React from "react";
-import { Text, View, TouchableHighlight, StyleSheet, Image } from "react-native";
-import { Card, Rating } from 'react-native-elements'
+import { View, TouchableHighlight, StyleSheet, Image } from "react-native";
+import { Rating } from 'react-native-elements'
 import PropTypes from "prop-types";
-import colors from "../../config/colors";
 
 import localeStore from "../../localization/localeStore"
 import StyledText from '../StyledText'
 import Button from '../Button'
+
+import colors from '../../config/colors'
 
 import { Localization } from 'expo-localization';
 
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   lightDollarSigns: {
-    color: '#DDD'
+    color: colors.$lightestGrey
   },
   image: {
     height: 75,

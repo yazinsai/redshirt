@@ -12,6 +12,7 @@ import Feedback from "./screens/Feedback";
 
 import { Localization } from "expo-localization";
 import localeStore from "./localization/localeStore";
+import colors from "./config/colors";
 
 
 Localization.locale = Localization.locale.substr(0,2)
@@ -24,18 +25,18 @@ let noHeader = () => ({
 let redHeader = title => () => ({
   title: localeStore.t(title),
   headerMode: "float",
-  headerTintColor: "white",
+  headerTintColor: colors.$white,
   headerStyle: {
-    backgroundColor: "#D0021B"
+    backgroundColor: colors.$primaryRed
   }
 });
 
 const priceListHeader = ({navigation}) => ({
   title: `${localeStore.t('prices')} - ${navigation.getParam('name', '')}`,
   headerMode: 'float',
-  headerTintColor: 'white',
+  headerTintColor: colors.$white,
   headerStyle: {
-    backgroundColor: '#D0021B'
+    backgroundColor: colors.$primaryRed
   }
 })
 

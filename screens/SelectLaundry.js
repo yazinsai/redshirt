@@ -3,6 +3,7 @@ import {  FlatList, StyleSheet, View, StatusBar } from "react-native";
 import { Localization } from 'expo-localization';
 
 import LaundryItem from "../components/LaundryItem";
+import colors from "../config/colors";
 
 class ChooseLaundry extends Component {
   constructor(props) {
@@ -58,11 +59,11 @@ const styles = StyleSheet.create({
   container: {
     margin: 20,
     borderWidth: 1,
-    borderColor: "#ddd"
+    borderColor: colors.$lighterGrey
   },
   separator: {
     height: StyleSheet.hairlineWidth,
-    backgroundColor: "#ececec",
+    backgroundColor: colors.$lightestGrey,
     flex: 1,
     marginTop: 10,
     marginBottom: 10
