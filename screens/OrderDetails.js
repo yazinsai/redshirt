@@ -49,31 +49,7 @@ textareaStyle.textbox.normal.textAlignVertical = "top";
 textareaStyle.textbox.error.height = 72;
 textareaStyle.textbox.error.textAlignVertical = "top";
 
-var options = {
-  stylesheet: style,
-  fields: {
-    pickup: {
-      label: localeStore.t('orderDetailsPickup')
-    },
-    deliver: {
-      label: localeStore.t('orderDetailsDeliver')
-    },
-    address: {
-      label: localeStore.t('orderDetailsAddress'),
-      stylesheet: textareaStyle, // overrides height
-      multiline: true,
-      numberOfLines: 2,
-    },
-    phone: {
-      label: localeStore.t('orderDetailsPhone')
-    },
-    email: {
-      label: localeStore.t('orderDetailsEmail'),
-      keyboardType: 'email-address',
-      autoCapitalize: 'none',
-    }
-  }
-}
+
 
 class OrderDetails extends  React.Component {
   constructor(props) {
@@ -91,7 +67,31 @@ class OrderDetails extends  React.Component {
 
     this.submitForm = this.submitForm.bind(this)
     this.onChange = this.onChange.bind(this)
-    
+    this.options = {
+      stylesheet: style,
+      fields: {
+        pickup: {
+          label: localeStore.t('orderDetailsPickup')
+        },
+        deliver: {
+          label: localeStore.t('orderDetailsDeliver')
+        },
+        address: {
+          label: localeStore.t('orderDetailsAddress'),
+          stylesheet: textareaStyle, // overrides height
+          multiline: true,
+          numberOfLines: 2,
+        },
+        phone: {
+          label: localeStore.t('orderDetailsPhone')
+        },
+        email: {
+          label: localeStore.t('orderDetailsEmail'),
+          keyboardType: 'email-address',
+          autoCapitalize: 'none',
+        }
+      }
+    }
   }
 
   componentWillMount(){
@@ -269,7 +269,7 @@ class OrderDetails extends  React.Component {
           ref="form"
           type={this.state.type} 
           value= {this.state.value}
-          options={options}
+          options={this.options}
           onChange={this.onChange}
           />
         <Button text={localeStore.t('orderDetailsSubmitButton')} variant='primary' onPress={this.submitForm}/>
