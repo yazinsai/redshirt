@@ -24,7 +24,7 @@ export default class LaundryPrices extends Component {
     const {navigation} = this.props;
     this.id = navigation.getParam('id', '');
     const { locale } = Localization
-    fetch(`https://shine-server-order.herokuapp.com/laundries/${this.id}/items?locale=${locale}`, {
+    fetch(`https://api.redshirt.app/laundries/${this.id}/items?locale=${locale}`, {
       method: 'GET'
     }).then((response) => response.json())
       .then((json) => this.setState({items: json}))

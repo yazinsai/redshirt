@@ -13,7 +13,7 @@ class ChooseLaundry extends Component {
   componentWillMount() {
     const { locale } = Localization;
     fetch(
-      `https://shine-server-order.herokuapp.com/laundries?locale=${locale}`,
+      `https://api.redshirt.app/laundries?locale=${locale}`,
       {
         method: "GET"
       }

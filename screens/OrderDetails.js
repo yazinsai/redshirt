@@ -238,7 +238,7 @@ class OrderDetails extends  React.Component {
     AsyncStorage.setItem('email', ''+formValue.email)
 
     const json = JSON.stringify(result)
-    fetch('https://shine-server-order.herokuapp.com', {
+    fetch('https://api.redshirt.app', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
