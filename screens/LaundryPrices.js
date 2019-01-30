@@ -5,6 +5,8 @@ import { Localization } from 'expo-localization';
 import StyledText from '../components/StyledText'
 import colors from '../config/colors';
 
+import localeStore from "../localization/localeStore"
+
 export default class LaundryPrices extends Component {
   static navigationOptions = ({ navigation }) => {
     const laundry = navigation.getParam('name', '');
@@ -68,16 +70,16 @@ const ListHeader = ({}) => {
   return(
     <View style={[styles.row, styles.headerColor]}>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Item</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>{localeStore.t('laundryPricesItem')}</StyledText>
       </View>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Pressing</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>{localeStore.t('laundryPricesPressing')}</StyledText>
       </View>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Laundry</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>{localeStore.t('laundryPricesLaundry')}</StyledText>
       </View>
       <View style={styles.column}>
-        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>Dry Clean</StyledText>
+        <StyledText fontFamily='Helvetica' weight='Bold' style={styles.text}>{localeStore.t('laundryPricesDryClean')}</StyledText>
       </View>
     </View>
   )

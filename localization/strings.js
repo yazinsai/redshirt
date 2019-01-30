@@ -39,6 +39,10 @@ export const en = {
   laundryViewPrices: 'View Prices',
 
   prices: 'Prices', // This is for the laundryPrices Header
+  laundryPricesItem: 'Item',
+  laundryPricesPressing: 'Pressing',
+  laundryPricesLaundry: 'Laundry',
+  laundryPricesDryClean: 'Dry Clean',
 
   feedbackTop: 'You\'re all \n  set.',
   feedbackBottom: 'See you ',
@@ -86,6 +90,10 @@ export const ar = {
   laundryViewPrices: 'قائمة الأسعار ',
 
   prices: 'الأسعار', // This is for the laundryPrices Header
+  laundryPricesItem: 'ItemAR',
+  laundryPricesPressing: 'PressingAR',
+  laundryPricesLaundry: 'LaundryAR',
+  laundryPricesDryClean: 'Dry CleanAR',
 
   feedbackTop: 'تم إدخال طلبك بنجاح',
   feedbackBottom: 'نراك ',
