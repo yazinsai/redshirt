@@ -73,6 +73,12 @@ const styles = StyleSheet.create({
   contentText: {
     color: colors.$primaryGrey
   },
+  title: {
+    color: colors.$darkerGrey
+  },
+  contentText: {
+    color: colors.$primaryGrey
+  },
   informationRTL: {
     marginLeft: 10
   },
