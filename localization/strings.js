@@ -1,4 +1,7 @@
 export const en = {
+  
+  backButton: 'Back',
+
   headerSelectLaundry: 'Choose a Laundry',
   headerOrderDetails: 'Schedule your order',
 
@@ -50,6 +53,9 @@ export const en = {
 }
 
 export const ar = {
+
+  backButton: 'BackAR',
+
   headerSelectLaundry: 'اختر مغسلة',
   headerOrderDetails: 'أدخل تفاصيل طلبك',
 

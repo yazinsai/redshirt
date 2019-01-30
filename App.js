@@ -19,13 +19,15 @@ Localization.locale = Localization.locale.substr(0,2)
 localeStore.locale = Localization.locale
 
 let noHeader = () => ({
-  header: null
+  header: null,
+  headerBackTitle: localeStore.t('backButton'),
 });
 
 let redHeader = title => () => ({
   title: localeStore.t(title),
   headerMode: "float",
   headerTintColor: colors.$white,
+  headerBackTitle: localeStore.t('backButton'),
   headerStyle: {
     backgroundColor: colors.$primaryRed
   }
@@ -35,6 +37,7 @@ const priceListHeader = ({navigation}) => ({
   title: `${localeStore.t('prices')} - ${navigation.getParam('name', '')}`,
   headerMode: 'float',
   headerTintColor: colors.$white,
+  headerBackTitle: localeStore.t('backButton'),
   headerStyle: {
     backgroundColor: colors.$primaryRed
   }
