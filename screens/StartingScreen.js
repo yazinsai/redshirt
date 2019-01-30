@@ -1,6 +1,7 @@
 import React from 'react'
-import {AsyncStorage} from 'react-native'
-import {Font, AppLoading} from 'expo'
+import ReactNative, {AsyncStorage} from 'react-native'
+import {Font, AppLoading, Util} from 'expo'
+import { Localization } from 'expo-localization';
 
 import Home from './Home'
 import OnboardingIntro from './OnboardingIntro'
@@ -23,7 +24,16 @@ export class StartingScreen extends React.Component {
       } else{
         this.setState({firstLaunch: false});
       }
-    }) 
+    })
+    AsyncStorage.getItem("wasPreviouslyRTL").then(value => {
+      const isRTL = ''+(Localization.locale == 'ar')
+      if(value != isRTL) {
+        ReactNative.I18nManager.forceRTL(Localization.locale == 'ar')
+        AsyncStorage.setItem('wasPreviouslyRTL', ''+isRTL).then(()=> {
+          Util.reload()
+        })
+      }
+    })
   }
 
   async loadFont() {

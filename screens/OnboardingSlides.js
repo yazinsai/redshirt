@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Image, StatusBar } from "react-native";
 import Swiper from 'react-native-swiper';
 import Button from "../components/Button"
 import StyledText from '../components/StyledText'
@@ -15,38 +15,39 @@ export default class OnboardingSlides extends React.Component {
     let index = 0
     if(Localization.locale == 'ar') {
       imageStyle = styles.imageRTL
-      wrapperStyle.flexDirection = 'row-reverse'
-      index = 2
     }
     return (
-      <Swiper style={wrapperStyle} showsButtons={false} 
-        activeDot={whiteDot} loop={false} index={index}>
-        <View style={styles.slide}>
-          <StyledText size='h1' style={styles.number}>1</StyledText>
-          <StyledText style={styles.content}>
-            <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingFirstSlideBold')}</StyledText>
-            <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingFirstSlideLight')}</StyledText>
-          </StyledText>
-          <Image source={require('../assets/slide1Image.png')} style={imageStyle} />
-        </View>
-        <View style={styles.slide}>
-          <StyledText size='h1' style={styles.number}>2</StyledText>
-          <StyledText style={styles.content}>
-            <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingSecondSlideBold')}</StyledText>
-            <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingSecondSlideLight')}</StyledText>
-          </StyledText>
-          <Image source={require('../assets/slide2Image.png')} style={imageStyle} />
-        </View>
-        <View style={styles.slide}>
-          <StyledText size='h1' style={styles.number}>3</StyledText>
-          <StyledText style={styles.content}>
-            <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingThirdSlideBold')}</StyledText>
-            <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</StyledText>
-          </StyledText>
-          <Image source={require('../assets/slide3Image.png')} style={imageStyle} />
-          <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text={localeStore.t('onBoardingThirdSlideButton')} />
-        </View>
-      </Swiper>
+      <View style={{flex: 1}}>
+        <StatusBar barStyle="light-content" />
+        <Swiper style={wrapperStyle} showsButtons={false} 
+          activeDot={whiteDot} loop={false} index={index}>
+          <View style={styles.slide}>
+            <StyledText size='h1' style={styles.number}>1</StyledText>
+            <StyledText style={styles.content}>
+              <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingFirstSlideBold')}</StyledText>
+              <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingFirstSlideLight')}</StyledText>
+            </StyledText>
+            <Image source={require('../assets/slide1Image.png')} style={imageStyle} />
+          </View>
+          <View style={styles.slide}>
+            <StyledText size='h1' style={styles.number}>2</StyledText>
+            <StyledText style={styles.content}>
+              <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingSecondSlideBold')}</StyledText>
+              <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingSecondSlideLight')}</StyledText>
+            </StyledText>
+            <Image source={require('../assets/slide2Image.png')} style={imageStyle} />
+          </View>
+          <View style={styles.slide}>
+            <StyledText size='h1' style={styles.number}>3</StyledText>
+            <StyledText style={styles.content}>
+              <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingThirdSlideBold')}</StyledText>
+              <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</StyledText>
+            </StyledText>
+            <Image source={require('../assets/slide3Image.png')} style={imageStyle} />
+            <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text={localeStore.t('onBoardingThirdSlideButton')} />
+          </View>
+        </Swiper>
+      </View>
     );
   }
 }
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
   imageRTL: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
+    right: 0,
     zIndex: 1,
     transform:[
       {scaleX: - 1}

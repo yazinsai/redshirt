@@ -11,16 +11,14 @@ import Button from '../Button'
 import { Localization } from 'expo-localization';
 
 const LaundryItem = ({ item, onPress, navigation }) => {
-  let containerStyle = styles.container
   let informationStyle = {}
   if(Localization.locale == 'ar') {
-    containerStyle = styles.containerRTL
     informationStyle = styles.informationRTL
   }
   const {navigate} = navigation
   return (
   <TouchableHighlight onPress={onPress} underlayColor={colors.$border}>
-    <View style={containerStyle}>
+    <View style={styles.container}>
       <View style={informationStyle}>
         <StyledText fontFamily='Helvetica' size='h6'>{item.name}</StyledText>
         <View style={styles.rating}>
@@ -64,12 +62,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
-  },
-  containerRTL: {
-    display: 'flex',
-    flexDirection: 'row-reverse',
-    justifyContent: 'flex-end',
     padding: 10,
   },
   informationRTL: {
