@@ -1,60 +1,71 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Image, StatusBar } from "react-native";
 import Swiper from 'react-native-swiper';
 import Button from "../components/Button"
-import AntipastoText from '../components/AntipastoText'
+import StyledText from '../components/StyledText'
+import localeStore from "../localization/localeStore"
+import { Localization } from 'expo-localization';
+import colors from "../config/colors";
 
 export default class OnboardingSlides extends React.Component {
   render() {
     const whiteDot= <View style={styles.customDot} />
     const { navigate } = this.props.navigation;
+    let imageStyle = styles.image
+    const wrapperStyle = Object.assign({}, styles.wrapper)
+    let index = 0
+    if(Localization.locale == 'ar') {
+      imageStyle = styles.imageRTL
+    }
     return (
-      <Swiper style={styles.wrapper} showsButtons={false} activeDot={whiteDot} loop={false}>
-        <View style={styles.slide}>
-          <AntipastoText style={styles.number}>1</AntipastoText>
-          <Text style={styles.content}>
-            <AntipastoText weight='Demibold'>Choose a laundry</AntipastoText>
-            <AntipastoText weight='Light'> and a pickup time</AntipastoText>
-          </Text>
-          <Image source={require('../assets/slide1Image.png')} style={styles.image} />
-        </View>
-        <View style={styles.slide}>
-          <AntipastoText style={styles.number}>2</AntipastoText>
-          <Text style={styles.content}>
-            <AntipastoText weight='Demibold'>We collect</AntipastoText>
-            <AntipastoText weight='Light'> your laundry in a bag</AntipastoText>
-          </Text>
-          <Image source={require('../assets/slide2Image.png')} style={styles.image} />
-        </View>
-        <View style={styles.slide}>
-          <AntipastoText style={styles.number}>3</AntipastoText>
-          <Text style={styles.content}>
-            <AntipastoText weight='Demibold'>We return</AntipastoText>
-            <AntipastoText weight='Light'> your clean laundry</AntipastoText>
-          </Text>
-          <Image source={require('../assets/slide3Image.png')} style={styles.image} />
-          <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text='Place order' />
-        </View>
-      </Swiper>
+      <View style={{flex: 1}}>
+        <StatusBar barStyle="light-content" />
+        <Swiper style={wrapperStyle} showsButtons={false} 
+          activeDot={whiteDot} loop={false} index={index}>
+          <View style={styles.slide}>
+            <StyledText size='h1' style={styles.number}>1</StyledText>
+            <StyledText style={styles.content}>
+              <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingFirstSlideBold')}</StyledText>
+              <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingFirstSlideLight')}</StyledText>
+            </StyledText>
+            <Image source={require('../assets/slide1Image.png')} style={imageStyle} />
+          </View>
+          <View style={styles.slide}>
+            <StyledText size='h1' style={styles.number}>2</StyledText>
+            <StyledText style={styles.content}>
+              <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingSecondSlideBold')}</StyledText>
+              <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingSecondSlideLight')}</StyledText>
+            </StyledText>
+            <Image source={require('../assets/slide2Image.png')} style={imageStyle} />
+          </View>
+          <View style={styles.slide}>
+            <StyledText size='h1' style={styles.number}>3</StyledText>
+            <StyledText style={styles.content}>
+              <StyledText size='h2' weight='Demibold'>{localeStore.t('onBoardingThirdSlideBold')}</StyledText>
+              <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</StyledText>
+            </StyledText>
+            <Image source={require('../assets/slide3Image.png')} style={imageStyle} />
+            <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text={localeStore.t('onBoardingThirdSlideButton')} />
+          </View>
+        </Swiper>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: '#D0021B',
+    backgroundColor: colors.$primaryRed,
   },
   slide: {
     flex: 1
   },
   number: {
-    color: "#A90015",
-    fontSize: 150,
+    color: colors.$darkerRed,
     marginLeft: '5%'
   },
   content: {
-    color: '#fff',
-    fontSize: 72,
+    color: colors.$white,
     width: '80%',
     marginLeft: '5%',
     zIndex: 2
@@ -65,8 +76,17 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1
   },
+  imageRTL: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    zIndex: 1,
+    transform:[
+      {scaleX: - 1}
+    ]
+  },
   customDot: {
-    backgroundColor: 'white', 
+    backgroundColor: colors.$white, 
     width: 8, 
     height: 8, 
     borderRadius: 4, 

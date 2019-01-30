@@ -1,9 +1,11 @@
 import React from 'react'
-import {AsyncStorage} from 'react-native'
-import {Font, AppLoading} from 'expo'
+import ReactNative, {AsyncStorage} from 'react-native'
+import {Font, AppLoading, Util} from 'expo'
+import { Localization } from 'expo-localization';
 
 import Home from './Home'
 import OnboardingIntro from './OnboardingIntro'
+
 
 
 export class StartingScreen extends React.Component {
@@ -22,15 +24,35 @@ export class StartingScreen extends React.Component {
       } else{
         this.setState({firstLaunch: false});
       }
-    }) 
+    })
+    AsyncStorage.getItem("wasPreviouslyRTL").then(value => {
+      const isRTL = ''+(Localization.locale == 'ar')
+      if(value != isRTL) {
+        ReactNative.I18nManager.forceRTL(Localization.locale == 'ar')
+        AsyncStorage.setItem('wasPreviouslyRTL', ''+isRTL).then(()=> {
+          Util.reload()
+        })
+      }
+    })
   }
 
   async loadFont() {
-    const light = Font.loadAsync({ 'Antipasto-Light': require('../assets/fonts/Antipasto-Light.otf') });
-    const regular = Font.loadAsync({ 'Antipasto-Regular': require('../assets/fonts/Antipasto-Regular.otf') });
-    const demibold = Font.loadAsync({ 'Antipasto-Demibold': require('../assets/fonts/Antipasto-Demibold.otf') });
-    const normal = Font.loadAsync({ 'Antipasto': require('../assets/fonts/Antipasto.ttf') });
-    return Promise.all([light, regular, demibold, normal]);
+    const AntipastoLight = Font.loadAsync({ 'Antipasto-Light': require('../assets/fonts/Antipasto-Light.otf') });
+    const AntipastoRegular = Font.loadAsync({ 'Antipasto-Regular': require('../assets/fonts/Antipasto-Regular.otf') });
+    const AntipastoDemibold = Font.loadAsync({ 'Antipasto-Demibold': require('../assets/fonts/Antipasto-Demibold.otf') });
+    const Antipasto = Font.loadAsync({ 'Antipasto': require('../assets/fonts/Antipasto.ttf') });  
+
+    const GeezaproDemibold = Font.loadAsync({ 'Geezapro-Demibold': require('../assets/fonts/Geezapro-Demibold.ttf') });
+    const GeezaproRegular = Font.loadAsync({ 'Geezapro-Regular': require('../assets/fonts/Geezapro-Regular.ttf') });
+    const Geezapro = Font.loadAsync({ 'Geezapro': require('../assets/fonts/Geezapro-Regular.ttf') });
+
+    const Helvetica = Font.loadAsync({ 'Helvetica': require('../assets/fonts/Helvetica.ttf') });
+    const HelveticaRegular = Font.loadAsync({ 'Helvetica-Regular': require('../assets/fonts/Helvetica.ttf') });
+    const HelveticaBold = Font.loadAsync({ 'Helvetica-Bold': require('../assets/fonts/Helvetica-Bold.ttf') });    
+
+    return Promise.all([AntipastoLight, AntipastoRegular, AntipastoDemibold, Antipasto, 
+      GeezaproDemibold, GeezaproRegular, Geezapro, 
+      Helvetica, HelveticaRegular, HelveticaBold]);
   }
   
   render(){
@@ -48,7 +70,6 @@ export class StartingScreen extends React.Component {
     }else if(this.state.firstLaunch == true){
       return <OnboardingIntro navigation={this.props.navigation}/>
     }else{
-      console.log('home')
       return <Home navigation={this.props.navigation}/>
     }
   }

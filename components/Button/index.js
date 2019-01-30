@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 import PropTypes from "prop-types";
-import AntipastoText from '../AntipastoText'
+import StyledText from '../StyledText'
+import colors from '../../config/colors';
 
 export class Button extends Component {
   render() {
@@ -19,7 +20,7 @@ export class Button extends Component {
     }
     return (
       <TouchableOpacity style={[styles.button, variantButton, this.props.style]} onPress={this.props.onPress}>
-        <AntipastoText style={[styles.btnText, variantText]}>{this.props.text}</AntipastoText>
+        <StyledText size='h6' style={[styles.btnText, variantText]}>{this.props.text}</StyledText>
       </TouchableOpacity>
     )
   }
@@ -31,25 +32,24 @@ const styles = StyleSheet.create({
     margin: 10
   },
   btnPrimary: {
-    backgroundColor: '#D0021B'
+    backgroundColor: colors.$primaryRed
   },
   btnSecondary: {
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'black',
+    borderColor: colors.$black,
   },
   btnText: {
     textAlign: 'center',
-    fontSize: 18
   },
   textPrimary: {
-    color: 'white'
+    color: colors.$white
   },
   btnWhite: {
-    backgroundColor: 'white',
+    backgroundColor: colors.$white,
   },
   textWhite: {
-    color: 'black'
+    color: colors.$black
   }
 })
 

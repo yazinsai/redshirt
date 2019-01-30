@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
-import {View, Image, Text, StyleSheet} from 'react-native'
-import AntipastoText from '../components/AntipastoText'
+import {View, Image, Text, StyleSheet, StatusBar} from 'react-native'
+import StyledText from '../components/StyledText'
+import Button from '../components/Button'
+
+import localeStore from "../localization/localeStore"
+
+import colors from '../config/colors'
 
 export class Feedback extends Component {
   componentWillMount(){
@@ -9,12 +14,15 @@ export class Feedback extends Component {
     this.pickup = pickup
   }
   render() {
+    const {navigate} = this.props.navigation
     return (
       <View style={styles.container}>
-        <AntipastoText style={styles.title} >You're all {"\n"} set.</AntipastoText>
+        <StatusBar barStyle="light-content" />
+        <StyledText size='h4' style={styles.title} >{localeStore.t('feedbackTop')}</StyledText>
         <Image source={require('../assets/tick.png')} />
-        <AntipastoText style={styles.subTitle}>See you {"\n"} {this.pickup}.</AntipastoText>
+        <StyledText size='h5' style={styles.subTitle}>{localeStore.t('feedbackBottom')}{"\n"} {this.pickup}.</StyledText>
         <Image style={styles.backImage} source={require('../assets/slide1Image.png')} />
+        <Button text={localeStore.t('feedbackButton')} variant='white' style={styles.button} onPress={()=> navigate('Home')}/>
       </View>
     )
   }
@@ -23,13 +31,12 @@ export class Feedback extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D0021B',
+    backgroundColor: colors.$primaryRed,
     display: 'flex',
     alignItems: 'center'
   },
   title: {
-    color: 'white',
-    fontSize: 33,
+    color: colors.$white,
     marginTop: 70,
     textAlign: 'center',
     marginBottom: 40
@@ -38,8 +45,7 @@ const styles = StyleSheet.create({
 
   },
   subTitle: {
-    fontSize: 24,
-    color: 'white',
+    color: colors.$white,
     textAlign: 'center',
     marginTop: 70,
     zIndex: 2
@@ -50,6 +56,11 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1
   },
+  button: {
+    width: '90%',
+    marginTop: 40,
+    zIndex: 2,
+  }
 })
 
 export default Feedback

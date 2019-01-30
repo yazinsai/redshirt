@@ -1,22 +1,26 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, AsyncStorage } from "react-native";
+import { StyleSheet, View, Image, StatusBar } from "react-native";
 import Button from '../components/Button'
-import AntipastoText from '../components/AntipastoText'
+import StyledText from '../components/StyledText'
 import { Container } from '../components/Container'
+import localeStore from "../localization/localeStore"
+
+import colors from '../config/colors'
 
 export default class App extends React.Component {
   render() {
     const {navigate} = this.props.navigation
     return (
       <Container style={styles.container}>
+        <StatusBar barStyle="dark-content" />
         <View style={styles.appLogo}>
           <Image source={require('../assets/logo.png')} />
-          <AntipastoText style={styles.appLogoText}>Red Shirt</AntipastoText>
+          <StyledText size='h4' style={styles.appLogoText}>{localeStore.t('homeAppLogoText')}</StyledText>
         </View>
-        <Button variant='primary' text='Schedule a pickup' onPress={()=> navigate('SelectLaundry', {pickupRequired: true})}/>
+        <Button variant='primary' text={localeStore.t('homePickupButton')} onPress={()=> navigate('SelectLaundry', {pickupRequired: true})}/>
         <View style={styles.collectGroup}>
-          <AntipastoText style={styles.collectText}> Already dropped off your laundry?</AntipastoText>
-          <Button variant='secondary' text='Collect from the laundry' onPress={()=> navigate('SelectLaundry', {pickupRequired: false})}/>
+          <StyledText style={styles.collectText}>{localeStore.t('homeCollectAboveText')}</StyledText>
+          <Button variant='secondary' text={localeStore.t('homeCollectButton')} onPress={()=> navigate('SelectLaundry', {pickupRequired: false})}/>
         </View>
       </Container>
     );
@@ -24,8 +28,6 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-  },
   appLogo: {
     height: '60%',
     display: 'flex',
@@ -33,15 +35,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   appLogoText: {
-    fontSize: 32,
-    color: '#D0021B',
+    color: colors.$primaryRed,
     marginTop: 10,
   },
   collectGroup: {
     marginTop: 30
   },
   collectText: {
-    fontSize: 20,
     textAlign: 'center'
   }
 });

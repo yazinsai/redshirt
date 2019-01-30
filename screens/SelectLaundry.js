@@ -1,37 +1,54 @@
 import React, { Component } from "react";
-import {  FlatList, StyleSheet, View } from "react-native";
-import { Card } from 'react-native-elements'
+import {  FlatList, StyleSheet, View, StatusBar } from "react-native";
+import { Localization } from 'expo-localization';
 
-import laundries from "../data/laundries";
 import LaundryItem from "../components/LaundryItem";
+import colors from "../config/colors";
 
 class ChooseLaundry extends Component {
   constructor(props) {
-    super(props)
-    this.state= {laundries: []}
+    super(props);
+    this.state = { laundries: [] };
   }
   componentWillMount() {
-    fetch('https://shine-server-order.herokuapp.com/laundries', {
-      method: 'GET'
-    }).then((response) => response.json())
-      .then((json) => this.setState({laundries: json}))
+    const { locale } = Localization;
+    fetch(
+      `https://api.redshirt.app/laundries?locale=${locale}`,
+      {
+        method: "GET"
+      }
+    )
+      .then(response => response.json())
+      .then(laundries =>
+        laundries.sort(
+          (a, b) =>
+            b.reviews.rating - a.reviews.rating ||
+            b.reviews.count - a.reviews.count
+        )
+      )
+      .then(json => this.setState({ laundries: json }));
   }
   onItemClicked(item) {
     const { navigation } = this.props;
-    const pickupRequired = navigation.getParam('pickupRequired', 'true');
-    console.log(pickupRequired)
-    navigation.navigate('OrderDetails', {laundry: item.name, pickupRequired});
+    const pickupRequired = navigation.getParam("pickupRequired", "true");
+    navigation.navigate("OrderDetails", { laundry: item.name, pickupRequired });
   }
   render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <FlatList
           data={this.state.laundries}
-          renderItem={({ item }) => <LaundryItem item={item} onPress={() => this.onItemClicked(item)}/>}
-          keyExtractor={item => item.id}
-          ItemSeparatorComponent={({_}) =>
-            <View style={styles.separator} />
-          }
+          renderItem={({ item }) => (
+            <LaundryItem
+              item={item}
+              onPress={() => this.onItemClicked(item)}
+              navigation={navigation}
+            />
+          )}
+          keyExtractor={item => "" + item.id} // Resolve warning about integer IDs
+          ItemSeparatorComponent={_ => <View style={styles.separator} />}
         />
       </View>
     );
@@ -42,15 +59,15 @@ const styles = StyleSheet.create({
   container: {
     margin: 20,
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: colors.$lighterGrey
   },
   separator: {
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#ececec',
+    backgroundColor: colors.$lightestGrey,
     flex: 1,
     marginTop: 10,
     marginBottom: 10
-  },
-})
+  }
+});
 
 export default ChooseLaundry;
