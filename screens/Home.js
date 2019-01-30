@@ -5,6 +5,8 @@ import StyledText from '../components/StyledText'
 import { Container } from '../components/Container'
 import localeStore from "../localization/localeStore"
 
+import colors from '../config/colors'
+
 export default class App extends React.Component {
   render() {
     const {navigate} = this.props.navigation
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   appLogoText: {
-    color: '#D0021B',
+    color: colors.$primaryRed,
     marginTop: 10,
   },
   collectGroup: {

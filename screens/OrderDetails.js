@@ -15,6 +15,7 @@ import Button from '../components/Button'
 import localeStore from "../localization/localeStore"
 
 import { Localization } from 'expo-localization';
+import colors from "../config/colors";
 
 const Form = t.form.Form;
 const DATE_FORMAT = "YYYY-MM-DD";
@@ -283,7 +284,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
     paddingHorizontal: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.$white,
   },
 });
 

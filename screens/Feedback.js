@@ -5,6 +5,8 @@ import Button from '../components/Button'
 
 import localeStore from "../localization/localeStore"
 
+import colors from '../config/colors'
+
 export class Feedback extends Component {
   componentWillMount(){
     const { navigation } = this.props;
@@ -29,12 +31,12 @@ export class Feedback extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D0021B',
+    backgroundColor: colors.$primaryRed,
     display: 'flex',
     alignItems: 'center'
   },
   title: {
-    color: 'white',
+    color: colors.$white,
     marginTop: 70,
     textAlign: 'center',
     marginBottom: 40
@@ -43,7 +45,7 @@ const styles = StyleSheet.create({
 
   },
   subTitle: {
-    color: 'white',
+    color: colors.$white,
     textAlign: 'center',
     marginTop: 70,
     zIndex: 2
