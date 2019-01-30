@@ -6,8 +6,6 @@ import { Localization } from 'expo-localization';
 import Home from './Home'
 import OnboardingIntro from './OnboardingIntro'
 
-
-
 export class StartingScreen extends React.Component {
   constructor(){
     super();
@@ -18,13 +16,9 @@ export class StartingScreen extends React.Component {
   }
   componentDidMount(){
     AsyncStorage.getItem("alreadyLaunched").then(value => {
-      if(value == null){
-        AsyncStorage.setItem('alreadyLaunched', 'true'); 
-        this.setState({firstLaunch: true});
-      } else{
-        this.setState({firstLaunch: false});
-      }
+      this.setState({firstLaunch: (value == null)})
     })
+
     AsyncStorage.getItem("wasPreviouslyRTL").then(value => {
       const isRTL = ''+(Localization.locale == 'ar')
       if(value != isRTL) {
@@ -73,9 +67,6 @@ export class StartingScreen extends React.Component {
       return <Home navigation={this.props.navigation}/>
     }
   }
-
-  
-
 }
 
 

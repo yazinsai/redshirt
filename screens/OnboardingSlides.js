@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, StatusBar } from "react-native";
+import { StyleSheet, View, Image, StatusBar, AsyncStorage } from "react-native";
 import Swiper from 'react-native-swiper';
 import Button from "../components/Button"
 import StyledText from '../components/StyledText'
@@ -8,9 +8,17 @@ import { Localization } from 'expo-localization';
 import colors from "../config/colors";
 
 export default class OnboardingSlides extends React.Component {
+  onComplete() {
+    // Hide intro slides from from future loads
+    AsyncStorage.setItem('alreadyLaunched', 'true');
+
+    // Navigate to home
+    const { navigate } = this.props.navigation;
+    navigate('Home')
+  }
+
   render() {
     const whiteDot= <View style={styles.customDot} />
-    const { navigate } = this.props.navigation;
     let imageStyle = styles.image
     const wrapperStyle = Object.assign({}, styles.wrapper)
     let index = 0
@@ -45,7 +53,7 @@ export default class OnboardingSlides extends React.Component {
               <StyledText size='h2' weight='Light'>{localeStore.t('onBoardingThirdSlideLight')}</StyledText>
             </StyledText>
             <Image source={require('../assets/slide3Image.png')} style={imageStyle} />
-            <Button style={styles.button} variant='white' onPress={() => navigate('Home')} text={localeStore.t('onBoardingThirdSlideButton')} />
+            <Button style={styles.button} variant='white' onPress={() => this.onComplete()} text={localeStore.t('onBoardingThirdSlideButton')} />
           </View>
         </Swiper>
       </View>
