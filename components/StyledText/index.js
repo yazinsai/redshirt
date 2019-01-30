@@ -14,8 +14,10 @@ export class StyledText extends Component {
   }
 
   render() {
+    let locale = Localization.locale
+    if(locale != 'en' && locale != 'ar') locale = 'en'
     const weight = this.props.weight || "Regular";
-    let sizeClass = (this.props.size || "body") + "_" + Localization.locale;
+    let sizeClass = (this.props.size || "body") + "_" + locale;
     let fontFamily = this.props.fontFamily || this.family;
 
     return (
