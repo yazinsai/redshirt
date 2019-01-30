@@ -54,7 +54,7 @@ export const en = {
 
 export const ar = {
 
-  backButton: 'BackAR',
+  backButton: 'سابق',
 
   headerSelectLaundry: 'اختر مغسلة',
   headerOrderDetails: 'أدخل تفاصيل طلبك',
@@ -96,10 +96,10 @@ export const ar = {
   laundryViewPrices: 'قائمة الأسعار ',
 
   prices: 'الأسعار', // This is for the laundryPrices Header
-  laundryPricesItem: 'ItemAR',
-  laundryPricesPressing: 'PressingAR',
-  laundryPricesLaundry: 'LaundryAR',
-  laundryPricesDryClean: 'Dry CleanAR',
+  laundryPricesItem: 'القطعة',
+  laundryPricesPressing: 'كي',
+  laundryPricesLaundry: 'غسيل',
+  laundryPricesDryClean: 'تنظيف جاف',
 
   feedbackTop: 'تم إدخال طلبك بنجاح',
   feedbackBottom: 'نراك ',
