@@ -1,5 +1,5 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import { Easing, Animated, StatusBar } from 'react-native';
+import { Easing, Animated } from 'react-native';
 
 
 import StartingScreen from './screens/StartingScreen'
@@ -7,11 +7,6 @@ import OnBoardingSlides from './screens/OnboardingSlides'
 import Home from './screens/Home'
 import SelectLaundry from './screens/SelectLaundry'
 import LaundryPrices from './screens/LaundryPrices'
-import ReactNative, { Easing, Animated } from "react-native";
-import StartingScreen from "./screens/StartingScreen";
-import OnBoardingSlides from "./screens/OnboardingSlides";
-import Home from "./screens/Home";
-import SelectLaundry from "./screens/SelectLaundry";
 import OrderDetails from "./screens/OrderDetails";
 import Feedback from "./screens/Feedback";
 
