@@ -91,7 +91,7 @@ export const ar = {
   orderDetailsSubmitButton: 'إتمام الطلب',
 
   laundryReview: 'تقييم',
-  laundryDeliveryFee: 'Delivery feeAR: ',
+  laundryDeliveryFee: 'رسوم التوصيل: ',
   laundryMinimumOrder: 'الحد الأدنى للطلب: ',
   laundryViewPrices: 'قائمة الأسعار ',
 
