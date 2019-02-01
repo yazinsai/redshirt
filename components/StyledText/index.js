@@ -62,10 +62,10 @@ const styles = StyleSheet.create({
     fontSize: 140
   },
   h2_en: {
-    fontSize: 72
+    fontSize: 62
   },
   h2_ar: {
-    fontSize: 60
+    fontSize: 56
   },
   h3_en: {
     fontSize: 44
