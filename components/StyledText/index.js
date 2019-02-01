@@ -80,10 +80,10 @@ const styles = StyleSheet.create({
     fontSize: 28
   },
   h5_en: {
-    fontSize: 24
+    fontSize: 28
   },
   h5_ar: {
-    fontSize: 21
+    fontSize: 24
   },
   h6_en: {
     fontSize: 21
