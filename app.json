@@ -28,7 +28,8 @@
     },
     "android": {
       "package": "com.redshirt.consumer",
-      "versionCode": 111
+      "versionCode": 111,
+      "permissions": []
     }
   }
 }
