@@ -34,11 +34,8 @@ const LaundryItem = ({ item, onPress, navigation }) => {
         </View>
         <View style={styles.details}>
           <StyledText fontFamily='Helvetica' size='small' style={styles.contentText}>
-            {localeStore.t('laundryPrice')} 
-            {'$'.repeat(item.pricing)}
-            <StyledText fontFamily='Helvetica' size='small' style={[styles.contentText, styles.lightDollarSigns]}>
-              {'$'.repeat(3-item.pricing)}
-            </StyledText>
+            {localeStore.t('laundryDeliveryFee')} 
+            {item.deliveryFee}
           </StyledText>
           <StyledText fontFamily='Helvetica' size='small' style={styles.contentText}>
             {localeStore.t('laundryMinimumOrder')} {item.minimumOrder}

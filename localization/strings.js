@@ -37,7 +37,7 @@ export const en = {
   orderDetailsSubmitButton: 'Place my order',
 
   laundryReview: 'reviews',
-  laundryPrice: 'Price: ',
+  laundryDeliveryFee: 'Delivery Fee: ',
   laundryMinimumOrder: 'Minimum Order: ',
   laundryViewPrices: 'View Prices',
 
@@ -91,7 +91,7 @@ export const ar = {
   orderDetailsSubmitButton: 'إتمام الطلب',
 
   laundryReview: 'تقييم',
-  laundryPrice: 'السعر: ',
+  laundryDeliveryFee: 'رسوم التوصيل: ',
   laundryMinimumOrder: 'الحد الأدنى للطلب: ',
   laundryViewPrices: 'قائمة الأسعار ',
 
