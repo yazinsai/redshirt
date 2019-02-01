@@ -20,7 +20,7 @@ export class Button extends Component {
     }
     return (
       <TouchableOpacity style={[styles.button, variantButton, this.props.style]} onPress={this.props.onPress}>
-        <StyledText size='h6' style={[styles.btnText, variantText]}>{this.props.text}</StyledText>
+        <StyledText size='h6' fontFamily='Helvetica' style={[styles.btnText, variantText]}>{this.props.text}</StyledText>
       </TouchableOpacity>
     )
   }
