@@ -5,7 +5,7 @@ export const en = {
   headerSelectLaundry: 'Choose a Laundry',
   headerOrderDetails: 'Schedule your order',
 
-  onBoardingIntroLightBefore: 'With Red Shirt, you’ll',
+  onBoardingIntroLightBefore: 'Congratulations. You’ll',
   onBoardingIntroBold: 'never go to another laundry',
   onBoardingIntroLightAfter: ' again.',
   onBoardingIntroContinueButton: '3 simple steps',

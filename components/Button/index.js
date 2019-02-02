@@ -17,10 +17,13 @@ export class Button extends Component {
     } else if(this.props.variant == 'white') {
       variantButton = styles.btnWhite
       variantText = styles.textWhite
+    } else if(this.props.variant == 'small') {
+      variantButton = styles.btnSmall
+      variantText = styles.textSmall
     }
     return (
       <TouchableOpacity style={[styles.button, variantButton, this.props.style]} onPress={this.props.onPress}>
-        <StyledText size='h6' style={[styles.btnText, variantText]}>{this.props.text}</StyledText>
+        <StyledText size={this.props.variant == 'small' ? 'body' : 'h6'} fontFamily='Helvetica' style={[styles.btnText, variantText]}>{this.props.text}</StyledText>
       </TouchableOpacity>
     )
   }
@@ -50,7 +53,12 @@ const styles = StyleSheet.create({
   },
   textWhite: {
     color: colors.$black
-  }
+  },
+  btnSmall: {
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: colors.$black,
+  },
 })
 
 Button.propTypes = {

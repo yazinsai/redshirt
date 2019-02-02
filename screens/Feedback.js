@@ -18,7 +18,7 @@ export class Feedback extends Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <StyledText size='h4' style={styles.title} >{localeStore.t('feedbackTop')}</StyledText>
+        <StyledText size='h3' style={styles.title} >{localeStore.t('feedbackTop')}</StyledText>
         <Image source={require('../assets/tick.png')} />
         <StyledText size='h5' style={styles.subTitle}>{localeStore.t('feedbackBottom')}{"\n"} {this.pickup}.</StyledText>
         <Image style={styles.backImage} source={require('../assets/slide1Image.png')} />

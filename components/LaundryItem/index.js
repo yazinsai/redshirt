@@ -12,7 +12,7 @@ import colors from '../../config/colors'
 import { Localization } from 'expo-localization';
 
 const LaundryItem = ({ item, onPress, navigation }) => {
-  let informationStyle = {}
+  let informationStyle = styles.information
   if(Localization.locale == 'ar') {
     informationStyle = styles.informationRTL
   }
@@ -44,7 +44,7 @@ const LaundryItem = ({ item, onPress, navigation }) => {
       </View>
       <View style= {styles.imageContainer}>
         <Image style={styles.image} source={{uri: item.image}}/>
-        <Button text={localeStore.t('laundryViewPrices')} variant='secondary' style={styles.button} 
+        <Button text={localeStore.t('laundryViewPrices')} variant='small' style={styles.button} 
           onPress={() => navigate('LaundryPrices', {id: item.id, name: item.name})}/>
       </View>
     </View>
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
+    marginTop: 10
   },
   title: {
     color: colors.$darkerGrey
@@ -75,8 +76,12 @@ const styles = StyleSheet.create({
   },
   contentText: {
     color: colors.$primaryGrey
+  },
+  information: {
+    marginTop: 10,
   },
   informationRTL: {
+    marginTop: 10,
     marginLeft: 10
   },
   rating: {

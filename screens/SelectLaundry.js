@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.$lightestGrey,
     flex: 1,
     marginTop: 10,
-    marginBottom: 10
   }
 });
 

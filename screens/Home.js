@@ -15,11 +15,11 @@ export default class App extends React.Component {
         <StatusBar barStyle="dark-content" />
         <View style={styles.appLogo}>
           <Image source={require('../assets/logo.png')} />
-          <StyledText size='h4' style={styles.appLogoText}>{localeStore.t('homeAppLogoText')}</StyledText>
+          <StyledText size='h3' style={styles.appLogoText}>{localeStore.t('homeAppLogoText')}</StyledText>
         </View>
         <Button variant='primary' text={localeStore.t('homePickupButton')} onPress={()=> navigate('SelectLaundry', {pickupRequired: true})}/>
         <View style={styles.collectGroup}>
-          <StyledText style={styles.collectText}>{localeStore.t('homeCollectAboveText')}</StyledText>
+          <StyledText size='h6' style={styles.collectText}>{localeStore.t('homeCollectAboveText')}</StyledText>
           <Button variant='secondary' text={localeStore.t('homeCollectButton')} onPress={()=> navigate('SelectLaundry', {pickupRequired: false})}/>
         </View>
       </Container>
@@ -37,11 +37,13 @@ const styles = StyleSheet.create({
   appLogoText: {
     color: colors.$primaryRed,
     marginTop: 10,
+    textAlign: 'center'
   },
   collectGroup: {
     marginTop: 30
   },
   collectText: {
-    textAlign: 'center'
+    textAlign: 'center',
+    color: colors.$primaryGrey
   }
 });
